@@ -4,6 +4,9 @@
     <Filter Include="EMT">
       <UniqueIdentifier>{ABE2870B-17EC-877C-A067-9E7C0C70937C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EMT\Event">
+      <UniqueIdentifier>{3C78551C-A8E2-0993-F120-BB385DCAE7E7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EMT.h" />
@@ -15,6 +18,9 @@
     </ClInclude>
     <ClInclude Include="src\EMT\EntryPoint.h">
       <Filter>EMT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Event\Event.h">
+      <Filter>EMT\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Log.h">
       <Filter>EMT</Filter>

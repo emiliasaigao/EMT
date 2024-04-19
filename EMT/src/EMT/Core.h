@@ -8,3 +8,5 @@
 
 #else error EMT ENGINE ONLY SUPPORT WINDOWS!
 #endif // EMT_ENGINE_WINDOWS
+
+#define BIT(x) (1 << x)
