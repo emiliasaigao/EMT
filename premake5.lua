@@ -11,6 +11,11 @@ workspace "EMT"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "EMT/include/GLFW/include"
+
+include "EMT/include/GLFW"
+
 project "EMT"
 	location "EMT"
 	kind "SharedLib"
@@ -28,8 +33,18 @@ project "EMT"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/include"
+		"%{prj.name}/include",
+		"%{IncludeDir.GLFW}"
 	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
+	}
+
+	pchheader "emtpch.h"
+	pchsource "EMT/src/emtpch.cpp"
 
 	filter "system:windows"
 		cppdialect "C++17"
@@ -49,6 +64,7 @@ project "EMT"
 
 	filter "configurations:Debug"
 		defines "EMT_DEBUG"
+		defines "EMT_ENABLE_ASSERTS"
 		symbols "On"
 	
 	filter "configurations:Release"

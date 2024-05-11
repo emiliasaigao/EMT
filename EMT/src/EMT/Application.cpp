@@ -1,17 +1,22 @@
+#include "emtpch.h"
 #include "Application.h"
 #include "EMT/Log.h"
 #include "EMT/Event/ApplicationEvent.h"
+#include <GLFW/glfw3.h>
 
 namespace EMT {
-	Application::Application() {}
+	Application::Application() {
+		m_Window = std::unique_ptr<Window>(Window::Create());
+	}
 
-	Application::~Application(){}
+	Application::~Application() {}
 
 	void Application::Run() {
-		WindowResizeEvent e(1920u, 1080u);
-		EMT_ERROR(e);
-		while (true) {
-
+		
+		while (m_Running) {
+			glClearColor(1, 1, 0, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
+			m_Window->OnUpdate();
 		}
 	}
 }

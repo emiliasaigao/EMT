@@ -7,6 +7,12 @@
     <Filter Include="EMT\Event">
       <UniqueIdentifier>{3C78551C-A8E2-0993-F120-BB385DCAE7E7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EMT.h" />
@@ -19,12 +25,28 @@
     <ClInclude Include="src\EMT\EntryPoint.h">
       <Filter>EMT</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Event\ApplicationEvent.h">
+      <Filter>EMT\Event</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Event\Event.h">
+      <Filter>EMT\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Event\KeyEvent.h">
+      <Filter>EMT\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Event\MouseEvent.h">
       <Filter>EMT\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Log.h">
       <Filter>EMT</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Window.h">
+      <Filter>EMT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emtpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EMT\Application.cpp">
@@ -33,5 +55,9 @@
     <ClCompile Include="src\EMT\Log.cpp">
       <Filter>EMT</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emtpch.cpp" />
   </ItemGroup>
 </Project>

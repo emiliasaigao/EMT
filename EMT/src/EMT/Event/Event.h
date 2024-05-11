@@ -1,8 +1,6 @@
 #pragma once
 #include "EMT/Core.h"
 
-#include <string>
-#include <functional>
 
 // 创建宏来减少实现Event子类的琐碎纯虚函数所需的代码量
 // '#'是一个预处理运算符，它将参数转换为字符串字面值

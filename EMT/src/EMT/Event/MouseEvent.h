@@ -2,7 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
 
 namespace EMT {
 	class EMT_API MouseMovedEvent : public Event {
