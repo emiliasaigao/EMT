@@ -37,6 +37,12 @@
     <ClInclude Include="src\EMT\Event\MouseEvent.h">
       <Filter>EMT\Event</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Layer.h">
+      <Filter>EMT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\LayerStack.h">
+      <Filter>EMT</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Log.h">
       <Filter>EMT</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EMT\Application.cpp">
+      <Filter>EMT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Layer.cpp">
+      <Filter>EMT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\LayerStack.cpp">
       <Filter>EMT</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Log.cpp">

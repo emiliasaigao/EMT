@@ -35,7 +35,7 @@ namespace EMT {
 
 	class EMT_API KeyReleasedEvent : public KeyEvent {
 	public:
-		KeyReleasedEvent(int keyCode, int repeatCount) : KeyEvent(keyCode) {}
+		KeyReleasedEvent(int keyCode) : KeyEvent(keyCode) {}
 
 
 		virtual std::string ToString() const override {

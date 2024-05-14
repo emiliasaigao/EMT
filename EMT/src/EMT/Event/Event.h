@@ -40,12 +40,14 @@ namespace EMT {
 		inline bool isInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
 		}
+		inline bool isHandled() const { return m_isHandled; }
 	protected:
 		bool m_isHandled = false;
 	};
 
 	class EventDispatcher {
 		// 接收T引用返回bool的仿函数
+		// T通常是事件类型，返回的bool值指的是事件是否处理成功
 		template <class T>
 		using EventFn = std::function<bool(T&)>;
 

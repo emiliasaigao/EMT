@@ -65,14 +65,17 @@ project "EMT"
 	filter "configurations:Debug"
 		defines "EMT_DEBUG"
 		defines "EMT_ENABLE_ASSERTS"
+		buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "EMT_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 	
 	filter "configurations:Dist"
 		defines "EMT_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 
@@ -113,12 +116,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "EMT_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "EMT_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 	
 	filter "configurations:Dist"
 		defines "EMT_DIST"
+		buildoptions "/MD"
 		optimize "On"
