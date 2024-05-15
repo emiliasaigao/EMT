@@ -1,0 +1,3 @@
+[submodule "EMT/include/GLFW"]
+	path = EMT/include/GLFW
+	url = https://github.com/emiliasaigao/glfw
