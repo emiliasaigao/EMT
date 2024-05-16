@@ -29,6 +29,8 @@ namespace EMT {
 		virtual void SetVSync(bool enabled) = 0; // 设置垂直同步
 		virtual bool isVSync() const = 0;
 
+		virtual void* GetNativeWindow() const = 0;
+
 		static Window* Create(const WindowProps& props = WindowProps());
 	};
 }

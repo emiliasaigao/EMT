@@ -1,0 +1,13 @@
+#pragma once
+#define EMT_MOUSE_BUTTON_1         0
+#define EMT_MOUSE_BUTTON_2         1
+#define EMT_MOUSE_BUTTON_3         2
+#define EMT_MOUSE_BUTTON_4         3
+#define EMT_MOUSE_BUTTON_5         4
+#define EMT_MOUSE_BUTTON_6         5
+#define EMT_MOUSE_BUTTON_7         6
+#define EMT_MOUSE_BUTTON_8         7
+#define EMT_MOUSE_BUTTON_LAST      EMT_MOUSE_BUTTON_8
+#define EMT_MOUSE_BUTTON_LEFT      EMT_MOUSE_BUTTON_1
+#define EMT_MOUSE_BUTTON_RIGHT     EMT_MOUSE_BUTTON_2
+#define EMT_MOUSE_BUTTON_MIDDLE    EMT_MOUSE_BUTTON_3

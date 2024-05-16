@@ -18,6 +18,8 @@ namespace EMT {
 		inline void SetVSync(bool enabled) override;
 		inline bool isVSync() const override { return m_Data.VSync; }
 
+		virtual void* GetNativeWindow() const override { return (void*)m_Window; }
+
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();

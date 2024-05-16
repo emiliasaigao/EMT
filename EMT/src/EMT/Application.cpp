@@ -3,6 +3,7 @@
 #include "EMT/Log.h"
 
 #include <GLFW/glfw3.h>
+#include "Input.h"
 
 namespace EMT {
 
@@ -50,6 +51,10 @@ namespace EMT {
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
+			if (Input::isKeyPressed(GLFW_KEY_TAB)) {
+				EMT_CORE_ERROR("TAB键是被嗯着的！");
+			}
+
 			m_Window->OnUpdate();
 		}
 	}
