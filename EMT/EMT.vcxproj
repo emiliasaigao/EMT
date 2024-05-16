@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>emtpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EMT_PLATFORM_WINDOWS;EMT_BUILD_DLL;EMT_DEBUG;EMT_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;include;include\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;include;include\GLFW\include;include\Glad\include;include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -104,7 +104,7 @@
       <PrecompiledHeaderFile>emtpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EMT_PLATFORM_WINDOWS;EMT_BUILD_DLL;EMT_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;include;include\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;include;include\GLFW\include;include\Glad\include;include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -132,7 +132,7 @@
       <PrecompiledHeaderFile>emtpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EMT_PLATFORM_WINDOWS;EMT_BUILD_DLL;EMT_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;include;include\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;include;include\GLFW\include;include\Glad\include;include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -163,18 +163,22 @@
     <ClInclude Include="src\EMT\Event\Event.h" />
     <ClInclude Include="src\EMT\Event\KeyEvent.h" />
     <ClInclude Include="src\EMT\Event\MouseEvent.h" />
+    <ClInclude Include="src\EMT\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\EMT\Layer.h" />
     <ClInclude Include="src\EMT\LayerStack.h" />
     <ClInclude Include="src\EMT\Log.h" />
     <ClInclude Include="src\EMT\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\emtpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EMT\Application.cpp" />
+    <ClCompile Include="src\EMT\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\EMT\Layer.cpp" />
     <ClCompile Include="src\EMT\LayerStack.cpp" />
     <ClCompile Include="src\EMT\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\emtpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -183,6 +187,12 @@
   <ItemGroup>
     <ProjectReference Include="include\GLFW\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="include\Glad\Glad.vcxproj">
+      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="include\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

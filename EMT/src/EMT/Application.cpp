@@ -5,19 +5,23 @@
 #include <GLFW/glfw3.h>
 
 namespace EMT {
-#define BIND_EVENT_FCN(x) std::bind(&Application::x, this, std::placeholders::_1)
+
+	Application* Application::m_Instance = nullptr;
 
 	Application::Application() {
+		EMT_CORE_ASSERT(!m_Instance, "已经存在App实例！");
+		m_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FCN(OnEvent));
+		m_Window->SetEventCallback(BIND_EVENT_FCN(Application::OnEvent));
 	}
 
 	Application::~Application() {}
 
 	void Application::OnEvent(Event& e) {
 		EventDispatcher dispatcher(e);
-		dispatcher.DisPacth<WindowCloseEvent>(BIND_EVENT_FCN(OnWindowClose));
-		dispatcher.DisPacth<KeyPressedEvent>(BIND_EVENT_FCN(OnKeyPress));
+		dispatcher.DisPacth<WindowCloseEvent>(BIND_EVENT_FCN(Application::OnWindowClose));
+		dispatcher.DisPacth<KeyPressedEvent>(BIND_EVENT_FCN(Application::OnKeyPress));
 
 		EMT_CORE_TRACE("{0}", e);
 		
@@ -43,19 +47,21 @@ namespace EMT {
 		while (m_Running) {
 			glClearColor(1, 1, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
-			m_Window->OnUpdate();
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
+			m_Window->OnUpdate();
 		}
 	}
 
 	void Application::PushLayer(Layer* layer) {
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverLayer(Layer* overLayer) {
 		m_LayerStack.PushOverLayer(overLayer);
+		overLayer->OnAttach();
 	}
 
 }

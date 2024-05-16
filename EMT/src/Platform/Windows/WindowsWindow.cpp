@@ -41,6 +41,8 @@ namespace EMT {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		EMT_CORE_ASSERT(status, "Glad ≥ı ºªØ ß∞‹£°");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -83,6 +85,12 @@ namespace EMT {
 					break;
 				}
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode) {
+			WindowData& data = *(WindowData*)(glfwGetWindowUserPointer(window));
+			KeyTypedEvent e(keycode);
+			data.EventCallback(e);
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {

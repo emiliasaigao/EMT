@@ -17,6 +17,9 @@ namespace EMT {
 		void PushLayer(Layer* layer);
 		void PushOverLayer(Layer* overLayer);
 
+		static Application& GetInstance() { return *m_Instance; }
+		inline const std::unique_ptr<Window>& GetWindow() const { return m_Window; }
+
 	private:
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
@@ -24,6 +27,9 @@ namespace EMT {
 
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnKeyPress(KeyPressedEvent& e);
+
+	private:
+		static Application* m_Instance;
 	};
 
 	Application* CreateApplication();

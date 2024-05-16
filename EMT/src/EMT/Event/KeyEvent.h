@@ -33,6 +33,23 @@ namespace EMT {
 		int m_RepeatCount;
 	};
 
+	class EMT_API KeyTypedEvent : public KeyEvent {
+	public:
+		KeyTypedEvent(int keyCode) : KeyEvent(keyCode) {}
+
+		inline int GetRepeatCount() const { return m_RepeatCount; }
+
+		virtual std::string ToString() const override {
+			std::stringstream ss;
+			ss << "KeyTypedEvent:" << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped);
+	private:
+		int m_RepeatCount;
+	};
+
 	class EMT_API KeyReleasedEvent : public KeyEvent {
 	public:
 		KeyReleasedEvent(int keyCode) : KeyEvent(keyCode) {}

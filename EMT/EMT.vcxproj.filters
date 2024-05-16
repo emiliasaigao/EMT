@@ -7,8 +7,14 @@
     <Filter Include="EMT\Event">
       <UniqueIdentifier>{3C78551C-A8E2-0993-F120-BB385DCAE7E7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EMT\ImGui">
+      <UniqueIdentifier>{156C981C-81D6-4C93-CA14-FE3836BE2AE8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\EMT\Event\MouseEvent.h">
       <Filter>EMT\Event</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\ImGui\ImGuiLayer.h">
+      <Filter>EMT\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Layer.h">
       <Filter>EMT</Filter>
     </ClInclude>
@@ -49,6 +58,9 @@
     <ClInclude Include="src\EMT\Window.h">
       <Filter>EMT</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -58,6 +70,9 @@
     <ClCompile Include="src\EMT\Application.cpp">
       <Filter>EMT</Filter>
     </ClCompile>
+    <ClCompile Include="src\EMT\ImGui\ImGuiLayer.cpp">
+      <Filter>EMT\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\EMT\Layer.cpp">
       <Filter>EMT</Filter>
     </ClCompile>
@@ -66,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="src\EMT\Log.cpp">
       <Filter>EMT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

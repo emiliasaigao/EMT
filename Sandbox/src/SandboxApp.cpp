@@ -7,7 +7,7 @@ public:
 	}
 
 	void OnUpdate() override {
-		EMT_INFO("ExampleLayer Updating!");
+		//EMT_INFO("ExampleLayer Updating!");
 	}
 
 	void OnEvent(EMT::Event& e) override {
@@ -19,6 +19,7 @@ class SandboxApp : public EMT::Application {
 public:
 	SandboxApp(){
 		PushLayer(new ExampleLayer());
+		PushOverLayer(new EMT::ImGuiLayer());
 	}
 	~SandboxApp(){}
 };

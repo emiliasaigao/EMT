@@ -1,3 +1,6 @@
 [submodule "EMT/include/GLFW"]
 	path = EMT/include/GLFW
 	url = https://github.com/emiliasaigao/glfw
+[submodule "EMT/include/imgui"]
+	path = EMT/include/imgui
+	url = https://github.com/TheCherno/imgui
