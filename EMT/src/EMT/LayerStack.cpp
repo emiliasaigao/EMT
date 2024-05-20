@@ -4,7 +4,7 @@
 namespace EMT {
 	LayerStack::LayerStack()
 	{
-		m_LayerInsert = begin();
+		m_LayerInsert = 0;
 	}
 
 	LayerStack::~LayerStack() {
@@ -14,7 +14,8 @@ namespace EMT {
 	}
 
 	void LayerStack::PushLayer(Layer* layer) {
-		m_LayerInsert =  m_Layers.emplace(m_LayerInsert, layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayerInsert, layer);
+		m_LayerInsert++;
 	}
 
 	void LayerStack::PushOverLayer(Layer* overLayer) {

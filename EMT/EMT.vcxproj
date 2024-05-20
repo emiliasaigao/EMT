@@ -171,18 +171,17 @@
     <ClInclude Include="src\EMT\Log.h" />
     <ClInclude Include="src\EMT\MouseButton.h" />
     <ClInclude Include="src\EMT\Window.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\emtpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EMT\Application.cpp" />
+    <ClCompile Include="src\EMT\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\EMT\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\EMT\Layer.cpp" />
     <ClCompile Include="src\EMT\LayerStack.cpp" />
     <ClCompile Include="src\EMT\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\emtpch.cpp">

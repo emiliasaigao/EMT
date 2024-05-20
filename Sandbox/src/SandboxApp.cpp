@@ -1,4 +1,5 @@
 #include <EMT.h>
+#include "imgui/imgui.h"
 
 class ExampleLayer : public EMT::Layer {
 public:
@@ -8,6 +9,12 @@ public:
 
 	void OnUpdate() override {
 		//EMT_INFO("ExampleLayer Updating!");
+	}
+
+	void OnImGuiRender() override {
+		ImGui::Begin("Test");
+		ImGui::Text("Hello world");
+		ImGui::End();
 	}
 
 	void OnEvent(EMT::Event& e) override {

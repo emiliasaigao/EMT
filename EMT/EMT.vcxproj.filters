@@ -58,13 +58,14 @@
     <ClInclude Include="src\EMT\Window.h">
       <Filter>EMT</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>Platform\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\emtpch.h" />
+    <ClInclude Include="src\EMT\Input.h" />
+    <ClInclude Include="src\EMT\KeyCode.h" />
+    <ClInclude Include="src\EMT\MouseButton.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EMT\Application.cpp">
@@ -82,12 +83,11 @@
     <ClCompile Include="src\EMT\Log.cpp">
       <Filter>EMT</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.cpp">
-      <Filter>Platform\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\emtpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\EMT\ImGui\ImGuiBuild.cpp" />
   </ItemGroup>
 </Project>

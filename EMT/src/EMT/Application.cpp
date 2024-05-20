@@ -51,9 +51,15 @@ namespace EMT {
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
-			if (Input::isKeyPressed(GLFW_KEY_TAB)) {
+			/*if (Input::isKeyPressed(GLFW_KEY_TAB)) {
 				EMT_CORE_ERROR("TAB键是被嗯着的！");
+			}*/
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack) {
+				layer->OnImGuiRender();
 			}
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}

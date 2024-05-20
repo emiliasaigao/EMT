@@ -5,6 +5,7 @@
 #include "EMT/Event/ApplicationEvent.h"
 #include "EMT/Event/KeyEvent.h"
 #include "EMT/LayerStack.h"
+#include "EMT/ImGui/ImGuiLayer.h"
 
 namespace EMT {
 	class EMT_API Application {
@@ -24,6 +25,7 @@ namespace EMT {
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		ImGuiLayer* m_ImGuiLayer;
 
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnKeyPress(KeyPressedEvent& e);
