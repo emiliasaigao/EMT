@@ -26,6 +26,7 @@ namespace EMT {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
+		unsigned int m_VAO, m_VBO, m_EBO;
 
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnKeyPress(KeyPressedEvent& e);

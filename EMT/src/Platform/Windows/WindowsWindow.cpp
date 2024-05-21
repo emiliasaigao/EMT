@@ -4,6 +4,9 @@
 #include "EMT/Event/KeyEvent.h"
 #include "EMT/Event/MouseEvent.h"
 
+#include "Platform/OpenGL/OpenGLContext.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 namespace EMT {
 	static bool s_GLFWInitialized = false;
 	
@@ -40,9 +43,10 @@ namespace EMT {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		EMT_CORE_ASSERT(status, "Glad ³õÊ¼»¯Ê§°Ü£¡");
+
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -127,7 +131,7 @@ namespace EMT {
 
 	void WindowsWindow::OnUpdate() {
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled) {

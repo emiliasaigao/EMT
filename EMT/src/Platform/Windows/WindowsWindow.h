@@ -1,7 +1,8 @@
 #pragma once
 #include "EMT/Window.h"
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "EMT/Renderer/GraphicsContext.h"
+
+struct GLFWwindow;
 
 namespace EMT {
 	class WindowsWindow : public Window {
@@ -26,6 +27,7 @@ namespace EMT {
 
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 		struct WindowData {
 			unsigned int Width;
 			unsigned int Height;

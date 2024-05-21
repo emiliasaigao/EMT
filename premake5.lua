@@ -22,18 +22,24 @@ include "EMT/include/imgui"
 
 project "EMT"
 	location "EMT"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
+	
 	files 
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 
+	defines 
+	{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
 	includedirs
 	{
 		"%{prj.name}/src",
@@ -55,8 +61,7 @@ project "EMT"
 	pchsource "EMT/src/emtpch.cpp"
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
+		
 		systemversion "10.0"
 		
 		defines
@@ -65,32 +70,29 @@ project "EMT"
 			"EMT_BUILD_DLL"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "EMT_DEBUG"
 		defines "EMT_ENABLE_ASSERTS"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 	
 	filter "configurations:Release"
 		defines "EMT_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 	
 	filter "configurations:Dist"
 		defines "EMT_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "On"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -114,8 +116,7 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
-		systemversion "10.0"
+		systemversion "latest"
 		
 		defines
 		{
@@ -124,15 +125,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "EMT_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 	
 	filter "configurations:Release"
 		defines "EMT_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 	
 	filter "configurations:Dist"
 		defines "EMT_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
