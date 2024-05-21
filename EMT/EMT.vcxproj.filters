@@ -13,9 +13,6 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\OpenGL">
-      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
@@ -46,6 +43,12 @@
     <ClInclude Include="src\EMT\ImGui\ImGuiLayer.h">
       <Filter>EMT\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Input.h">
+      <Filter>EMT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\KeyCode.h">
+      <Filter>EMT</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Layer.h">
       <Filter>EMT</Filter>
     </ClInclude>
@@ -55,21 +58,26 @@
     <ClInclude Include="src\EMT\Log.h">
       <Filter>EMT</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\MouseButton.h">
+      <Filter>EMT</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Window.h">
       <Filter>EMT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\emtpch.h" />
-    <ClInclude Include="src\EMT\Input.h" />
-    <ClInclude Include="src\EMT\KeyCode.h" />
-    <ClInclude Include="src\EMT\MouseButton.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EMT\Application.cpp">
       <Filter>EMT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\ImGui\ImGuiBuild.cpp">
+      <Filter>EMT\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\ImGui\ImGuiLayer.cpp">
       <Filter>EMT\ImGui</Filter>
@@ -83,11 +91,12 @@
     <ClCompile Include="src\EMT\Log.cpp">
       <Filter>EMT</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\emtpch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
-    <ClCompile Include="src\EMT\ImGui\ImGuiBuild.cpp" />
   </ItemGroup>
 </Project>
