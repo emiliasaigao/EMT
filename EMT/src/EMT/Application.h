@@ -7,6 +7,9 @@
 #include "EMT/LayerStack.h"
 #include "EMT/ImGui/ImGuiLayer.h"
 
+#include "EMT/Renderer/Shader.h"
+#include "EMT/Renderer/Buffer.h"
+
 namespace EMT {
 	class EMT_API Application {
 	public:
@@ -26,7 +29,9 @@ namespace EMT {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
-		unsigned int m_VAO, m_VBO, m_EBO;
+		std::unique_ptr<VertexBuffer> m_VBO;
+		std::unique_ptr<ElementBuffer> m_EBO;
+		unsigned int m_VAO;
 
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnKeyPress(KeyPressedEvent& e);
