@@ -14,6 +14,15 @@
 #include "EMT/KeyCode.h"
 #include "EMT/MouseButton.h"
 
+// 渲染器
+#include "EMT/Renderer/Buffer.h"
+#include "EMT/Renderer/Camera.h"
+#include "EMT/Renderer/GraphicsContext.h"
+#include "EMT/Renderer/RenderCommand.h"
+#include "EMT/Renderer/Renderer.h"
+#include "EMT/Renderer/Shader.h"
+#include "EMT/Renderer/VertexArray.h"
+
 
 // -------------入口点--------------
 // 这个头文件定义的是（游戏的）main函数

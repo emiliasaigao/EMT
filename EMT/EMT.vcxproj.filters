@@ -77,6 +77,12 @@
     <ClInclude Include="src\EMT\Renderer\Buffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\EMT\Renderer\Renderer.h" />
+    <ClInclude Include="src\EMT\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\EMT\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLAPI.h" />
+    <ClInclude Include="src\EMT\Renderer\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EMT\Application.cpp">
@@ -107,8 +113,14 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\EMT\Renderer\Shader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Renderer.cpp" />
     <ClCompile Include="src\EMT\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\EMT\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\EMT\Renderer\shader\vertex.glsl" />

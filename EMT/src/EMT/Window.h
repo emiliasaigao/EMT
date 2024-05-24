@@ -9,7 +9,7 @@ namespace EMT {
 		unsigned int Width;
 		unsigned int Height;
 		std::string Title;
-		WindowProps(unsigned int w = 1024, unsigned int h = 720, const std::string& title = "EMT Engine")
+		WindowProps(unsigned int w = 1600, unsigned int h = 900, const std::string& title = "EMT Engine")
 			: Width(w), Height(h), Title(title) {}
 	};
 

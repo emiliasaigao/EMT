@@ -43,6 +43,7 @@ namespace EMT {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
+		glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 		m_Context = new OpenGLContext(m_Window);
 		m_Context->Init();

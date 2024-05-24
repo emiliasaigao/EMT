@@ -9,8 +9,8 @@ namespace EMT {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:		EMT_CORE_ASSERT(false, "现在还不支持RenderAPI::None"); return nullptr;
-			case RendererAPI::OpenGL:	return new OpenGLVertexBuffer(vertices, size);
+			case RendererAPI::API::None:		EMT_CORE_ASSERT(false, "现在还不支持RenderAPI::None"); return nullptr;
+			case RendererAPI::API::OpenGL:	return new OpenGLVertexBuffer(vertices, size);
 		}
 		EMT_CORE_ASSERT(false, "尚未选择RenderAPI");
 		return nullptr;
@@ -20,8 +20,8 @@ namespace EMT {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:		EMT_CORE_ASSERT(false, "现在还不支持RenderAPI::None"); return nullptr;
-			case RendererAPI::OpenGL:	return new OpenGLElementBuffer(indices, count);
+			case RendererAPI::API::None:		EMT_CORE_ASSERT(false, "现在还不支持RenderAPI::None"); return nullptr;
+			case RendererAPI::API::OpenGL:	return new OpenGLElementBuffer(indices, count);
 		}
 		EMT_CORE_ASSERT(false, "尚未选择RenderAPI");
 		return nullptr;

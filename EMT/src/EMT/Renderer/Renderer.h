@@ -1,15 +1,25 @@
 #pragma once
 
+#include "RenderCommand.h"
+#include "Shader.h"
+#include "Camera.h"
+
 namespace EMT {
-	enum class RendererAPI
-	{
-		None = 0, OpenGL = 1
-	};
 
 	class Renderer {
 	public:
-		inline static RendererAPI GetAPI() { return s_API; }
+		static void BeginScene(const Camera& camera);
+		static void EndScene();
+		static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
+
 	private:
-		static RendererAPI s_API;
+		struct SceneData {
+			glm::mat4 ViewMatrix;
+			glm::mat4 ProjectionMatrix;
+		};
+
+		static SceneData* s_SceneData;
 	};
 }
