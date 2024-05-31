@@ -56,7 +56,7 @@ public:
 
 		m_VAO->setElementBuffer(elementBuffer);
 
-		m_Shader.reset(new EMT::Shader("E:\\gitpackage\\EMT\\EMT\\src\\EMT\\Renderer\\shader\\vertex.glsl",
+		m_Shader.reset(EMT::Shader::Create("E:\\gitpackage\\EMT\\EMT\\src\\EMT\\Renderer\\shader\\vertex.glsl",
 			"E:\\gitpackage\\EMT\\EMT\\src\\EMT\\Renderer\\shader\\fragment.glsl"));
 		
 		m_LastX = 1600.f / 2.f;

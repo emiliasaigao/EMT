@@ -83,6 +83,7 @@
     <ClInclude Include="src\EMT\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLAPI.h" />
     <ClInclude Include="src\EMT\Renderer\Camera.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EMT\Application.cpp">
@@ -121,6 +122,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\EMT\Renderer\Camera.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\EMT\Renderer\shader\vertex.glsl" />

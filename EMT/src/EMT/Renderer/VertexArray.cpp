@@ -1,4 +1,3 @@
-#pragma once
 #include "emtpch.h"
 #include "VertexArray.h"
 #include "Renderer.h"
