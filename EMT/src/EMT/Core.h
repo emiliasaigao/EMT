@@ -1,4 +1,6 @@
 #pragma once
+#include <memory>
+
 #ifdef EMT_PLATFORM_WINDOWS
 	#ifdef EMT_DYNAMIC_LINK
 		#ifdef EMT_BUILD_DLL
@@ -24,3 +26,11 @@
 #define BIT(x) (1 << x)
 
 #define BIND_EVENT_FCN(x) std::bind(&x, this, std::placeholders::_1)
+
+namespace EMT {
+	template <typename T>
+	using Ref = std::shared_ptr<T>;
+	
+	template <typename T>
+	using Scope = std::unique_ptr<T>;
+}

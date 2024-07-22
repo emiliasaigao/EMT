@@ -44,7 +44,7 @@ namespace EMT {
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
 	{
 		EMT_CORE_ASSERT(vertexBuffer->GetLayout().GetBufferElements().size(), "vertexBuffer还没有设置布局！")
 		glBindVertexArray(m_RendererID);
@@ -64,7 +64,7 @@ namespace EMT {
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::setElementBuffer(const std::shared_ptr<ElementBuffer>& elementBuffer)
+	void OpenGLVertexArray::SetElementBuffer(const Ref<ElementBuffer>& elementBuffer)
 	{
 		glBindVertexArray(m_RendererID);
 		elementBuffer->Bind();

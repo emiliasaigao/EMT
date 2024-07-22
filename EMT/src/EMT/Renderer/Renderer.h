@@ -10,7 +10,7 @@ namespace EMT {
 	public:
 		static void BeginScene(const Camera& camera);
 		static void EndScene();
-		static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);
+		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray);
 
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 

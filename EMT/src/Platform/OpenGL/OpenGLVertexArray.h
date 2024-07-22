@@ -9,15 +9,15 @@ namespace EMT {
 		virtual void Bind() const override;
 		virtual void UnBind() const override;
 
-		void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) override;
-		void setElementBuffer(const std::shared_ptr<ElementBuffer>& elementBuffer) override;
+		void AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) override;
+		void SetElementBuffer(const Ref<ElementBuffer>& elementBuffer) override;
 
-		const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const override { return m_VertexBuffers; }
-		const std::shared_ptr<ElementBuffer>& GetElementBuffer() const override { return m_ElementBuffer; }
+		const std::vector<Ref<VertexBuffer>>& GetVertexBuffers() const override { return m_VertexBuffers; }
+		const Ref<ElementBuffer>& GetElementBuffer() const override { return m_ElementBuffer; }
 
 	private:
 		unsigned int m_RendererID;
-		std::vector<std::shared_ptr<VertexBuffer>> m_VertexBuffers;
-		std::shared_ptr<ElementBuffer> m_ElementBuffer;
+		std::vector<Ref<VertexBuffer>> m_VertexBuffers;
+		Ref<ElementBuffer> m_ElementBuffer;
 	};
 }

@@ -1,27 +1,46 @@
 #include <EMT.h>
 #include "imgui/imgui.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 class ExampleLayer : public EMT::Layer {
 public:
 	ExampleLayer(const std::string& name = "ExampleLayer") : Layer(name) {
-		m_VAO.reset(EMT::VertexArray::Create());
+		m_VAO = EMT::VertexArray::Create();
 
 		float vertices[] = {
-			/*-0.5f, -0.5f, 0.f,
-			0.5f, -0.5f, 0.f,
-			0.f, 0.5f, 0.f*/
-			-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f, // 0
-			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, // 1
-			 0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, // 2
-			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, // 3
-			-0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  0.0f, 0.0f, // 4
-			 0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,  1.0f, 0.0f, // 5
-			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f, // 6
-			-0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 0.0f,  0.0f, 1.0f  // 7   
+			-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 0.0f, // 0
+			 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 0.0f, // 1
+			 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 1.0f, // 2
+			-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 1.0f, // 3
+			// 后面
+			-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f, // 4
+			 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f, // 5
+			 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f, // 6
+			-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f, // 7
+			// 左面
+			-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f, // 8
+			-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f, // 9
+			-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f, // 10
+			-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f, // 11
+			// 右面
+			 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, // 12
+			 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f, // 13
+			 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f, // 14
+			 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f, // 15
+			 // 上面
+			 -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f, // 16
+			  0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f, // 17
+			  0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f, // 18
+			 -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f, // 19
+			 // 下面
+			 -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f, // 20
+			  0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f, // 21
+			  0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f, // 22
+			 -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f  // 23  
 		};
 
-		std::shared_ptr<EMT::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(EMT::VertexBuffer::Create(vertices, sizeof(vertices)));
+		EMT::Ref<EMT::VertexBuffer> vertexBuffer;
+		vertexBuffer = EMT::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		vertexBuffer->SetLayout({
 			{EMT::ShaderDataType::Float3,"a_Pos"},
@@ -32,32 +51,23 @@ public:
 		m_VAO->AddVertexBuffer(vertexBuffer);
 
 		unsigned int indices[] = { /*0,1,2*/
-			// 后面
-			0, 1, 2,
-			2, 3, 0,
-			// 前面
-			4, 5, 6,
-			6, 7, 4,
-			// 左面
-			0, 4, 7,
-			7, 3, 0,
-			// 右面
-			1, 5, 6,
-			6, 2, 1,
-			// 底面
-			0, 1, 5,
-			5, 4, 0,
-			// 顶面
-			3, 2, 6,
-			6, 7, 3
+			0, 1, 2, 2, 3, 0,  // 前面
+			4, 5, 6, 6, 7, 4,  // 后面
+			8, 9, 10, 10, 11, 8, // 左面
+			12, 13, 14, 14, 15, 12, // 右面
+			16, 17, 18, 18, 19, 16, // 上面
+			20, 21, 22, 22, 23, 20  // 下面
 		};
-		std::shared_ptr<EMT::ElementBuffer> elementBuffer;
-		elementBuffer.reset(EMT::ElementBuffer::Create(indices, sizeof(indices) / sizeof(unsigned int)));
+		EMT::Ref<EMT::ElementBuffer> elementBuffer;
+		elementBuffer = EMT::ElementBuffer::Create(indices, sizeof(indices) / sizeof(unsigned int));
 
-		m_VAO->setElementBuffer(elementBuffer);
+		m_VAO->SetElementBuffer(elementBuffer);
 
-		m_Shader.reset(EMT::Shader::Create("E:\\gitpackage\\EMT\\EMT\\src\\EMT\\Renderer\\shader\\vertex.glsl",
-			"E:\\gitpackage\\EMT\\EMT\\src\\EMT\\Renderer\\shader\\fragment.glsl"));
+		m_Shader = EMT::Shader::Create("assets/shader/vertex.glsl", "assets/shader/fragment.glsl");
+
+		std::static_pointer_cast<EMT::OpenGLShader>(m_Shader)->setInt("uCubeTex", 1);
+		m_CubeTex = EMT::Texture2D::Create("assets/texture/container_diff.png");
+		m_CubeTex->Bind(1);
 		
 		m_LastX = 1600.f / 2.f;
 		m_LastY = 900.f / 2.f;
@@ -118,8 +128,9 @@ private:
 		return true;
 	}
 private:
-	std::shared_ptr<EMT::VertexArray> m_VAO;
-	std::shared_ptr<EMT::Shader> m_Shader;
+	EMT::Ref<EMT::VertexArray> m_VAO;
+	EMT::Ref<EMT::Shader> m_Shader;
+	EMT::Ref<EMT::Texture2D> m_CubeTex;
 
 	float m_Time = 0.f;
 	float m_DeltaTime = 0.f;

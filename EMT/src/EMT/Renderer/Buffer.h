@@ -1,4 +1,5 @@
 #pragma once
+#include "EMT/Core.h"
 
 namespace EMT {
 
@@ -100,7 +101,7 @@ namespace EMT {
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		static VertexBuffer* Create(float* vertices, unsigned int size);
+		static Ref<VertexBuffer> Create(float* vertices, unsigned int size);
 	};
 
 	class ElementBuffer {
@@ -110,6 +111,6 @@ namespace EMT {
 		virtual void UnBind() const = 0;
 		virtual unsigned int GetCount() const = 0;
 
-		static ElementBuffer* Create(unsigned int* indices, unsigned int count);
+		static Ref<ElementBuffer> Create(unsigned int* indices, unsigned int count);
 	};
 }

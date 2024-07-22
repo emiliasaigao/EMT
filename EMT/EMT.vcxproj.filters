@@ -1,131 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="EMT">
-      <UniqueIdentifier>{ABE2870B-17EC-877C-A067-9E7C0C70937C}</UniqueIdentifier>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EMT\Event">
-      <UniqueIdentifier>{3C78551C-A8E2-0993-F120-BB385DCAE7E7}</UniqueIdentifier>
+    <Filter Include="include\stb_image">
+      <UniqueIdentifier>{631FF594-CF35-F32A-18AD-7E4C8402C4B2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EMT\ImGui">
-      <UniqueIdentifier>{156C981C-81D6-4C93-CA14-FE3836BE2AE8}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    <Filter Include="src\EMT">
+      <UniqueIdentifier>{426F2FA9-AE4E-AE44-B766-391B23C514A6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    <Filter Include="src\EMT\Event">
+      <UniqueIdentifier>{13DA0F5C-7F9A-8B92-48D5-D40FB454D06E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EMT\ImGui">
+      <UniqueIdentifier>{ECCD525C-588E-CE92-21C9-17108D48136F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EMT\Renderer">
+      <UniqueIdentifier>{28FD4084-14F6-5FD6-3D28-455B29803FE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Windows">
+      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\EMT.h" />
+    <ClInclude Include="include\stb_image\stb_image.h">
+      <Filter>include\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Application.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Core.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\EntryPoint.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Event\ApplicationEvent.h">
-      <Filter>EMT\Event</Filter>
+      <Filter>src\EMT\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Event\Event.h">
-      <Filter>EMT\Event</Filter>
+      <Filter>src\EMT\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Event\KeyEvent.h">
-      <Filter>EMT\Event</Filter>
+      <Filter>src\EMT\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Event\MouseEvent.h">
-      <Filter>EMT\Event</Filter>
+      <Filter>src\EMT\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\ImGui\ImGuiLayer.h">
-      <Filter>EMT\ImGui</Filter>
+      <Filter>src\EMT\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Input.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\KeyCode.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Layer.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\LayerStack.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Log.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\MouseButton.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Buffer.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Camera.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\GraphicsContext.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderCommand.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Renderer.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RendererAPI.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Shader.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\VertexArray.h">
+      <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Window.h">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\emtpch.h" />
-    <ClInclude Include="src\EMT\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\EMT\Renderer\Shader.h" />
-    <ClInclude Include="src\EMT\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\EMT\Renderer\Renderer.h" />
-    <ClInclude Include="src\EMT\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\EMT\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLAPI.h" />
-    <ClInclude Include="src\EMT\Renderer\Camera.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\emtpch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Texture.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
+    <ClInclude Include="src\EMT\Renderer\BaseLight.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\stb_image\stb_image.cpp">
+      <Filter>include\stb_image</Filter>
+    </ClCompile>
     <ClCompile Include="src\EMT\Application.cpp">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\ImGui\ImGuiBuild.cpp">
-      <Filter>EMT\ImGui</Filter>
+      <Filter>src\EMT\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\ImGui\ImGuiLayer.cpp">
-      <Filter>EMT\ImGui</Filter>
+      <Filter>src\EMT\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Layer.cpp">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\LayerStack.cpp">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Log.cpp">
-      <Filter>EMT</Filter>
+      <Filter>src\EMT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Buffer.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Camera.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Renderer.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RendererAPI.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Shader.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\VertexArray.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\emtpch.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\EMT\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Camera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\EMT\Renderer\shader\vertex.glsl" />
-    <None Include="src\EMT\Renderer\shader\fragment.glsl" />
+    <ClCompile Include="src\emtpch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Texture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
+    <ClCompile Include="src\EMT\Renderer\BaseLight.cpp" />
   </ItemGroup>
 </Project>

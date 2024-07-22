@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "EMT/include/GLFW/include"
 IncludeDir["Glad"] = "EMT/include/Glad/include"
 IncludeDir["ImGui"] = "EMT/include/imgui"
+IncludeDir["StbImage"] = "EMT/include/stb_image"
 
 include "EMT/include/GLFW"
 include "EMT/include/Glad"
@@ -33,7 +34,9 @@ project "EMT"
 	files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/include/stb_image/**.h",
+		"%{prj.name}/include/stb_image/**.cpp"
 	}
 
 	defines 
@@ -46,7 +49,8 @@ project "EMT"
 		"%{prj.name}/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.StbImage}"
 	}
 
 	links

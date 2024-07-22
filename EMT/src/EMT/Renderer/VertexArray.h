@@ -1,5 +1,6 @@
 #pragma once
 #include "Buffer.h"
+#include "EMT/Core.h"
 
 namespace EMT {
 	class VertexArray {
@@ -8,12 +9,12 @@ namespace EMT {
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
 
-		virtual void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) = 0;
-		virtual void setElementBuffer(const std::shared_ptr<ElementBuffer>& elementBuffer) = 0;
+		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) = 0;
+		virtual void SetElementBuffer(const Ref<ElementBuffer>& elementBuffer) = 0;
 
-		virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const = 0;
-		virtual const std::shared_ptr<ElementBuffer>& GetElementBuffer() const = 0;
+		virtual const std::vector<Ref<VertexBuffer>>& GetVertexBuffers() const = 0;
+		virtual const Ref<ElementBuffer>& GetElementBuffer() const = 0;
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 	};
 }
