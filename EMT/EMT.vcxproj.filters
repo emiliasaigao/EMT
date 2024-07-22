@@ -134,7 +134,11 @@
     </ClInclude>
     <ClInclude Include="src\EMT\Renderer\Texture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
-    <ClInclude Include="src\EMT\Renderer\BaseLight.h" />
+    <ClInclude Include="src\EMT\Renderer\light\BaseLight.h" />
+    <ClInclude Include="src\EMT\Renderer\light\DirectionalLight.h" />
+    <ClInclude Include="src\EMT\Renderer\light\PointLight.h" />
+    <ClInclude Include="src\EMT\Renderer\light\SpotLight.h" />
+    <ClInclude Include="src\EMT\Renderer\light\LightManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -205,6 +209,10 @@
     </ClCompile>
     <ClCompile Include="src\EMT\Renderer\Texture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
-    <ClCompile Include="src\EMT\Renderer\BaseLight.cpp" />
+    <ClCompile Include="src\EMT\Renderer\light\BaseLight.cpp" />
+    <ClCompile Include="src\EMT\Renderer\light\DirectionalLight.cpp" />
+    <ClCompile Include="src\EMT\Renderer\light\PointLight.cpp" />
+    <ClCompile Include="src\EMT\Renderer\light\SpotLight.cpp" />
+    <ClCompile Include="src\EMT\Renderer\light\LightManager.cpp" />
   </ItemGroup>
 </Project>

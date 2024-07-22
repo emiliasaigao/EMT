@@ -12,13 +12,15 @@ namespace EMT {
 		virtual void UnBind() override;
 
 	public:
-		void setBool(const std::string& name, bool value);
-		void setInt(const std::string& name, int value);
-		void setFloat(const std::string& name, float value);
-		void setMat4f(const std::string& name, const glm::mat4& value);
-		void setMat3f(const std::string& name, const glm::mat3& value);
-		void setVec3f(const std::string& name, float x, float y, float z);
-		void setVec3f(const std::string& name, const glm::vec3& value);
+		virtual void setBool(const std::string& name, bool value) override;
+		virtual void setInt(const std::string& name, int value) override;
+		virtual void setFloat(const std::string& name, float value);
+		virtual void setMat4f(const std::string& name, const glm::mat4& value) override;
+		virtual void setMat3f(const std::string& name, const glm::mat3& value) override;
+		virtual void setVec3f(const std::string& name, float x, float y, float z) override;
+		virtual void setVec3f(const std::string& name, const glm::vec3& value) override;
+		virtual void setVec3i(const std::string& name, int x, int y, int z) override;
+		virtual void setVec3i(const std::string& name, const glm::ivec3& value) override;
 
 	private:
 		unsigned int m_RendererID;
