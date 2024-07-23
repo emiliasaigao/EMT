@@ -9,7 +9,7 @@ namespace EMT {
 		OpenGLShader(const std::string& vertexPath, const std::string& fragmentPath, const std::string& geometryPath = "");
 		~OpenGLShader();
 		virtual void Bind() override;
-		virtual void UnBind() override;
+		virtual void Unbind() override;
 
 	public:
 		virtual void setBool(const std::string& name, bool value) override;

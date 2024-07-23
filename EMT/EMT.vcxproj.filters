@@ -22,6 +22,12 @@
     <Filter Include="src\EMT\Renderer">
       <UniqueIdentifier>{28FD4084-14F6-5FD6-3D28-455B29803FE2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\EMT\Renderer\light">
+      <UniqueIdentifier>{EF5EE47E-DB58-0DD1-C4C5-A3E1B05E733D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EMT\Renderer\model">
+      <UniqueIdentifier>{88B4F97E-74AE-22D1-5D1B-B9E149B4883D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
@@ -102,8 +108,29 @@
     <ClInclude Include="src\EMT\Renderer\Shader.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Texture.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Renderer\VertexArray.h">
       <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\light\BaseLight.h">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\light\DirectionalLight.h">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\light\LightManager.h">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\light\PointLight.h">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\light\SpotLight.h">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\model\Model.h">
+      <Filter>src\EMT\Renderer\model</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Window.h">
       <Filter>src\EMT</Filter>
@@ -120,6 +147,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -132,13 +162,6 @@
     <ClInclude Include="src\emtpch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\Texture.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
-    <ClInclude Include="src\EMT\Renderer\light\BaseLight.h" />
-    <ClInclude Include="src\EMT\Renderer\light\DirectionalLight.h" />
-    <ClInclude Include="src\EMT\Renderer\light\PointLight.h" />
-    <ClInclude Include="src\EMT\Renderer\light\SpotLight.h" />
-    <ClInclude Include="src\EMT\Renderer\light\LightManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -180,8 +203,26 @@
     <ClCompile Include="src\EMT\Renderer\Shader.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Texture.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\EMT\Renderer\VertexArray.cpp">
       <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\light\BaseLight.cpp">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\light\DirectionalLight.cpp">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\light\LightManager.cpp">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\light\PointLight.cpp">
+      <Filter>src\EMT\Renderer\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\light\SpotLight.cpp">
+      <Filter>src\EMT\Renderer\light</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp">
       <Filter>src\Platform\OpenGL</Filter>
@@ -193,6 +234,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
@@ -207,12 +251,5 @@
     <ClCompile Include="src\emtpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\Texture.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
-    <ClCompile Include="src\EMT\Renderer\light\BaseLight.cpp" />
-    <ClCompile Include="src\EMT\Renderer\light\DirectionalLight.cpp" />
-    <ClCompile Include="src\EMT\Renderer\light\PointLight.cpp" />
-    <ClCompile Include="src\EMT\Renderer\light\SpotLight.cpp" />
-    <ClCompile Include="src\EMT\Renderer\light\LightManager.cpp" />
   </ItemGroup>
 </Project>

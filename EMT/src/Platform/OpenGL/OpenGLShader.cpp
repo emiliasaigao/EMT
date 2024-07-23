@@ -117,7 +117,7 @@ namespace EMT {
 		glUseProgram(m_RendererID);
 	}
 
-	void OpenGLShader::UnBind()
+	void OpenGLShader::Unbind()
 	{
 		glUseProgram(0);
 	}

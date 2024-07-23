@@ -6,7 +6,7 @@ namespace EMT {
 	public:
 		virtual ~Shader() {}
 		virtual void Bind() = 0;
-		virtual void UnBind() = 0;
+		virtual void Unbind() = 0;
 
 		virtual void setBool(const std::string& name, bool value) = 0;
 		virtual void setInt(const std::string& name, int value) = 0;

@@ -1,17 +1,16 @@
 #include "emtpch.h"
 #include "OpenGLTexture2D.h"
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include "stb_image.h"
 
 namespace EMT {
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
-		: m_Path(path)
+		: m_Path(path),m_Width(0),m_Height(0)
 	{
         glGenTextures(1, &m_RendererID);
 
         int width, height, nrComponents;
         unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrComponents, 0);
+        m_Width = width;
+        m_Height = height;
         if (data) {
             GLenum format;
             if (nrComponents == 1)

@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "EMT/include/GLFW/include"
 IncludeDir["Glad"] = "EMT/include/Glad/include"
 IncludeDir["ImGui"] = "EMT/include/imgui"
 IncludeDir["StbImage"] = "EMT/include/stb_image"
+IncludeDir["Assimp"] = "EMT/include/assimp"
 
 include "EMT/include/GLFW"
 include "EMT/include/Glad"
@@ -50,7 +51,13 @@ project "EMT"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.StbImage}"
+		"%{IncludeDir.StbImage}",
+		"%{IncludeDir.Assimp}"
+	}
+
+	libdirs
+	{ 
+		"%{prj.name}/lib" 
 	}
 
 	links
@@ -58,7 +65,8 @@ project "EMT"
 		"GLFW",
 		"Glad",
 		"ImGui",
-		"opengl32.lib"
+		"opengl32.lib",
+		"assimp-vc143-mtd.lib"
 	}
 
 	pchheader "emtpch.h"

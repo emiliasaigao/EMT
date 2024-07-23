@@ -7,7 +7,7 @@ namespace EMT {
 		OpenGLVertexArray();
 		virtual ~OpenGLVertexArray();
 		virtual void Bind() const override;
-		virtual void UnBind() const override;
+		virtual void Unbind() const override;
 
 		void AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) override;
 		void SetElementBuffer(const Ref<ElementBuffer>& elementBuffer) override;
