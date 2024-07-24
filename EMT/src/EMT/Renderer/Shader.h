@@ -1,5 +1,6 @@
 #pragma once
 #include "EMT/Core.h"
+#include "glm/glm.hpp"
 
 namespace EMT {
 	class Shader {

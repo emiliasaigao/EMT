@@ -5,7 +5,7 @@
 #include "Platform/OpenGL/OpenGLBuffer.h"
 
 namespace EMT {
-	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, unsigned int size)
+	Ref<VertexBuffer> VertexBuffer::Create(void* vertices, unsigned int size)
 	{
 		switch (Renderer::GetAPI())
 		{

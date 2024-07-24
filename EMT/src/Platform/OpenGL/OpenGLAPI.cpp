@@ -17,8 +17,16 @@ namespace EMT {
 
 	void OpenGLAPI::DrawIndexed(const EMT::Ref<VertexArray>& vertexArray)
 	{
+		EMT_ASSERT(vertexArray->GetElementBuffer(), "vertexArray do not have a ebo");
 		vertexArray->Bind();
 		glDrawElements(GL_TRIANGLES, vertexArray->GetElementBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+	}
+
+	void OpenGLAPI::DrawArray(const Ref<VertexArray>& vertexArray)
+	{
+		EMT_ASSERT(vertexArray->GetVertexBuffers().size(), "vertexArray do not bind a vbo");
+		vertexArray->Bind();
+		glDrawArrays(GL_TRIANGLES, 0, vertexArray->GetVertexBuffers()[0]->GetCount());
 	}
 	
 	float OpenGLAPI::GetTime()

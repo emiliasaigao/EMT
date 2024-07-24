@@ -6,6 +6,7 @@ namespace EMT {
 		virtual void Clear() override;
 		
 		virtual void DrawIndexed(const Ref<VertexArray>& vertexArray) override;
+		virtual void DrawArray(const Ref<VertexArray>& vertexArray) override;
 		virtual float GetTime() override;
 		virtual void EnableDepthTest() override;
 	};

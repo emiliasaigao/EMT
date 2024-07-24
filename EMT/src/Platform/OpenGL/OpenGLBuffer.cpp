@@ -7,11 +7,12 @@
 namespace EMT {
 	// VBO
 	/************************************************************************************************/
-	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, unsigned int size)
+	OpenGLVertexBuffer::OpenGLVertexBuffer(void* vertices, unsigned int size)
 	{
 		glGenBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
+		m_Size = size;
 	}
 
 	OpenGLVertexBuffer::~OpenGLVertexBuffer() {
@@ -32,7 +33,7 @@ namespace EMT {
 	// EBO
 	/************************************************************************************************/
 	OpenGLElementBuffer::OpenGLElementBuffer(unsigned int* indices, unsigned int count)
-		: m_count(count)
+		: m_Count(count)
 	{
 		glGenBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);

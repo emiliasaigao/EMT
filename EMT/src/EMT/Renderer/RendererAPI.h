@@ -15,6 +15,7 @@ namespace EMT {
 		virtual void Clear() = 0;
 
 		virtual void DrawIndexed(const Ref<VertexArray>& vertexArray) = 0;
+		virtual void DrawArray(const Ref<VertexArray>& vertexArray) = 0;
 		virtual float GetTime() = 0;
 		virtual void EnableDepthTest() = 0;
 		inline static API GetAPI() { return s_API; }

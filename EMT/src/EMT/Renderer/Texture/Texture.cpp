@@ -1,6 +1,6 @@
 #include "emtpch.h"
 #include "Texture.h"
-#include "Renderer.h"
+#include "EMT/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLTexture2D.h"
 

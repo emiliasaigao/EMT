@@ -100,8 +100,9 @@ namespace EMT {
 		virtual void Unbind() const = 0;
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
+		virtual unsigned int GetCount() const = 0;
 
-		static Ref<VertexBuffer> Create(float* vertices, unsigned int size);
+		static Ref<VertexBuffer> Create(void* vertices, unsigned int size);
 	};
 
 	class ElementBuffer {
