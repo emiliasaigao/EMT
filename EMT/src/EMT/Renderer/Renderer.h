@@ -3,6 +3,7 @@
 #include "RenderCommand.h"
 #include "Shader.h"
 #include "Camera.h"
+#include "Scene.h"
 
 namespace EMT {
 
@@ -11,6 +12,8 @@ namespace EMT {
 		static void BeginScene(const Camera& camera);
 		static void EndScene();
 		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray);
+
+		static void Render(const Ref<Scene>& scene, const Ref<Shader>& shader, bool isUseMaterial);
 
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
@@ -21,5 +24,6 @@ namespace EMT {
 		};
 
 		static SceneData* s_SceneData;
+		static void SetupModelMatrix(const Ref<Model>& model, const Ref<Shader>& shader, bool isUseMaterial);
 	};
 }

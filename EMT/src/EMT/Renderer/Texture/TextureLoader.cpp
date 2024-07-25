@@ -86,7 +86,7 @@ namespace EMT {
 
 			if (data)
 			{
-				GLenum dataFormat;
+				GLenum dataFormat = GL_NONE;
 				switch (numComponents)
 				{
 					case 1: dataFormat = GL_RED;  break;

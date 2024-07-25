@@ -9,5 +9,6 @@ namespace EMT {
 		virtual void DrawArray(const Ref<VertexArray>& vertexArray) override;
 		virtual float GetTime() override;
 		virtual void EnableDepthTest() override;
+		virtual void ChangeDepthFunc(DepthFunc func) override;
 	};
 }

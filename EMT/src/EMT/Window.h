@@ -28,6 +28,7 @@ namespace EMT {
 		virtual void SetEventCallback(const EventCallbackFcn& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0; // 设置垂直同步
 		virtual bool isVSync() const = 0;
+		virtual void HideCursor() = 0;
 
 		virtual void* GetNativeWindow() const = 0;
 

@@ -42,6 +42,7 @@ namespace EMT {
 	bool Application::OnKeyPress(KeyPressedEvent& e) {
 		int key = e.GetKeyCode();
 		if (key == EMT_KEY_ESCAPE) m_Running = false;
+		else if (key == EMT_KEY_H) m_Window->HideCursor();
 		return true;
 	}
 

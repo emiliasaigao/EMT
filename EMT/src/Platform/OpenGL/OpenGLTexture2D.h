@@ -2,7 +2,7 @@
 #include "EMT/Renderer/Texture/Texture.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "stb_image.h"
+#include "stb_image/stb_image.h"
 #include "glm/glm.hpp"
 
 

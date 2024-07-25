@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>emtpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;EMT_PLATFORM_WINDOWS;EMT_BUILD_DLL;EMT_DEBUG;EMT_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;include;include\GLFW\include;include\Glad\include;include\imgui;include\stb_image;include\assimp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;include;include/imgui/;include/GLFW/include;include/Glad/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -99,7 +99,7 @@
       <PrecompiledHeaderFile>emtpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;EMT_PLATFORM_WINDOWS;EMT_BUILD_DLL;EMT_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;include;include\GLFW\include;include\Glad\include;include\imgui;include\stb_image;include\assimp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;include;include/imgui/;include/GLFW/include;include/Glad/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -125,7 +125,7 @@
       <PrecompiledHeaderFile>emtpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;EMT_PLATFORM_WINDOWS;EMT_BUILD_DLL;EMT_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;include;include\GLFW\include;include\Glad\include;include\imgui;include\stb_image;include\assimp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;include;include/imgui/;include/GLFW/include;include/Glad/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -170,6 +170,8 @@
     <ClInclude Include="src\EMT\Renderer\model\shapes\Cube.h" />
     <ClInclude Include="src\EMT\Renderer\model\shapes\Quad.h" />
     <ClInclude Include="src\EMT\Renderer\model\shapes\Sphere.h" />
+    <ClInclude Include="src\EMT\Renderer\Scene.h" />
+    <ClInclude Include="src\EMT\Renderer\Skybox.h" />
     <ClInclude Include="src\EMT\Renderer\Texture\Cubemap.h" />
     <ClInclude Include="src\EMT\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\EMT\Renderer\model\Mesh.h" />
@@ -212,6 +214,8 @@
     <ClCompile Include="src\EMT\Renderer\model\shapes\Cube.cpp" />
     <ClCompile Include="src\EMT\Renderer\model\shapes\Quad.cpp" />
     <ClCompile Include="src\EMT\Renderer\model\shapes\Sphere.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Scene.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Skybox.cpp" />
     <ClCompile Include="src\EMT\Renderer\Texture\Cubemap.cpp" />
     <ClCompile Include="src\EMT\Renderer\model\Model.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp" />

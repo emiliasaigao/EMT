@@ -2,7 +2,7 @@
 #include "OpenGLTexture2D.h"
 
 namespace EMT {
-	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
+	/*OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
 		: m_Path(path),m_Width(0),m_Height(0)
 	{
         glGenTextures(1, &m_RendererID);
@@ -46,5 +46,5 @@ namespace EMT {
 	{
         glActiveTexture(slot);
         glBindTexture(GL_TEXTURE_2D, m_RendererID);
-	}
+	}*/
 }

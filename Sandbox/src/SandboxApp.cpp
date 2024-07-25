@@ -66,8 +66,8 @@ public:
 		m_Shader = EMT::Shader::Create("assets/shader/vertex.glsl", "assets/shader/fragment.glsl");
 
 		std::static_pointer_cast<EMT::OpenGLShader>(m_Shader)->setInt("uCubeTex", 1);
-		m_CubeTex = EMT::Texture2D::Create("assets/texture/container_diff.png");
-		m_CubeTex->Bind(1);
+		//m_CubeTex = EMT::Texture2D::Create("assets/texture/container_diff.png");
+		//m_CubeTex->Bind(1);
 		
 		m_LastX = 1600.f / 2.f;
 		m_LastY = 900.f / 2.f;
@@ -77,10 +77,12 @@ public:
 	}
 
 	void OnUpdate() override {
+		// 处理相机运动
 		if (EMT::Input::isKeyPressed(EMT_KEY_W)) m_MainCamera.processKeyBoard(EMT::Camera_Movement::FORWARD, m_DeltaTime);
 		if (EMT::Input::isKeyPressed(EMT_KEY_S)) m_MainCamera.processKeyBoard(EMT::Camera_Movement::BACK, m_DeltaTime);
 		if (EMT::Input::isKeyPressed(EMT_KEY_A)) m_MainCamera.processKeyBoard(EMT::Camera_Movement::LEFT, m_DeltaTime);
 		if (EMT::Input::isKeyPressed(EMT_KEY_D)) m_MainCamera.processKeyBoard(EMT::Camera_Movement::RIGHT, m_DeltaTime);
+		
 		float curTime = EMT::RenderCommand::GetTime();
 		m_DeltaTime = curTime - m_Time;
 		m_Time = curTime;
@@ -127,10 +129,11 @@ private:
 		m_MainCamera.processMouseScroll(e.GetYOffset());
 		return true;
 	}
+
 private:
 	EMT::Ref<EMT::VertexArray> m_VAO;
 	EMT::Ref<EMT::Shader> m_Shader;
-	EMT::Ref<EMT::Texture2D> m_CubeTex;
+	//EMT::Ref<EMT::Texture2D> m_CubeTex;
 
 	float m_Time = 0.f;
 	float m_DeltaTime = 0.f;

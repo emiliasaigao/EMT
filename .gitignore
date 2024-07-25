@@ -1,5 +1,7 @@
 # Directories
 .vs/
+assets/
+EMT/lib/
 bin/
 bin-int/
 # Files

@@ -18,6 +18,7 @@ namespace EMT {
 		inline void SetEventCallback(const EventCallbackFcn& callback) override { m_Data.EventCallback = callback; }
 		inline void SetVSync(bool enabled) override;
 		inline bool isVSync() const override { return m_Data.VSync; }
+		inline void HideCursor() override;
 
 		virtual void* GetNativeWindow() const override { return (void*)m_Window; }
 
@@ -28,6 +29,8 @@ namespace EMT {
 	private:
 		GLFWwindow* m_Window;
 		GraphicsContext* m_Context;
+		bool m_HideCursor = false;
+
 		struct WindowData {
 			unsigned int Width;
 			unsigned int Height;

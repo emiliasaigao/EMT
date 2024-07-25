@@ -10,6 +10,12 @@ namespace EMT {
 		{
 			None = 0, OpenGL = 1
 		};
+
+		enum class DepthFunc {
+			Never = 0, Less = 1, Equal = 2, LessEqual = 3, Greater = 4,
+			NotEqual = 5, GreatEqual = 6, Always = 7
+		};
+
 	public:
 		virtual void SetClearColor(const glm::vec4& color) = 0;
 		virtual void Clear() = 0;
@@ -18,6 +24,7 @@ namespace EMT {
 		virtual void DrawArray(const Ref<VertexArray>& vertexArray) = 0;
 		virtual float GetTime() = 0;
 		virtual void EnableDepthTest() = 0;
+		virtual void ChangeDepthFunc(DepthFunc func) = 0;
 		inline static API GetAPI() { return s_API; }
 		
 	private:

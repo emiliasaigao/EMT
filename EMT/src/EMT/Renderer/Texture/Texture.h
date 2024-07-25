@@ -1,6 +1,7 @@
 #pragma once
 #include "glad/glad.h"
 #include "imgui/imgui.h"
+#include "glm/glm.hpp"
 
 namespace EMT {
 	struct TextureSettings

@@ -10,6 +10,7 @@ namespace EMT {
 		inline static void DrawArray(const Ref<VertexArray>& vertexArray) { s_RendererAPI->DrawArray(vertexArray); }
 		inline static float GetTime() { return s_RendererAPI->GetTime(); }
 		inline static void EnableDepthTest() { s_RendererAPI->EnableDepthTest(); }
+		inline static void ChangeDepthFunc(RendererAPI::DepthFunc func) { s_RendererAPI->ChangeDepthFunc(func); }
 	private:
 		static RendererAPI* s_RendererAPI;
 	};

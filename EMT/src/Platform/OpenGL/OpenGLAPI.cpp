@@ -39,4 +39,8 @@ namespace EMT {
 		glEnable(GL_DEPTH_TEST);
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
+
+	void OpenGLAPI::ChangeDepthFunc(DepthFunc func) {
+		glDepthFunc(GL_NEVER + (unsigned int)func);
+	}
 }

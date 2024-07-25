@@ -38,7 +38,7 @@ namespace EMT {
 
 		Camera(vec3 position = vec3(0.f, 0.f, 0.f), vec3 up = vec3(0.f, 1.f, 0.f),
 			float yam = YAM, float pitch = PITCH)
-			: Front(vec3(0.f, 0.f, -1.f)), MoveSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
+				: Front(vec3(0.f, 0.f, -1.f)), MoveSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
 			Position = position;
 			WordUp = up;
 			Yam = yam;
@@ -48,7 +48,7 @@ namespace EMT {
 
 		Camera(float positionx, float positiony, float positionz,
 			float upx, float upy, float upz, float yam, float pitch)
-			:Front(vec3(0.f, 0.f, -1.f)), MoveSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
+				:Front(vec3(0.f, 0.f, -1.f)), MoveSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
 			Position = vec3(positionx, positiony, positionz);
 			WordUp = vec3(upx, upy, upz);
 			Yam = yam;
