@@ -171,6 +171,9 @@
     <ClInclude Include="src\EMT\Renderer\model\shapes\Sphere.h" />
     <ClInclude Include="src\EMT\Renderer\Scene.h" />
     <ClInclude Include="src\EMT\Renderer\Skybox.h" />
+    <ClInclude Include="src\EMT\Renderer\FrameBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
+    <ClInclude Include="include\stb_image\stb_image_write.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -268,5 +271,11 @@
     <ClCompile Include="src\EMT\Renderer\model\shapes\Sphere.cpp" />
     <ClCompile Include="src\EMT\Renderer\Scene.cpp" />
     <ClCompile Include="src\EMT\Renderer\Skybox.cpp" />
+    <ClCompile Include="src\EMT\Renderer\FrameBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shader\common\skybox.vert" />
+    <None Include="assets\shader\common\skybox.frag" />
   </ItemGroup>
 </Project>

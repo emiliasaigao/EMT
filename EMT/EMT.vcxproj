@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\stb_image\stb_image.h" />
+    <ClInclude Include="include\stb_image\stb_image_write.h" />
     <ClInclude Include="src\EMT.h" />
     <ClInclude Include="src\EMT\Application.h" />
     <ClInclude Include="src\EMT\Core.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\EMT\MouseButton.h" />
     <ClInclude Include="src\EMT\Renderer\Buffer.h" />
     <ClInclude Include="src\EMT\Renderer\Camera.h" />
+    <ClInclude Include="src\EMT\Renderer\FrameBuffer.h" />
     <ClInclude Include="src\EMT\Renderer\model\AssimpGLMHelper.h" />
     <ClInclude Include="src\EMT\Renderer\model\Material.h" />
     <ClInclude Include="src\EMT\Renderer\model\shapes\Cube.h" />
@@ -192,6 +194,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
@@ -209,6 +212,7 @@
     <ClCompile Include="src\EMT\Log.cpp" />
     <ClCompile Include="src\EMT\Renderer\Buffer.cpp" />
     <ClCompile Include="src\EMT\Renderer\Camera.cpp" />
+    <ClCompile Include="src\EMT\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="src\EMT\Renderer\model\Material.cpp" />
     <ClCompile Include="src\EMT\Renderer\model\Mesh.cpp" />
     <ClCompile Include="src\EMT\Renderer\model\shapes\Cube.cpp" />
@@ -233,6 +237,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
@@ -252,6 +257,10 @@
     <ProjectReference Include="include\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shader\common\skybox.frag" />
+    <None Include="assets\shader\common\skybox.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
