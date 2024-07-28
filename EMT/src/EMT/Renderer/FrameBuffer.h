@@ -7,9 +7,9 @@ namespace EMT {
 	public:
 		virtual ~FrameBuffer() {}
 
-		virtual void AddColorTexture(const TextureSettings& textureSettings, GLenum dataFormat, GLenum dataType, GLenum attachType) = 0;
-		virtual void AddDepthStencilTexture(const TextureSettings& textureSettings, GLenum dataFormat, GLenum dataType, GLenum attachType) = 0;
-		virtual void AddDepthStencilRBO(GLenum rboFormat, GLenum attachType) = 0;
+		virtual void AddColorTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) = 0;
+		virtual void AddDepthStencilTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) = 0;
+		virtual void AddDepthStencilRBO(int rboFormat, int attachType) = 0;
 		virtual void SetUpFrameBuffer() = 0;
 
 		// When user changes the window size, we need to resize framebuffer too.

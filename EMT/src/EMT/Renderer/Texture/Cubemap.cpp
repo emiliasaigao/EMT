@@ -1,81 +1,16 @@
 #include "emtpch.h"
 #include "Cubemap.h"
+#include "EMT/Renderer/Renderer.h"
+#include "Platform/OpenGL/OpenGLCubemap.h"
 
 namespace EMT {
-	Cubemap::Cubemap(const CubemapSettings& settings) :
-		m_RendererID(0), m_Width(0), m_Height(0),
-		m_GeneratedFacesNum(0), m_CubeMapSettings(settings)
-	{
-	}
-
-	Cubemap::~Cubemap()
-	{
-		glDeleteTextures(1, &m_RendererID);
-	}
-
-	void Cubemap::Bind(int unit)
-	{
-		glActiveTexture(GL_TEXTURE0 + unit);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, m_RendererID);
-	}
-
-	void Cubemap::UnBind()
-	{
-		glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-	}
-
-	void Cubemap::GenerateCubemapFace(GLenum face, unsigned int width, unsigned int height, GLenum dataFormat, GLenum pixelDataType, unsigned char* data)
-	{
-		if (m_RendererID == 0)
+	Ref<Cubemap> Cubemap::Create(const CubemapSettings& settings) {
+		switch (Renderer::GetAPI())
 		{
-			glGenTextures(1, &m_RendererID);
-			m_Width = width;
-			m_Height = height;
-
-			if (m_CubeMapSettings.TextureFormat == GL_NONE)
-				m_CubeMapSettings.TextureFormat = dataFormat;
-
-			if (m_CubeMapSettings.IsSRGB == true)
-			{
-				switch (m_CubeMapSettings.TextureFormat)
-				{
-				case GL_RGB:
-					m_CubeMapSettings.TextureFormat = GL_SRGB; break;
-				case GL_RGBA:
-					m_CubeMapSettings.TextureFormat = GL_SRGB_ALPHA; break;
-				}
-			}
+			case RendererAPI::API::None:		EMT_CORE_ASSERT(false, "现在还不支持RenderAPI::None"); return nullptr;
+			case RendererAPI::API::OpenGL:		return std::make_shared<OpenGLCubemap>(settings);
 		}
-
-		Bind();
-
-		glTexImage2D(face, 0, m_CubeMapSettings.TextureFormat, width, height, 0, dataFormat, pixelDataType, data);
-		++m_GeneratedFacesNum;
-
-		if (m_GeneratedFacesNum >= 6)
-			ApplyCubemapSettings();
-
-
-		UnBind();
+		EMT_CORE_ASSERT(false, "尚未选择RenderAPI");
+		return nullptr;
 	}
-
-	void Cubemap::ApplyCubemapSettings()
-	{
-		// Texture wrapping
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, m_CubeMapSettings.TextureWrapSMode);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, m_CubeMapSettings.TextureWrapTMode);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, m_CubeMapSettings.TextureWrapRMode);
-
-		// Texture filtering
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, m_CubeMapSettings.TextureMagnificationFilterMode);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, m_CubeMapSettings.TextureMinificationFilterMode);
-
-		// Mipmapping
-		if (m_CubeMapSettings.HasMips)
-		{
-			glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
-			glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_LOD_BIAS, m_CubeMapSettings.MipBias);
-		}
-	}
-
 }

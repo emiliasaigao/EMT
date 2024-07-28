@@ -78,7 +78,7 @@ namespace EMT {
 	void Mesh::OnImGuiRender() {
 		//show material
 		if (ImGui::TreeNode("Material")) {
-			m_Material.OnImGuiRender();
+			m_Material->OnImGuiRender();
 			ImGui::TreePop();
 		}
 

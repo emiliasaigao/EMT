@@ -1,12 +1,12 @@
 #pragma once
-#include "glad/glad.h"
+#include "EMT/EMTEnum.h"
 #include "imgui/imgui.h"
 
 namespace EMT {
 	struct CubemapSettings
 	{
 		// Texture format
-		GLenum TextureFormat = GL_NONE; // If set to GL_NONE, the data format will be used
+		int TextureFormat = EMT_NONE; // If set to GL_NONE, the data format will be used
 
 		/* isSRGB will let the loader know that the texture needs to be "linearlized" before it is sampled in the shaders (ie the texture is in a non liner space)
 		 * Anything that will be used for colour in a renderer should be linearlized. However textures that contain data (Heightfields, normal maps, metallic maps etc.) should not be,
@@ -14,13 +14,13 @@ namespace EMT {
 		bool IsSRGB = false;
 
 		// Texture wrapping options
-		GLenum TextureWrapSMode = GL_CLAMP_TO_EDGE;
-		GLenum TextureWrapTMode = GL_CLAMP_TO_EDGE;
-		GLenum TextureWrapRMode = GL_CLAMP_TO_EDGE;
+		int TextureWrapSMode = EMT_CLAMP_TO_EDGE;
+		int TextureWrapTMode = EMT_CLAMP_TO_EDGE;
+		int TextureWrapRMode = EMT_CLAMP_TO_EDGE;
 
 		// Texture filtering options
-		GLenum TextureMinificationFilterMode = GL_LINEAR; // Filtering mode when the texture moves further away and multiple texels map to one pixel (trilinear for best quality)
-		GLenum TextureMagnificationFilterMode = GL_LINEAR; // Filtering mode when the texture gets closer and multiple pixels map to a single texel (Never needs to be more than bilinear because that is as accurate as it gets in this sitation)
+		int TextureMinificationFilterMode = EMT_LINEAR; // Filtering mode when the texture moves further away and multiple texels map to one pixel (trilinear for best quality)
+		int TextureMagnificationFilterMode = EMT_LINEAR; // Filtering mode when the texture gets closer and multiple pixels map to a single texel (Never needs to be more than bilinear because that is as accurate as it gets in this sitation)
 
 		// Mip Settings
 		bool HasMips = false;
@@ -29,29 +29,20 @@ namespace EMT {
 	class Cubemap
 	{
 	public:
-		Cubemap(const CubemapSettings& settings = CubemapSettings());
-		~Cubemap();
+		static Ref<Cubemap> Create(const CubemapSettings& settings = CubemapSettings());
+		~Cubemap() {}
 
 		void Bind(int unit = 0);
 		void UnBind();
 
-		void GenerateCubemapFace(GLenum face, unsigned int width, unsigned int height, GLenum dataFormat, GLenum pixelDataType = GL_UNSIGNED_BYTE, unsigned char* data = nullptr);
+		virtual void GenerateCubemapFace(int face, unsigned int width, unsigned int height,
+			int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, 
+			unsigned char* data = nullptr) = 0;
 
-
-
-		inline int GetWidth() { return m_Width; }
-		inline int GetHeight() { return m_Height; }
-		inline CubemapSettings* GetCubemapSettings() { return &m_CubeMapSettings; }
-		unsigned int GetCubemapID() { return m_RendererID; }
-		inline void SetCubemapSettings(const CubemapSettings& settings) { m_CubeMapSettings = settings; }
-
-	private:
-		void ApplyCubemapSettings();
-	private:
-		unsigned int m_RendererID;
-		int m_Width, m_Height;
-		int m_GeneratedFacesNum;
-		CubemapSettings m_CubeMapSettings;
-
+		virtual inline int GetWidth() = 0;
+		virtual inline int GetHeight() = 0;
+		virtual inline CubemapSettings* GetCubemapSettings() = 0;
+		virtual unsigned int GetCubemapID() = 0;
+		virtual inline void SetCubemapSettings(const CubemapSettings& settings) = 0;
 	};
 }

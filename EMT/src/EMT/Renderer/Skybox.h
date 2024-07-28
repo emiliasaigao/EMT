@@ -1,5 +1,6 @@
 #pragma once
 #include "Camera.h"
+#include "EMT/Renderer/model/Model.h"
 #include "EMT/Renderer/model/shapes/Cube.h"
 #include "EMT/Renderer/Texture/Cubemap.h"
 #include "EMT/Renderer/Shader.h"

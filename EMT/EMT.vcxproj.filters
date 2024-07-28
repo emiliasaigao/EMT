@@ -144,9 +144,6 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h">
-      <Filter>src\Platform\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -174,6 +171,9 @@
     <ClInclude Include="src\EMT\Renderer\FrameBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
     <ClInclude Include="include\stb_image\stb_image_write.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLCubemap.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLMaterial.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -245,9 +245,6 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp">
-      <Filter>src\Platform\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -273,6 +270,9 @@
     <ClCompile Include="src\EMT\Renderer\Skybox.cpp" />
     <ClCompile Include="src\EMT\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLCubemap.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLMaterial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shader\common\skybox.vert" />

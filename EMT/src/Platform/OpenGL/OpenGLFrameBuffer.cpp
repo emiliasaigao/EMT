@@ -16,17 +16,17 @@ namespace EMT {
 			glDeleteRenderbuffers(1, &m_RBORendererID);
 	}
 
-	void OpenGLFrameBuffer::AddColorTexture(const TextureSettings& textureSettings, GLenum dataFormat, GLenum dataType, GLenum attachType) {
+	void OpenGLFrameBuffer::AddColorTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) {
 		Bind();
-		m_ColorTexture.reset(new Texture(textureSettings));
+		m_ColorTexture = Texture::Create(textureSettings);
 		m_ColorTexture->Generate2DTexture(m_Width, m_Height, dataFormat, dataType);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, attachType, GL_TEXTURE_2D, m_ColorTexture->GetTextureId(), 0);
 		UnBind();
 	}
 
-	void OpenGLFrameBuffer::AddDepthStencilTexture(const TextureSettings& textureSettings, GLenum dataFormat, GLenum dataType, GLenum attachType) {
+	void OpenGLFrameBuffer::AddDepthStencilTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) {
 		Bind();
-		m_DepthStencilTexture.reset(new Texture(textureSettings));
+		m_DepthStencilTexture =Texture::Create(textureSettings);
 		m_DepthStencilTexture->Generate2DTexture(m_Width, m_Height, dataFormat, dataType);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, attachType, GL_TEXTURE_2D, m_DepthStencilTexture->GetTextureId(), 0);
 		UnBind();
@@ -38,7 +38,7 @@ namespace EMT {
 	/// </summary>
 	/// <param name="rboFormat">rbo格式，比如GL_DEPTH24_STENCIL8</param>
 	/// <param name="attachType">附件类型，比如GL_DEPTH_STENCIL_ATTACHMENT</param>
-	void OpenGLFrameBuffer::AddDepthStencilRBO(GLenum rboFormat, GLenum attachType) {
+	void OpenGLFrameBuffer::AddDepthStencilRBO(int rboFormat, int attachType) {
 		m_RBOFormat = rboFormat;
 		m_IsUseRBO = true;
 		Bind();

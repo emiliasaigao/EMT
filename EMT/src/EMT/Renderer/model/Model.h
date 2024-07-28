@@ -12,6 +12,7 @@ namespace EMT {
 	class Model
 	{
 	public:
+		Model(){}
 		Model(const std::string& path);
 		Model(const Mesh& mesh);
 		Model(const std::vector<Mesh>& meshes);

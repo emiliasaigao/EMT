@@ -15,12 +15,12 @@ namespace EMT {
 		// 设置纹理过滤方式，因为它们都是1*1的纹理，所以其他的都不用设置
 		TextureSettings srgbTextureSettings, formalTextureSettings;
 		srgbTextureSettings.IsSRGB = true;
-		srgbTextureSettings.TextureMinificationFilterMode = GL_NEAREST;
-		srgbTextureSettings.TextureMagnificationFilterMode = GL_NEAREST;
+		srgbTextureSettings.TextureMinificationFilterMode = EMT_NEAREST;
+		srgbTextureSettings.TextureMagnificationFilterMode = EMT_NEAREST;
 		srgbTextureSettings.HasMips = false;
 		formalTextureSettings.IsSRGB = false;
-		formalTextureSettings.TextureMinificationFilterMode = GL_NEAREST;
-		formalTextureSettings.TextureMagnificationFilterMode = GL_NEAREST;
+		formalTextureSettings.TextureMinificationFilterMode = EMT_NEAREST;
+		formalTextureSettings.TextureMagnificationFilterMode = EMT_NEAREST;
 		formalTextureSettings.HasMips = false;
 
 		s_DefaultAlbedo = Load2DTexture(std::string("assets/texture/defaultAlbedo.png"), &srgbTextureSettings);
@@ -47,22 +47,22 @@ namespace EMT {
 			return nullptr;
 		}
 
-		GLenum dataFormat;
+		int dataFormat;
 		switch (numComponents)
 		{
-			case 1: dataFormat = GL_RED;  break;
-			case 3: dataFormat = GL_RGB;  break;
-			case 4: dataFormat = GL_RGBA; break;
+			case 1: dataFormat = EMT_RED;  break;
+			case 3: dataFormat = EMT_RGB;  break;
+			case 4: dataFormat = EMT_RGBA; break;
 		}
 
 		Ref<Texture> texture;
 		if (settings != nullptr)
-			texture.reset(new Texture(*settings));
+			texture = (Texture::Create(*settings));
 		else
-			texture.reset(new Texture());
+			texture = (Texture::Create());
 
 		texture->GetTextureSettings().ChannelNum = numComponents;
-		texture->Generate2DTexture(width, height, dataFormat, GL_UNSIGNED_BYTE, data);
+		texture->Generate2DTexture(width, height, dataFormat, EMT_UNSIGNED_BYTE, data);
 
 		mTextureCache.insert(std::pair<std::string, Ref<Texture>>(path, texture));
 		stbi_image_free(data);
@@ -75,9 +75,9 @@ namespace EMT {
 	{
 		Ref<Cubemap> cubemap;
 		if (settings != nullptr)
-			cubemap.reset(new Cubemap(*settings));
+			cubemap = Cubemap::Create(*settings);
 		else
-			cubemap.reset(new Cubemap());
+			cubemap = Cubemap::Create();
 
 		int width, height, numComponents;
 		for (size_t i = 0; i < paths.size(); i++)
@@ -86,16 +86,16 @@ namespace EMT {
 
 			if (data)
 			{
-				GLenum dataFormat = GL_NONE;
+				int dataFormat = EMT_NONE;
 				switch (numComponents)
 				{
-					case 1: dataFormat = GL_RED;  break;
-					case 3: dataFormat = GL_RGB;  break;
-					case 4: dataFormat = GL_RGBA; break;
+					case 1: dataFormat = EMT_RED;  break;
+					case 3: dataFormat = EMT_RGB;  break;
+					case 4: dataFormat = EMT_RGBA; break;
 				}
 
 				std::cout << paths[i] << " load successfully!\n";
-				cubemap->GenerateCubemapFace(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, width, height, dataFormat, GL_UNSIGNED_BYTE, data);
+				cubemap->GenerateCubemapFace(EMT_TEXTURE_CUBE_MAP_POSITIVE_X + i, width, height, dataFormat, EMT_UNSIGNED_BYTE, data);
 				stbi_image_free(data);
 			}
 			else

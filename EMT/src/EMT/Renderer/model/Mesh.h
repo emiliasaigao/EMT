@@ -44,7 +44,7 @@ namespace EMT {
 
 		inline bool HasTangents() const { return m_Tangents.size() > 0; }
 
-		inline Material* GetMaterial() { return &m_Material; }
+		inline Ref<Material> GetMaterial() { return m_Material; }
 
 	protected:
 		void SetupMesh();
@@ -62,6 +62,6 @@ namespace EMT {
 		Ref<VertexArray> m_VAO;
 		Ref<VertexBuffer> m_VBO;
 		Ref<ElementBuffer> m_EBO;
-		Material m_Material; 
+		Ref<Material> m_Material; 
 	};
 }

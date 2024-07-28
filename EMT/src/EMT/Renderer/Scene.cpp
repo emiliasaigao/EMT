@@ -9,14 +9,13 @@ namespace EMT {
 		Init(sceneID);
 	}
 
-	void Scene::Init(int sceneID)
-	{
-		// TODO: initialize model to mModels according to sceneID
+	void Scene::Init(int sceneID) {
+		
 		Ref<Model> cube1 = std::make_shared<Model>(Cube());
 		mModels.push_back(cube1);
 		cube1->SetPosition(glm::vec3(7.0, 3.0f, -5.0f));
 		cube1->SetScale(glm::vec3(2.0f, 2.0f, 2.0f));
-		//TODO: set material texture
+
 		TextureSettings srgbTextureSettings;
 		srgbTextureSettings.IsSRGB = true;
 		cube1->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("assets/texture/wood.png", &srgbTextureSettings));

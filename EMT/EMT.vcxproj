@@ -194,9 +194,11 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLCubemap.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLMaterial.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -237,9 +239,11 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLCubemap.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLMaterial.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />

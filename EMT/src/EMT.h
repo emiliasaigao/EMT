@@ -22,7 +22,8 @@
 #include "EMT/Renderer/Renderer.h"
 #include "EMT/Renderer/Shader.h"
 #include "EMT/Renderer/VertexArray.h"
-#include "EMT/Renderer/Texture/Texture.h"
+
+//#include "EMT/Renderer/Texture/Texture.h"
 
 // -------------入口点--------------
 // 这个头文件定义的是（游戏的）main函数

@@ -28,7 +28,7 @@ namespace EMT {
 		for (unsigned int i = 0; i < mMeshes.size(); ++i) {
 
 			if (isUseMaterial) {
-				mMeshes[i].m_Material.BindMaterial(shader);
+				mMeshes[i].m_Material->BindMaterial(shader);
 
 				// check whether to use normal mapping
 				if (mMeshes[i].HasTangents())
@@ -127,15 +127,15 @@ namespace EMT {
 			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
 			// This set is only work for my sponza mtl file. be careful!
-			newMesh.m_Material.SetAlbedoMap(LoadMaterialTexture(material, aiTextureType_DIFFUSE, true));
-			newMesh.m_Material.SetNormalMap(LoadMaterialTexture(material, aiTextureType_NORMALS, false));
-			newMesh.m_Material.SetAmbientOcclusionMap(LoadMaterialTexture(material, aiTextureType_AMBIENT, false));
-			newMesh.m_Material.SetMetallicMap(LoadMaterialTexture(material, aiTextureType_SPECULAR, false));
-			newMesh.m_Material.SetRoughnessMap(LoadMaterialTexture(material, aiTextureType_SHININESS, false));
-			newMesh.m_Material.SetMixtureMap(LoadMaterialTexture(material, aiTextureType_UNKNOWN, false));
+			newMesh.m_Material->SetAlbedoMap(LoadMaterialTexture(material, aiTextureType_DIFFUSE, true));
+			newMesh.m_Material->SetNormalMap(LoadMaterialTexture(material, aiTextureType_NORMALS, false));
+			newMesh.m_Material->SetAmbientOcclusionMap(LoadMaterialTexture(material, aiTextureType_AMBIENT, false));
+			newMesh.m_Material->SetMetallicMap(LoadMaterialTexture(material, aiTextureType_SPECULAR, false));
+			newMesh.m_Material->SetRoughnessMap(LoadMaterialTexture(material, aiTextureType_SHININESS, false));
+			newMesh.m_Material->SetMixtureMap(LoadMaterialTexture(material, aiTextureType_UNKNOWN, false));
 
 			if (material->GetTextureCount(aiTextureType_UNKNOWN) > 0)
-				newMesh.m_Material.SeperateMixture(); // try to seperate mixture for gltf file only;
+				newMesh.m_Material->SeperateMixture(); // try to seperate mixture for gltf file only;
 		}
 		return newMesh;
 	}
