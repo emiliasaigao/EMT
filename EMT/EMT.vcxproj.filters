@@ -111,22 +111,22 @@
     <ClInclude Include="src\EMT\Renderer\VertexArray.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\light\BaseLight.h">
+    <ClInclude Include="src\EMT\Renderer\Light\BaseLight.h">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\light\DirectionalLight.h">
+    <ClInclude Include="src\EMT\Renderer\Light\DirectionalLight.h">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\light\LightManager.h">
+    <ClInclude Include="src\EMT\Renderer\Light\LightManager.h">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\light\PointLight.h">
+    <ClInclude Include="src\EMT\Renderer\Light\PointLight.h">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\light\SpotLight.h">
+    <ClInclude Include="src\EMT\Renderer\Light\SpotLight.h">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\model\Model.h">
+    <ClInclude Include="src\EMT\Renderer\Model\Model.h">
       <Filter>src\EMT\Renderer\model</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Window.h">
@@ -158,14 +158,14 @@
     </ClInclude>
     <ClInclude Include="src\EMT\EMTEnum.h" />
     <ClInclude Include="src\EMT\Renderer\Texture\Cubemap.h" />
-    <ClInclude Include="src\EMT\Renderer\model\Mesh.h" />
+    <ClInclude Include="src\EMT\Renderer\Model\Mesh.h" />
     <ClInclude Include="src\EMT\Renderer\Texture\Texture.h" />
     <ClInclude Include="src\EMT\Renderer\Texture\TextureLoader.h" />
-    <ClInclude Include="src\EMT\Renderer\model\Material.h" />
-    <ClInclude Include="src\EMT\Renderer\model\AssimpGLMHelper.h" />
-    <ClInclude Include="src\EMT\Renderer\model\shapes\Cube.h" />
-    <ClInclude Include="src\EMT\Renderer\model\shapes\Quad.h" />
-    <ClInclude Include="src\EMT\Renderer\model\shapes\Sphere.h" />
+    <ClInclude Include="src\EMT\Renderer\Model\Material.h" />
+    <ClInclude Include="src\EMT\Renderer\Model\AssimpGLMHelper.h" />
+    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Cube.h" />
+    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Quad.h" />
+    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Sphere.h" />
     <ClInclude Include="src\EMT\Renderer\Scene.h" />
     <ClInclude Include="src\EMT\Renderer\Skybox.h" />
     <ClInclude Include="src\EMT\Renderer\FrameBuffer.h" />
@@ -174,6 +174,10 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLCubemap.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLMaterial.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\PassThroughPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPass.h" />
+    <ClInclude Include="src\EMT\Renderer\GBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLGBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -218,19 +222,19 @@
     <ClCompile Include="src\EMT\Renderer\VertexArray.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\light\BaseLight.cpp">
+    <ClCompile Include="src\EMT\Renderer\Light\BaseLight.cpp">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\light\DirectionalLight.cpp">
+    <ClCompile Include="src\EMT\Renderer\Light\DirectionalLight.cpp">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\light\LightManager.cpp">
+    <ClCompile Include="src\EMT\Renderer\Light\LightManager.cpp">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\light\PointLight.cpp">
+    <ClCompile Include="src\EMT\Renderer\Light\PointLight.cpp">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\light\SpotLight.cpp">
+    <ClCompile Include="src\EMT\Renderer\Light\SpotLight.cpp">
       <Filter>src\EMT\Renderer\light</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp">
@@ -258,14 +262,14 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Renderer\Texture\Cubemap.cpp" />
-    <ClCompile Include="src\EMT\Renderer\model\Model.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Model\Model.cpp" />
     <ClCompile Include="src\EMT\Renderer\Texture\Texture.cpp" />
     <ClCompile Include="src\EMT\Renderer\Texture\TextureLoader.cpp" />
-    <ClCompile Include="src\EMT\Renderer\model\Material.cpp" />
-    <ClCompile Include="src\EMT\Renderer\model\Mesh.cpp" />
-    <ClCompile Include="src\EMT\Renderer\model\shapes\Cube.cpp" />
-    <ClCompile Include="src\EMT\Renderer\model\shapes\Quad.cpp" />
-    <ClCompile Include="src\EMT\Renderer\model\shapes\Sphere.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Model\Material.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Model\Mesh.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Cube.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Quad.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Sphere.cpp" />
     <ClCompile Include="src\EMT\Renderer\Scene.cpp" />
     <ClCompile Include="src\EMT\Renderer\Skybox.cpp" />
     <ClCompile Include="src\EMT\Renderer\FrameBuffer.cpp" />
@@ -273,6 +277,10 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLCubemap.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLMaterial.cpp" />
+    <ClCompile Include="src\EMT\Renderer\GBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLGBuffer.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\PassThroughPass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shader\common\skybox.vert" />

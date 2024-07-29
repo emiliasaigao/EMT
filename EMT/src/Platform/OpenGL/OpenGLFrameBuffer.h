@@ -1,13 +1,12 @@
 #pragma once
 #include "EMT/Renderer/FrameBuffer.h"
 #include "glad/glad.h"
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb_image/stb_image_write.h"
+
 
 namespace EMT {
-	class OpenGLFrameBuffer : public FrameBuffer {
+	class OpenGLFrameBuffer : virtual public FrameBuffer {
 	public:
-		OpenGLFrameBuffer(int width, int height, bool isMultiSample);
+		OpenGLFrameBuffer(int width, int height, bool isMultiSample = false);
 		~OpenGLFrameBuffer();
 
 		virtual void AddColorTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) override;
@@ -31,7 +30,7 @@ namespace EMT {
 		virtual Ref<Texture> GetColourTexture() override { return m_ColorTexture; }
 		virtual Ref<Texture> GetDepthStencilTexture() override { return m_DepthStencilTexture; }
 
-	private:
+	protected:
 		unsigned int m_FBORendererID;
 		int m_Width, m_Height;
 		bool m_IsMultiSample;

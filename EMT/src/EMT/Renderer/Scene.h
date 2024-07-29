@@ -28,8 +28,6 @@ namespace EMT {
 		Ref<LightManager> mLightManager;
 		Ref<Skybox> mSkybox;
 
-
-		//TODO: remember to free pointer
 		std::vector<Ref<Model>> mModels;
 	};
 }

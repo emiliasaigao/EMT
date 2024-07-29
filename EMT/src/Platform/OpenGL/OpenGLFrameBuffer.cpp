@@ -1,6 +1,9 @@
 #include "emtpch.h"
 #include "OpenGLFrameBuffer.h"
 
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image/stb_image_write.h"
+
 namespace EMT {
 	OpenGLFrameBuffer::OpenGLFrameBuffer(int width, int height, bool isMultiSample) :
 		m_Width(width), m_Height(height), m_IsMultiSample(isMultiSample) {
