@@ -9,8 +9,8 @@
 #include "EMT/Application.h"
 
 namespace EMT {
-	ImGuiLayer::ImGuiLayer()
-	: Layer("ImGuiLayer") {
+	ImGuiLayer::ImGuiLayer(const Ref<Scene>& scene, const Ref<RenderPipeLine>& pipeLine)
+	: Layer("ImGuiLayer"),m_Scene(scene), m_PipeLine(pipeLine) {
 	}
 
 	ImGuiLayer::~ImGuiLayer()
@@ -59,7 +59,31 @@ namespace EMT {
 	void ImGuiLayer::OnImGuiRender()
 	{
 		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		ImGui::Begin("Scene");
+		m_PipeLine->GetLastRenderRes()->GetColorTexture()->DisplayTexture();
+		ImGui::End();
+
+
+		ImGui::Begin("Scene_Hierarchy");
+		//all kinds of light
+		auto lightManager = m_Scene->GetLightManager();
+		lightManager->OnImGuiRender();
+
+		//model
+		if (ImGui::TreeNode("Models"))
+		{
+			auto models = m_Scene->GetModels();
+			for (auto& model : models)
+			{
+				if (ImGui::TreeNode(model->GetName().c_str())) {
+					model->OnImGuiRender();
+					ImGui::TreePop();
+				}
+			}
+			ImGui::TreePop();
+		}
+
+		ImGui::End();
 	}
 
 
@@ -68,6 +92,7 @@ namespace EMT {
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+		ImGui::DockSpaceOverViewport();
 	}
 
 	void ImGuiLayer::End()

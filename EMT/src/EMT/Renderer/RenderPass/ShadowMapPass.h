@@ -4,12 +4,11 @@
 #include "EMT/Renderer/Renderer.h"
 
 namespace EMT {
-	class PassThroughPass : public RenderPass {
+	class ShadowMapPass : public RenderPass {
 	public:
-		PassThroughPass(const Ref<Scene>& scene);
-		~PassThroughPass() {}
+		ShadowMapPass(const Ref<Scene>& scene);
+		~ShadowMapPass() {}
 
 		virtual void Draw() override;
-		virtual void OnWindowResize() override;
 	};
 }

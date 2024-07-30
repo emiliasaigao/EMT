@@ -34,10 +34,29 @@ namespace EMT {
 		return glfwGetTime();
 	}
 	
-	void OpenGLAPI::EnableDepthTest()
-	{
+	void OpenGLAPI::EnableDepthTest() {
 		glEnable(GL_DEPTH_TEST);
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
+
+	void OpenGLAPI::DisableDepthTest() {
+		glDisable(GL_DEPTH_TEST);
+	}
+
+	void OpenGLAPI::EnableMultiSample() {
+		glEnable(GL_MULTISAMPLE);
+	}
+
+	void OpenGLAPI::DisableMultiSample() {
+		glDisable(GL_MULTISAMPLE);
+	}
+
+	void OpenGLAPI::EnableCubeMapSeampless() {
+		glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+	}
+
+	void OpenGLAPI::SetViewport(int x, int y, int width, int height) {
+		glViewport(x, y, width, height);
 	}
 
 	void OpenGLAPI::ChangeDepthFunc(DepthFunc func) {

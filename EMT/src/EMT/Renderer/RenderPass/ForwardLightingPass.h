@@ -1,13 +1,13 @@
 #pragma once
 #include "RenderPass.h"
-#include "EMT/EMTEnum.h"
 #include "EMT/Renderer/Renderer.h"
+#include "EMT/EMTEnum.h"
 
 namespace EMT {
-	class PassThroughPass : public RenderPass {
+	class ForwardLightingPass : public RenderPass {
 	public:
-		PassThroughPass(const Ref<Scene>& scene);
-		~PassThroughPass() {}
+		ForwardLightingPass(const Ref<Scene>& scene);
+		~ForwardLightingPass() {}
 
 		virtual void Draw() override;
 		virtual void OnWindowResize() override;

@@ -4,6 +4,8 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace EMT {
+	Ref<Quad> Renderer::s_NDC_Plane = std::make_shared<Quad>();
+	Ref<Cube> Renderer::s_Cube = std::make_shared<Cube>();
 	Renderer::SceneData* Renderer::s_SceneData = new Renderer::SceneData();
 
 	void Renderer::BeginScene(const Camera& camera)
@@ -31,9 +33,10 @@ namespace EMT {
 		for (const auto& model : models) {
 			model->Draw(shader, isUseMaterial);
 		}
+		shader->Unbind();
+
 		auto skybox = scene->GetSkybox();
 		auto skyboxShader = skybox->m_SkyboxShader;
-		shader->Unbind();
 		skyboxShader->Bind();
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::LessEqual);
 
@@ -45,6 +48,11 @@ namespace EMT {
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::Less);
 		skyboxShader->Unbind();
 	}
+
+	void Renderer::RenderNDCPlane() {
+		s_NDC_Plane->Draw();
+	}
+
 
 	void Renderer::SetupModelMatrix(const Ref<Model>& model, const Ref<Shader>& shader, bool isUseMaterial) {
 		glm::mat4 modelMatrix(1.0f);

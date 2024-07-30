@@ -25,7 +25,7 @@ namespace EMT {
 
 		virtual unsigned int GetFramebuffer() = 0;
 		virtual unsigned int GetDepthStencilRBO() = 0;
-		virtual Ref<Texture> GetColourTexture() = 0;
+		virtual Ref<Texture> GetColorTexture() = 0;
 		virtual Ref<Texture> GetDepthStencilTexture() = 0;
 
 		static Ref<FrameBuffer> Create(int width, int height, bool isMultiSample = false);

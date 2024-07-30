@@ -52,6 +52,6 @@ namespace EMT {
 	protected:
 		Ref<Shader> m_Shader;
 		Ref<Scene> m_Scene;
-		static RenderPassContext m_Context;
+		static RenderPassContext s_Context;
 	};
 }

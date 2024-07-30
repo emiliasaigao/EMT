@@ -23,8 +23,17 @@ namespace EMT {
 		virtual void DrawIndexed(const Ref<VertexArray>& vertexArray) = 0;
 		virtual void DrawArray(const Ref<VertexArray>& vertexArray) = 0;
 		virtual float GetTime() = 0;
+
 		virtual void EnableDepthTest() = 0;
+		virtual void DisableDepthTest() = 0;
+		virtual void EnableMultiSample() = 0;
+		virtual void DisableMultiSample() = 0;
+		virtual void EnableCubeMapSeampless() = 0;
+
 		virtual void ChangeDepthFunc(DepthFunc func) = 0;
+
+		virtual void SetViewport(int x, int y, int width, int height) = 0;
+
 		inline static API GetAPI() { return s_API; }
 		
 	private:

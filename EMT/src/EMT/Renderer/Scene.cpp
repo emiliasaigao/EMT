@@ -10,7 +10,7 @@ namespace EMT {
 	}
 
 	void Scene::Init(int sceneID) {
-		
+
 		Ref<Model> cube1 = std::make_shared<Model>(Cube());
 		mModels.push_back(cube1);
 		cube1->SetPosition(glm::vec3(7.0, 3.0f, -5.0f));

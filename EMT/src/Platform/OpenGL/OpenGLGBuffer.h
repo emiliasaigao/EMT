@@ -35,7 +35,7 @@ namespace EMT {
 
 		virtual unsigned int GetFramebuffer() override { return m_FBORendererID; }
 		virtual unsigned int GetDepthStencilRBO() override { return m_RBORendererID; }
-		virtual Ref<Texture> GetColourTexture() override { return m_ColorTexture; }
+		virtual Ref<Texture> GetColorTexture() override { return m_ColorTexture; }
 		virtual Ref<Texture> GetDepthStencilTexture() override { return m_DepthStencilTexture; }
 
 

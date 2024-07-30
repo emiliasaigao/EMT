@@ -173,8 +173,11 @@
     <ClInclude Include="src\EMT\Renderer\Model\Shapes\Cube.h" />
     <ClInclude Include="src\EMT\Renderer\Model\Shapes\Quad.h" />
     <ClInclude Include="src\EMT\Renderer\Model\Shapes\Sphere.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\PassThroughPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPipeline.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\ShadowMapPass.h" />
     <ClInclude Include="src\EMT\Renderer\Scene.h" />
     <ClInclude Include="src\EMT\Renderer\Skybox.h" />
     <ClInclude Include="src\EMT\Renderer\Texture\Cubemap.h" />
@@ -225,8 +228,11 @@
     <ClCompile Include="src\EMT\Renderer\Model\Shapes\Cube.cpp" />
     <ClCompile Include="src\EMT\Renderer\Model\Shapes\Quad.cpp" />
     <ClCompile Include="src\EMT\Renderer\Model\Shapes\Sphere.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\PassThroughPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPipeline.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\ShadowMapPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\Scene.cpp" />
     <ClCompile Include="src\EMT\Renderer\Skybox.cpp" />
     <ClCompile Include="src\EMT\Renderer\Texture\Cubemap.cpp" />

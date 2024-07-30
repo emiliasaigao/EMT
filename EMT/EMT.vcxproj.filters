@@ -178,6 +178,9 @@
     <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPass.h" />
     <ClInclude Include="src\EMT\Renderer\GBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLGBuffer.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\ShadowMapPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPipeline.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -281,6 +284,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLGBuffer.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\PassThroughPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\ShadowMapPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shader\common\skybox.vert" />
