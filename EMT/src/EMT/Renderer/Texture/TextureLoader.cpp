@@ -23,10 +23,10 @@ namespace EMT {
 		formalTextureSettings.TextureMagnificationFilterMode = EMT_NEAREST;
 		formalTextureSettings.HasMips = false;
 
-		s_DefaultAlbedo = Load2DTexture(std::string("assets/texture/defaultAlbedo.png"), &srgbTextureSettings);
-		s_DefaultNormal = Load2DTexture(std::string("assets/texture/defaultNormal.png"), &formalTextureSettings);
-		s_WhiteTexture = Load2DTexture(std::string("assets/texture/white.png"), &formalTextureSettings);
-		s_BlackTexture = Load2DTexture(std::string("assets/texture/black.png"), &formalTextureSettings);
+		s_DefaultAlbedo = Load2DTexture(std::string("../EMT/assets/texture/defaultAlbedo.png"), &srgbTextureSettings);
+		s_DefaultNormal = Load2DTexture(std::string("../EMT/assets/texture/defaultNormal.png"), &formalTextureSettings);
+		s_WhiteTexture = Load2DTexture(std::string("../EMT/assets/texture/white.png"), &formalTextureSettings);
+		s_BlackTexture = Load2DTexture(std::string("../EMT/assets/texture/black.png"), &formalTextureSettings);
 	}
 
 	Ref<Texture> TextureLoader::Load2DTexture(const std::string& path, TextureSettings* settings)
@@ -42,7 +42,7 @@ namespace EMT {
 		unsigned char* data = stbi_load(path.c_str(), &width, &height, &numComponents, 0);
 		if (!data)
 		{
-			std::cout << "TEXTURE LOAD FAIL - path:" << path << "\n";
+			EMT_CORE_INFO("TEXTURE LOAD FAIL - path:{0}", path);
 			stbi_image_free(data);
 			return nullptr;
 		}
@@ -67,7 +67,7 @@ namespace EMT {
 		mTextureCache.insert(std::pair<std::string, Ref<Texture>>(path, texture));
 		stbi_image_free(data);
 
-		std::cout << path << " load successfully!\n";
+		EMT_CORE_INFO("{0} load successfully!", path);
 		return mTextureCache[path];
 	}
 

@@ -37,6 +37,7 @@ namespace EMT {
 	}
 
 	void Camera::updateCameraVectors() {
+		
 		vec3 front(1.f);
 		front.x = glm::cos(glm::radians(Pitch)) * glm::cos(glm::radians(Yam));
 		front.y = glm::sin(glm::radians(Pitch));

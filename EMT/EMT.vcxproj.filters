@@ -22,11 +22,20 @@
     <Filter Include="src\EMT\Renderer">
       <UniqueIdentifier>{28FD4084-14F6-5FD6-3D28-455B29803FE2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\EMT\Renderer\light">
-      <UniqueIdentifier>{EF5EE47E-DB58-0DD1-C4C5-A3E1B05E733D}</UniqueIdentifier>
+    <Filter Include="src\EMT\Renderer\Light">
+      <UniqueIdentifier>{CF4EA17C-BB48-CACE-A4B5-60DF904E303B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\EMT\Renderer\model">
-      <UniqueIdentifier>{88B4F97E-74AE-22D1-5D1B-B9E149B4883D}</UniqueIdentifier>
+    <Filter Include="src\EMT\Renderer\Model">
+      <UniqueIdentifier>{68A4B67C-549E-DFCE-3D0B-76DF29A4453B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EMT\Renderer\Model\Shapes">
+      <UniqueIdentifier>{1B023366-871A-1A90-50C7-A929BC9EAE29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EMT\Renderer\RenderPass">
+      <UniqueIdentifier>{4E7CEECB-BA89-1CB2-4370-189DAF7CE868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EMT\Renderer\Texture">
+      <UniqueIdentifier>{88CAE789-74EF-360A-9D3A-1C9A89BE3528}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
@@ -42,6 +51,9 @@
     <ClInclude Include="include\stb_image\stb_image.h">
       <Filter>include\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="include\stb_image\stb_image_write.h">
+      <Filter>include\stb_image</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -49,6 +61,9 @@
       <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Core.h">
+      <Filter>src\EMT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\EMTEnum.h">
       <Filter>src\EMT</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\EntryPoint.h">
@@ -93,11 +108,68 @@
     <ClInclude Include="src\EMT\Renderer\Camera.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\FrameBuffer.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\GBuffer.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Renderer\GraphicsContext.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Light\BaseLight.h">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Light\DirectionalLight.h">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Light\LightManager.h">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Light\PointLight.h">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Light\SpotLight.h">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\AssimpGLMHelper.h">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\Material.h">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\Mesh.h">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\Model.h">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Cube.h">
+      <Filter>src\EMT\Renderer\Model\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Quad.h">
+      <Filter>src\EMT\Renderer\Model\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Sphere.h">
+      <Filter>src\EMT\Renderer\Model\Shapes</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Renderer\RenderCommand.h">
       <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\PassThroughPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPipeline.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\ShadowMapPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Renderer\Renderer.h">
       <Filter>src\EMT\Renderer</Filter>
@@ -105,29 +177,26 @@
     <ClInclude Include="src\EMT\Renderer\RendererAPI.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Scene.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Renderer\Shader.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\VertexArray.h">
+    <ClInclude Include="src\EMT\Renderer\Skybox.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\Light\BaseLight.h">
-      <Filter>src\EMT\Renderer\light</Filter>
+    <ClInclude Include="src\EMT\Renderer\Texture\Cubemap.h">
+      <Filter>src\EMT\Renderer\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\Light\DirectionalLight.h">
-      <Filter>src\EMT\Renderer\light</Filter>
+    <ClInclude Include="src\EMT\Renderer\Texture\Texture.h">
+      <Filter>src\EMT\Renderer\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\Light\LightManager.h">
-      <Filter>src\EMT\Renderer\light</Filter>
+    <ClInclude Include="src\EMT\Renderer\Texture\TextureLoader.h">
+      <Filter>src\EMT\Renderer\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\Light\PointLight.h">
-      <Filter>src\EMT\Renderer\light</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\Light\SpotLight.h">
-      <Filter>src\EMT\Renderer\light</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\Model\Model.h">
-      <Filter>src\EMT\Renderer\model</Filter>
+    <ClInclude Include="src\EMT\Renderer\VertexArray.h">
+      <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Window.h">
       <Filter>src\EMT</Filter>
@@ -141,7 +210,22 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLCubemap.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLGBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLMaterial.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -156,31 +240,6 @@
     <ClInclude Include="src\emtpch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\EMTEnum.h" />
-    <ClInclude Include="src\EMT\Renderer\Texture\Cubemap.h" />
-    <ClInclude Include="src\EMT\Renderer\Model\Mesh.h" />
-    <ClInclude Include="src\EMT\Renderer\Texture\Texture.h" />
-    <ClInclude Include="src\EMT\Renderer\Texture\TextureLoader.h" />
-    <ClInclude Include="src\EMT\Renderer\Model\Material.h" />
-    <ClInclude Include="src\EMT\Renderer\Model\AssimpGLMHelper.h" />
-    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Cube.h" />
-    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Quad.h" />
-    <ClInclude Include="src\EMT\Renderer\Model\Shapes\Sphere.h" />
-    <ClInclude Include="src\EMT\Renderer\Scene.h" />
-    <ClInclude Include="src\EMT\Renderer\Skybox.h" />
-    <ClInclude Include="src\EMT\Renderer\FrameBuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
-    <ClInclude Include="include\stb_image\stb_image_write.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLCubemap.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLMaterial.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\PassThroughPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPass.h" />
-    <ClInclude Include="src\EMT\Renderer\GBuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLGBuffer.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\ShadowMapPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPipeline.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -210,8 +269,62 @@
     <ClCompile Include="src\EMT\Renderer\Camera.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\FrameBuffer.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\GBuffer.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Light\BaseLight.cpp">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Light\DirectionalLight.cpp">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Light\LightManager.cpp">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Light\PointLight.cpp">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Light\SpotLight.cpp">
+      <Filter>src\EMT\Renderer\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Model\Material.cpp">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Model\Mesh.cpp">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Model\Model.cpp">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Cube.cpp">
+      <Filter>src\EMT\Renderer\Model\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Quad.cpp">
+      <Filter>src\EMT\Renderer\Model\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Sphere.cpp">
+      <Filter>src\EMT\Renderer\Model\Shapes</Filter>
+    </ClCompile>
     <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp">
       <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\PassThroughPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPipeline.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\ShadowMapPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Renderer\Renderer.cpp">
       <Filter>src\EMT\Renderer</Filter>
@@ -219,26 +332,26 @@
     <ClCompile Include="src\EMT\Renderer\RendererAPI.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Scene.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\EMT\Renderer\Shader.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\VertexArray.cpp">
+    <ClCompile Include="src\EMT\Renderer\Skybox.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\Light\BaseLight.cpp">
-      <Filter>src\EMT\Renderer\light</Filter>
+    <ClCompile Include="src\EMT\Renderer\Texture\Cubemap.cpp">
+      <Filter>src\EMT\Renderer\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\Light\DirectionalLight.cpp">
-      <Filter>src\EMT\Renderer\light</Filter>
+    <ClCompile Include="src\EMT\Renderer\Texture\Texture.cpp">
+      <Filter>src\EMT\Renderer\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\Light\LightManager.cpp">
-      <Filter>src\EMT\Renderer\light</Filter>
+    <ClCompile Include="src\EMT\Renderer\Texture\TextureLoader.cpp">
+      <Filter>src\EMT\Renderer\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\Light\PointLight.cpp">
-      <Filter>src\EMT\Renderer\light</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\Light\SpotLight.cpp">
-      <Filter>src\EMT\Renderer\light</Filter>
+    <ClCompile Include="src\EMT\Renderer\VertexArray.cpp">
+      <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLAPI.cpp">
       <Filter>src\Platform\OpenGL</Filter>
@@ -249,7 +362,22 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLCubemap.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLGBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLMaterial.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
@@ -264,32 +392,8 @@
     <ClCompile Include="src\emtpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\Texture\Cubemap.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Model\Model.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Texture\Texture.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Texture\TextureLoader.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Model\Material.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Model\Mesh.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Cube.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Quad.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Model\Shapes\Sphere.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Scene.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Skybox.cpp" />
-    <ClCompile Include="src\EMT\Renderer\FrameBuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLCubemap.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLMaterial.cpp" />
-    <ClCompile Include="src\EMT\Renderer\GBuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLGBuffer.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\PassThroughPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\ShadowMapPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\shader\common\skybox.vert" />
-    <None Include="assets\shader\common\skybox.frag" />
+    <None Include="assets\simplecolor.vert" />
   </ItemGroup>
 </Project>

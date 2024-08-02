@@ -18,26 +18,26 @@ namespace EMT {
 
 		TextureSettings srgbTextureSettings;
 		srgbTextureSettings.IsSRGB = true;
-		cube1->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("assets/texture/wood.png", &srgbTextureSettings));
+		cube1->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/texture/wood.png", &srgbTextureSettings));
 
 
 		Ref<Model> cube2 = std::make_shared<Model>(Cube());
 		cube2->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 		cube2->SetScale(glm::vec3(30.0f, 1.0f, 30.0f));
 		mModels.push_back(cube2);
-		cube2->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("assets/texture/white.png", &srgbTextureSettings));
+		cube2->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/texture/white.png", &srgbTextureSettings));
 
 
 		Ref<Model> cube3 = std::make_shared<Model>(Cube());
 		cube3->SetPosition(glm::vec3(10.0f, 3.0f, 3.0f));
 		cube3->SetScale(glm::vec3(2.0f, 2.0f, 2.0f));
 		mModels.push_back(cube3);
-		cube3->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("assets/texture/white.png", &srgbTextureSettings));
+		cube3->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/texture/white.png", &srgbTextureSettings));
 
 		Ref<Model> sphere1 = std::make_shared<Model>(Sphere());
 		mModels.push_back(sphere1);
 		sphere1->SetPosition(glm::vec3(-10.0, 3.0f, 0.0f));
-		sphere1->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("assets/texture/wood.png", &srgbTextureSettings));
+		sphere1->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/texture/wood.png", &srgbTextureSettings));
 
 #pragma region gunSetting
 		//Ref<Model> gun = std::make_shared<Model>("res/cerberus/meshes/cerberus.obj");
@@ -79,12 +79,12 @@ namespace EMT {
 
 		//TODO: skybox
 		std::vector<std::string> skyboxFilePaths;
-		skyboxFilePaths.push_back("assets/skybox/right.png");
-		skyboxFilePaths.push_back("assets/skybox/left.png");
-		skyboxFilePaths.push_back("assets/skybox/top.png");
-		skyboxFilePaths.push_back("assets/skybox/bottom.png");
-		skyboxFilePaths.push_back("assets/skybox/back.png");
-		skyboxFilePaths.push_back("assets/skybox/front.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/right.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/left.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/top.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/bottom.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/back.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/front.png");
 		mSkybox = std::make_shared<Skybox>(skyboxFilePaths);
 	}
 

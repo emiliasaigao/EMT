@@ -5,7 +5,7 @@
 namespace EMT {
 	ShadowMapPass::ShadowMapPass(const Ref<Scene>& scene)
 		:RenderPass(scene) {
-		m_Shader = Shader::Create("assets/shader/shadowMapGenerate.vert", "assets/shader/shadowMapGenerate.frag");
+		m_Shader = Shader::Create("../EMT/assets/shader/shadowMapGenerate.vert", "../EMT/assets/shader/shadowMapGenerate.frag");
 		RenderPass::s_Context.shadowOutput.fbo = FrameBuffer::Create(SHADOWMAP_RESOLUTION_X, SHADOWMAP_RESOLUTION_Y);
 		
 		TextureSettings depthStencilTextureSettings;

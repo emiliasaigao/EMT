@@ -63,6 +63,13 @@ namespace EMT {
 		m_PipeLine->GetLastRenderRes()->GetColorTexture()->DisplayTexture();
 		ImGui::End();
 
+		ImGui::Begin("ShadowMap");
+		m_PipeLine->GetPassContext().shadowOutput.fbo->GetDepthStencilTexture()->DisplayTexture();
+		ImGui::End();
+
+		ImGui::Begin("LigthPass");
+		m_PipeLine->GetPassContext().lightOutput.fbo->GetColorTexture()->DisplayTexture();
+		ImGui::End();
 
 		ImGui::Begin("Scene_Hierarchy");
 		//all kinds of light

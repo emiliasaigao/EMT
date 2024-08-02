@@ -32,8 +32,8 @@ namespace EMT {
 		static Ref<Cubemap> Create(const CubemapSettings& settings = CubemapSettings());
 		~Cubemap() {}
 
-		void Bind(int unit = 0);
-		void UnBind();
+		virtual void Bind(int unit = 0) = 0;
+		virtual void UnBind() = 0;
 
 		virtual void GenerateCubemapFace(int face, unsigned int width, unsigned int height,
 			int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, 

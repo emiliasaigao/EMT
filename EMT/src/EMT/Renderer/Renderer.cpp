@@ -2,10 +2,9 @@
 #include "Renderer.h"
 #include "RenderCommand.h"
 #include "Platform/OpenGL/OpenGLShader.h"
+#include "Platform/OpenGL/OpenGLCubemap.h"
 
 namespace EMT {
-	Ref<Quad> Renderer::s_NDC_Plane = std::make_shared<Quad>();
-	Ref<Cube> Renderer::s_Cube = std::make_shared<Cube>();
 	Renderer::SceneData* Renderer::s_SceneData = new Renderer::SceneData();
 
 	void Renderer::BeginScene(const Camera& camera)
@@ -34,23 +33,36 @@ namespace EMT {
 			model->Draw(shader, isUseMaterial);
 		}
 		shader->Unbind();
+	}
 
-		auto skybox = scene->GetSkybox();
+	void Renderer::RenderSkybox(const Ref<Scene>& scene) {
+		Ref<Skybox> skybox = scene->GetSkybox();
 		auto skyboxShader = skybox->m_SkyboxShader;
 		skyboxShader->Bind();
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::LessEqual);
 
 		glm::mat4 view = glm::mat4(glm::mat3(scene->GetCamera()->getViewMatrix()));
-		skyboxShader->setMat3f("view", view);
+		skyboxShader->setMat4f("view", view);
 		skyboxShader->setMat4f("projection", scene->GetCamera()->getProjectionMatrix());
+		skybox->m_Cubemap->Bind();
+		skyboxShader->setInt("skybox", 0);
+
 		skybox->m_Cube->Draw(skyboxShader, false);
-		
+
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::Less);
 		skyboxShader->Unbind();
 	}
 
+
+
 	void Renderer::RenderNDCPlane() {
+		static Ref<Quad> s_NDC_Plane = std::make_shared<Quad>();
 		s_NDC_Plane->Draw();
+	}
+
+	void Renderer::RenderCube() {
+		static Ref<Cube> s_Cube = std::make_shared<Cube>();
+		s_Cube->Draw();
 	}
 
 

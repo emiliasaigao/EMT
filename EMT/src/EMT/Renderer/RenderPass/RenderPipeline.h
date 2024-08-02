@@ -12,6 +12,7 @@ namespace EMT {
 		
 		void OnWindowResize(int windowWidth, int windowHeight);
 		Ref<FrameBuffer> GetLastRenderRes() { return RenderPass::s_Context.passThroughOutput.fbo; }
+		RenderPassContext GetPassContext() { return RenderPass::s_Context; }
 	private:
 		Ref<Scene> m_Scene;
 		std::vector<Ref<RenderPass>> m_RenderPasses;

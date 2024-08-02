@@ -56,7 +56,7 @@ namespace EMT {
 
 	void OpenGLFrameBuffer::SetUpFrameBuffer() {
 		Bind();
-		if (!m_ColorTexture->IsGenerated()) {
+		if (!m_ColorTexture) {
 			// 明确指定这个FBO不需要Color输出
 			glDrawBuffer(GL_NONE);
 			glReadBuffer(GL_NONE);

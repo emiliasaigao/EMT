@@ -55,10 +55,6 @@ project "EMT"
 		"%{IncludeDir.Assimp}"
 	}
 
-	libdirs
-	{ 
-		"%{prj.name}/lib" 
-	}
 
 	links
 	{
@@ -66,7 +62,6 @@ project "EMT"
 		"Glad",
 		"ImGui",
 		"opengl32.lib",
-		"assimp-vc143-mtd.lib"
 	}
 
 	pchheader "emtpch.h"
@@ -121,9 +116,15 @@ project "Sandbox"
 		"EMT/src"
 	}
 
+	libdirs
+	{ 
+		"%{prj.name}/lib" 
+	}
+
 	links 
 	{
-		"EMT"
+		"EMT",
+		"assimp-vc143-mtd.lib"
 	}
 
 	filter "system:windows"

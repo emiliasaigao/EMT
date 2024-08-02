@@ -5,7 +5,7 @@ namespace EMT {
 	PassThroughPass::PassThroughPass(const Ref<Scene>& scene)
 		:RenderPass(scene){
 		
-		m_Shader = Shader::Create("assets/shader/passThrough.vert", "assets/shader/passThrough.frag");
+		m_Shader = Shader::Create("../EMT/assets/shader/passThrough.vert", "../EMT/assets/shader/passThrough.frag");
 		RenderPass::s_Context.passThroughOutput.fbo = FrameBuffer::Create(RenderPass::s_Context.windowWidth, RenderPass::s_Context.windowHeight);
 		TextureSettings colorTextureSettings;
 		colorTextureSettings.TextureFormat = EMT_RGBA32F;

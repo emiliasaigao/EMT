@@ -8,8 +8,8 @@ namespace EMT {
 		OpenGLCubemap(const EMT::CubemapSettings& settings);
 		~OpenGLCubemap();
 
-		void Bind(int unit = 0);
-		void UnBind();
+		virtual void Bind(int unit = 0) override;
+		virtual void UnBind() override;
 
 		virtual void GenerateCubemapFace(int face, unsigned int width, unsigned int height,
 			int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE,

@@ -4,7 +4,7 @@
 namespace EMT {
 	ForwardLightingPass::ForwardLightingPass(const Ref<Scene>& scene)
 		:RenderPass(scene) {
-		m_Shader = Shader::Create("assets/shader/BlinnPhong.vert", "assets/shader/BlinnPhong.frag");
+		m_Shader = Shader::Create("../EMT/assets/shader/BlinnPhong.vert", "../EMT/assets/shader/BlinnPhong.frag");
 
 		RenderPass::s_Context.lightOutput.fbo = FrameBuffer::Create(RenderPass::s_Context.windowWidth, RenderPass::s_Context.windowHeight);
 
@@ -62,6 +62,7 @@ namespace EMT {
 		RenderCommand::EnableDepthTest();
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::Less);
 		Renderer::Render(m_Scene, m_Shader, true);
+		Renderer::RenderSkybox(m_Scene);
 	}
 
 	void ForwardLightingPass::OnWindowResize() {

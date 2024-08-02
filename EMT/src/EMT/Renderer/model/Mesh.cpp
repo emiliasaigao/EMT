@@ -54,6 +54,7 @@ namespace EMT {
 			vertices.push_back(std::move(newVertex));
 		}
 
+		m_Material = Material::Create();
 		m_VAO = VertexArray::Create();
 		m_VBO = VertexBuffer::Create(&vertices[0], vertices.size() * sizeof(Vertex));
 		m_VBO->SetLayout({
@@ -63,7 +64,7 @@ namespace EMT {
 			{EMT::ShaderDataType::Float3,"a_Tangent"},
 			{EMT::ShaderDataType::Float3,"a_Bitangent"}
 		});
-
+		
 		m_VAO->AddVertexBuffer(m_VBO);
 			
 		if (m_Indices.size() > 0) {

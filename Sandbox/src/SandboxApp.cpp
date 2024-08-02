@@ -5,7 +5,7 @@
 class ExampleLayer : public EMT::Layer {
 public:
 	ExampleLayer(const EMT::Ref<EMT::Scene>& scene, const EMT::Ref<EMT::RenderPipeLine>& pipeLine)
-		: Layer("ExampleLayer"), m_Scene(scene), m_PipeLine(pipeLine) {
+		: Layer("ExampleLayer"),m_LastX(800), m_LastY(450), m_Scene(scene), m_PipeLine(pipeLine) {
 		
 	}
 
@@ -22,6 +22,8 @@ public:
 		float curTime = EMT::RenderCommand::GetTime();
 		m_DeltaTime = curTime - m_Time;
 		m_Time = curTime;
+		EMT::RenderCommand::SetClearColor(glm::vec4(0.2));
+		EMT::RenderCommand::Clear();
 		m_PipeLine->Draw();
 	}
 
@@ -76,6 +78,8 @@ class SandboxApp : public EMT::Application {
 public:
 	SandboxApp()
 	:m_Scene(new EMT::Scene()){
+		m_RenderPipeLine = std::make_shared<EMT::RenderPipeLine>(m_Scene, GetWindow()->GetWidth(), GetWindow()->GetHeight());
+		EMT::TextureLoader::InitDefaultTextures();
 		PushLayer(new ExampleLayer(m_Scene, m_RenderPipeLine));
 		PushOverLayer(new EMT::ImGuiLayer(m_Scene, m_RenderPipeLine));
 	}
