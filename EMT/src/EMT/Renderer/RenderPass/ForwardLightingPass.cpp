@@ -28,7 +28,6 @@ namespace EMT {
 		depthStencilTextureSettings.HasMips = false;
 		RenderPass::s_Context.lightOutput.fbo->AddDepthStencilTexture(depthStencilTextureSettings, EMT_DEPTH_STENCIL, EMT_UNSIGNED_INT_24_8, EMT_DEPTH_STENCIL_ATTACHMENT);
 
-		//mLightingFBO->AddDepthStencilRBO(EMT_DEPTH24_STENCIL8, EMT_DEPTH_STENCIL_ATTACHMENT);
 		RenderPass::s_Context.lightOutput.fbo->SetUpFrameBuffer();
 	}
 

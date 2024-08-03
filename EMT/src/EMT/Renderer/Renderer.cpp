@@ -30,6 +30,7 @@ namespace EMT {
 		shader->Bind();
 		auto models = scene->GetModels();
 		for (const auto& model : models) {
+			SetupModelMatrix(model, shader, isUseMaterial);
 			model->Draw(shader, isUseMaterial);
 		}
 		shader->Unbind();
@@ -81,7 +82,7 @@ namespace EMT {
 		if (isUseMaterial)
 		{
 			glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(modelMatrix)));
-			shader->setMat4f("normalMatrix", normalMatrix);
+			shader->setMat3f("normalMatrix", normalMatrix);
 		}
 	}
 }
