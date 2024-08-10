@@ -2,6 +2,10 @@
 #include "ShadowMapPass.h"
 #include "ForwardLightingPass.h"
 #include "PassThroughPass.h"
+#include "IrradianceCubeMapGenPass.h"
+#include "LightPrefilterPass.h"
+#include "LutGenPass.h"
+#include "EavgGenPass.h"
 
 namespace EMT {
 	class RenderPipeLine {
@@ -14,7 +18,11 @@ namespace EMT {
 		Ref<FrameBuffer> GetLastRenderRes() { return RenderPass::s_Context.passThroughOutput.fbo; }
 		RenderPassContext GetPassContext() { return RenderPass::s_Context; }
 	private:
+		void PreDraw();
+
+	private:
 		Ref<Scene> m_Scene;
 		std::vector<Ref<RenderPass>> m_RenderPasses;
+		std::vector<Ref<RenderPass>> m_PreRenderPasses;
 	};
 }

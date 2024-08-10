@@ -1,5 +1,6 @@
 #pragma once
 #include "EMT/Renderer/Texture/Cubemap.h"
+#include "EMT/Renderer/Texture/Texture.h"
 #include "glad/glad.h"
 
 namespace EMT {
@@ -16,10 +17,11 @@ namespace EMT {
 			unsigned char* data = nullptr) override;
 
 
-
+		virtual void DisplayTexture(bool invert = true) override;
 		virtual inline int GetWidth() override { return m_Width; }
 		virtual inline int GetHeight() override { return m_Height; }
 		virtual inline CubemapSettings* GetCubemapSettings() override { return &m_CubeMapSettings; }
+		virtual inline unsigned int GetCubemapFaceTexID(int idx) override { return m_CubeMapFaces[idx]->GetTextureId(); }
 		virtual unsigned int GetCubemapID() override { return m_RendererID; }
 		virtual inline void SetCubemapSettings(const CubemapSettings& settings) override { m_CubeMapSettings = settings; }
 
@@ -29,6 +31,7 @@ namespace EMT {
 		unsigned int m_RendererID;
 		int m_Width, m_Height;
 		int m_GeneratedFacesNum;
+		std::vector<Ref<Texture>> m_CubeMapFaces;
 		CubemapSettings m_CubeMapSettings;
 	};
 }

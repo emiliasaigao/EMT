@@ -6,51 +6,58 @@ namespace EMT {
 	{
 		m_Positions = std::vector<glm::vec3>
 		{
-			glm::vec3(-0.5f, -0.5f, -0.5f),
-			glm::vec3(0.5f,  0.5f, -0.5f),
-			glm::vec3(0.5f, -0.5f, -0.5f),
-			glm::vec3(0.5f,  0.5f, -0.5f),
-			glm::vec3(-0.5f, -0.5f, -0.5f),
-			glm::vec3(-0.5f,  0.5f, -0.5f),
+			// back face
+			glm::vec3(-1.0f, -1.0f, -1.0f),
+			glm::vec3(1.0f,  1.0f, -1.0f),
+			glm::vec3(1.0f, -1.0f, -1.0f),
+			glm::vec3(1.0f,  1.0f, -1.0f),
+			glm::vec3(-1.0f, -1.0f, -1.0f),
+			glm::vec3(-1.0f,  1.0f, -1.0f),
 
-			glm::vec3(-0.5f, -0.5f,  0.5f),
-			glm::vec3(0.5f, -0.5f,  0.5f),
-			glm::vec3(0.5f,  0.5f,  0.5f),
-			glm::vec3(0.5f,  0.5f,  0.5f),
-			glm::vec3(-0.5f,  0.5f,  0.5f),
-			glm::vec3(-0.5f, -0.5f,  0.5f),
+			// front face
+			glm::vec3(-1.0f, -1.0f,  1.0f),
+			glm::vec3(1.0f, -1.0f,  1.0f),
+			glm::vec3(1.0f,  1.0f,  1.0f),
+			glm::vec3(1.0f,  1.0f,  1.0f),
+			glm::vec3(-1.0f,  1.0f,  1.0f),
+			glm::vec3(-1.0f, -1.0f,  1.0f),
 
-			glm::vec3(-0.5f,  0.5f,  0.5f),
-			glm::vec3(-0.5f,  0.5f, -0.5f),
-			glm::vec3(-0.5f, -0.5f, -0.5f),
-			glm::vec3(-0.5f, -0.5f, -0.5f),
-			glm::vec3(-0.5f, -0.5f,  0.5f),
-			glm::vec3(-0.5f,  0.5f,  0.5f),
+			// left face
+			glm::vec3(-1.0f,  1.0f,  1.0f),
+			glm::vec3(-1.0f,  1.0f, -1.0f),
+			glm::vec3(-1.0f, -1.0f, -1.0f),
+			glm::vec3(-1.0f, -1.0f, -1.0f),
+			glm::vec3(-1.0f, -1.0f,  1.0f),
+			glm::vec3(-1.0f,  1.0f,  1.0f),
 
-			glm::vec3(0.5f,  0.5f,  0.5f),
-			glm::vec3(0.5f, -0.5f, -0.5f),
-			glm::vec3(0.5f,  0.5f, -0.5f),
-			glm::vec3(0.5f, -0.5f, -0.5f),
-			glm::vec3(0.5f,  0.5f,  0.5f),
-			glm::vec3(0.5f, -0.5f,  0.5f),
+			// right face
+			glm::vec3(1.0f,  1.0f,  1.0f),
+			glm::vec3(1.0f, -1.0f, -1.0f),
+			glm::vec3(1.0f,  1.0f, -1.0f),
+			glm::vec3(1.0f, -1.0f, -1.0f),
+			glm::vec3(1.0f,  1.0f,  1.0f),
+			glm::vec3(1.0f, -1.0f,  1.0f),
 
-			glm::vec3(-0.5f, -0.5f, -0.5f),
-			glm::vec3(0.5f, -0.5f, -0.5f),
-			glm::vec3(0.5f, -0.5f,  0.5f),
-			glm::vec3(0.5f, -0.5f,  0.5f),
-			glm::vec3(-0.5f, -0.5f,  0.5f),
-			glm::vec3(-0.5f, -0.5f, -0.5f),
+			// bottom face
+			glm::vec3(-1.0f, -1.0f, -1.0f),
+			glm::vec3(1.0f, -1.0f, -1.0f),
+			glm::vec3(1.0f, -1.0f,  1.0f),
+			glm::vec3(1.0f, -1.0f,  1.0f),
+			glm::vec3(-1.0f, -1.0f,  1.0f),
+			glm::vec3(-1.0f, -1.0f, -1.0f),
 
-			glm::vec3(-0.5f,  0.5f, -0.5f),
-			glm::vec3(0.5f,  0.5f,  0.5f),
-			glm::vec3(0.5f,  0.5f, -0.5f),
-			glm::vec3(0.5f,  0.5f,  0.5f),
-			glm::vec3(-0.5f,  0.5f, -0.5f),
-			glm::vec3(-0.5f, 0.5f, 0.5f)
+			// top face
+			glm::vec3(-1.0f,  1.0f, -1.0f),
+			glm::vec3(1.0f,  1.0f,  1.0f),
+			glm::vec3(1.0f,  1.0f, -1.0f),
+			glm::vec3(1.0f,  1.0f,  1.0f),
+			glm::vec3(-1.0f,  1.0f, -1.0f),
+			glm::vec3(-1.0f,  1.0f,  1.0f)
 		};
 
 		m_Normals = std::vector<glm::vec3>
 		{
+			// back face
 			glm::vec3(0.0f,  0.0f, -1.0f),
 			glm::vec3(0.0f,  0.0f, -1.0f),
 			glm::vec3(0.0f,  0.0f, -1.0f),
@@ -58,6 +65,7 @@ namespace EMT {
 			glm::vec3(0.0f,  0.0f, -1.0f),
 			glm::vec3(0.0f,  0.0f, -1.0f),
 
+			// front face
 			glm::vec3(0.0f,  0.0f,  1.0f),
 			glm::vec3(0.0f,  0.0f,  1.0f),
 			glm::vec3(0.0f,  0.0f,  1.0f),
@@ -65,6 +73,7 @@ namespace EMT {
 			glm::vec3(0.0f,  0.0f,  1.0f),
 			glm::vec3(0.0f,  0.0f,  1.0f),
 
+			// left face
 			glm::vec3(-1.0f,  0.0f,  0.0f),
 			glm::vec3(-1.0f,  0.0f,  0.0f),
 			glm::vec3(-1.0f,  0.0f,  0.0f),
@@ -72,6 +81,7 @@ namespace EMT {
 			glm::vec3(-1.0f,  0.0f,  0.0f),
 			glm::vec3(-1.0f,  0.0f,  0.0f),
 
+			// right face
 			glm::vec3(1.0f,  0.0f,  0.0f),
 			glm::vec3(1.0f,  0.0f,  0.0f),
 			glm::vec3(1.0f,  0.0f,  0.0f),
@@ -79,6 +89,7 @@ namespace EMT {
 			glm::vec3(1.0f,  0.0f,  0.0f),
 			glm::vec3(1.0f,  0.0f,  0.0f),
 
+			// bottom face
 			glm::vec3(0.0f, -1.0f,  0.0f),
 			glm::vec3(0.0f, -1.0f,  0.0f),
 			glm::vec3(0.0f, -1.0f,  0.0f),
@@ -86,6 +97,7 @@ namespace EMT {
 			glm::vec3(0.0f, -1.0f,  0.0f),
 			glm::vec3(0.0f, -1.0f,  0.0f),
 
+			// top face
 			glm::vec3(0.0f,  1.0f,  0.0f),
 			glm::vec3(0.0f,  1.0f,  0.0f),
 			glm::vec3(0.0f,  1.0f,  0.0f),
@@ -94,60 +106,58 @@ namespace EMT {
 			glm::vec3(0.0f,  1.0f,  0.0f)
 		};
 
-		m_TexCoords = std::vector<glm::vec2>
-		{
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(1.0f, 1.0f),
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(1.0f, 1.0f),
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(0.0f, 1.0f),
+		std::vector<glm::vec2> m_TexCoords = {
+			// back face
+			glm::vec2(0.0f, 0.0f), // bottom-left
+			glm::vec2(1.0f, 1.0f), // top-right
+			glm::vec2(1.0f, 0.0f), // bottom-right         
+			glm::vec2(1.0f, 1.0f), // top-right
+			glm::vec2(0.0f, 0.0f), // bottom-left
+			glm::vec2(0.0f, 1.0f), // top-left
 
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(1.0f, 1.0f),
-			glm::vec2(1.0f, 1.0f),
-			glm::vec2(0.0f, 1.0f),
-			glm::vec2(0.0f, 0.0f),
+			// front face
+			glm::vec2(0.0f, 0.0f), // bottom-left
+			glm::vec2(1.0f, 0.0f), // bottom-right
+			glm::vec2(1.0f, 1.0f), // top-right
+			glm::vec2(1.0f, 1.0f), // top-right
+			glm::vec2(0.0f, 1.0f), // top-left
+			glm::vec2(0.0f, 0.0f), // bottom-left
 
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(1.0f, 1.0f),
-			glm::vec2(0.0f, 1.0f),
-			glm::vec2(0.0f, 1.0f),
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(1.0f, 0.0f),
+			// left face
+			glm::vec2(1.0f, 0.0f), // top-right
+			glm::vec2(1.0f, 1.0f), // top-left
+			glm::vec2(0.0f, 1.0f), // bottom-left
+			glm::vec2(0.0f, 1.0f), // bottom-left
+			glm::vec2(0.0f, 0.0f), // bottom-right
+			glm::vec2(1.0f, 0.0f), // top-right
 
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(0.0f, 1.0f),
-			glm::vec2(1.0f, 1.0f),
-			glm::vec2(0.0f, 1.0f),
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(0.0f, 0.0f),
+			// right face
+			glm::vec2(1.0f, 0.0f), // top-left
+			glm::vec2(0.0f, 1.0f), // bottom-right
+			glm::vec2(1.0f, 1.0f), // top-right         
+			glm::vec2(0.0f, 1.0f), // bottom-right
+			glm::vec2(1.0f, 0.0f), // top-left
+			glm::vec2(0.0f, 0.0f), // bottom-left
 
-			glm::vec2(0.0f, 1.0f),
-			glm::vec2(1.0f, 1.0f),
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(0.0f, 1.0f),
+			// bottom face
+			glm::vec2(0.0f, 1.0f), // top-right
+			glm::vec2(1.0f, 1.0f), // top-left
+			glm::vec2(1.0f, 0.0f), // bottom-left
+			glm::vec2(1.0f, 0.0f), // bottom-left
+			glm::vec2(0.0f, 0.0f), // bottom-right
+			glm::vec2(0.0f, 1.0f), // top-right
 
-			glm::vec2(0.0f, 1.0f),
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(1.0f, 1.0f),
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(0.0f, 1.0f),
-			glm::vec2(0.0f, 0.0f)
+			// top face
+			glm::vec2(0.0f, 1.0f), // top-left
+			glm::vec2(1.0f, 0.0f), // bottom-right
+			glm::vec2(1.0f, 1.0f), // top-right     
+			glm::vec2(1.0f, 0.0f), // bottom-right
+			glm::vec2(0.0f, 1.0f), // top-left
+			glm::vec2(0.0f, 0.0f)  // bottom-left 
 		};
 
-		m_Tangents = std::vector<glm::vec3>
-		{
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-
+		std::vector<glm::vec3> m_Tangents = {
+			// back face
 			glm::vec3(1.0f, 0.0f, 0.0f),
 			glm::vec3(1.0f, 0.0f, 0.0f),
 			glm::vec3(1.0f, 0.0f, 0.0f),
@@ -155,6 +165,15 @@ namespace EMT {
 			glm::vec3(1.0f, 0.0f, 0.0f),
 			glm::vec3(1.0f, 0.0f, 0.0f),
 
+			// front face
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+
+			// left face
 			glm::vec3(0.0f, 0.0f, 1.0f),
 			glm::vec3(0.0f, 0.0f, 1.0f),
 			glm::vec3(0.0f, 0.0f, 1.0f),
@@ -162,6 +181,7 @@ namespace EMT {
 			glm::vec3(0.0f, 0.0f, 1.0f),
 			glm::vec3(0.0f, 0.0f, 1.0f),
 
+			// right face
 			glm::vec3(0.0f, 0.0f, -1.0f),
 			glm::vec3(0.0f, 0.0f, -1.0f),
 			glm::vec3(0.0f, 0.0f, -1.0f),
@@ -169,13 +189,15 @@ namespace EMT {
 			glm::vec3(0.0f, 0.0f, -1.0f),
 			glm::vec3(0.0f, 0.0f, -1.0f),
 
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
-			glm::vec3(-1.0f, 0.0f, 0.0f),
+			// bottom face
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			glm::vec3(1.0f, 0.0f, 0.0f),
 
+			// top face
 			glm::vec3(1.0f, 0.0f, 0.0f),
 			glm::vec3(1.0f, 0.0f, 0.0f),
 			glm::vec3(1.0f, 0.0f, 0.0f),
@@ -184,8 +206,8 @@ namespace EMT {
 			glm::vec3(1.0f, 0.0f, 0.0f)
 		};
 
-		m_Bitangents = std::vector<glm::vec3>
-		{
+		std::vector<glm::vec3> m_Bitangents = {
+			// back face
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
@@ -193,6 +215,7 @@ namespace EMT {
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
 
+			// front face
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
@@ -200,6 +223,7 @@ namespace EMT {
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
 
+			// left face
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
@@ -207,6 +231,7 @@ namespace EMT {
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
 
+			// right face
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
@@ -214,19 +239,21 @@ namespace EMT {
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),
 
-			glm::vec3(0.0f, 0.0f, 1.0f),
-			glm::vec3(0.0f, 0.0f, 1.0f),
-			glm::vec3(0.0f, 0.0f, 1.0f),
-			glm::vec3(0.0f, 0.0f, 1.0f),
-			glm::vec3(0.0f, 0.0f, 1.0f),
-			glm::vec3(0.0f, 0.0f, 1.0f),
+			// bottom face
+			glm::vec3(0.0f, 0.0f, -1.0f),
+			glm::vec3(0.0f, 0.0f, -1.0f),
+			glm::vec3(0.0f, 0.0f, -1.0f),
+			glm::vec3(0.0f, 0.0f, -1.0f),
+			glm::vec3(0.0f, 0.0f, -1.0f),
+			glm::vec3(0.0f, 0.0f, -1.0f),
 
-			glm::vec3(0.0f, 0.0f, -1.0f),
-			glm::vec3(0.0f, 0.0f, -1.0f),
-			glm::vec3(0.0f, 0.0f, -1.0f),
-			glm::vec3(0.0f, 0.0f, -1.0f),
-			glm::vec3(0.0f, 0.0f, -1.0f),
-			glm::vec3(0.0f, 0.0f, -1.0f)
+			// top face
+			glm::vec3(0.0f, 0.0f, 1.0f),
+			glm::vec3(0.0f, 0.0f, 1.0f),
+			glm::vec3(0.0f, 0.0f, 1.0f),
+			glm::vec3(0.0f, 0.0f, 1.0f),
+			glm::vec3(0.0f, 0.0f, 1.0f),
+			glm::vec3(0.0f, 0.0f, 1.0f)
 		};
 
 		SetupMesh();

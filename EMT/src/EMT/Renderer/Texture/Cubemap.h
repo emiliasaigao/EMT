@@ -43,6 +43,8 @@ namespace EMT {
 		virtual inline int GetHeight() = 0;
 		virtual inline CubemapSettings* GetCubemapSettings() = 0;
 		virtual unsigned int GetCubemapID() = 0;
+		virtual inline unsigned int GetCubemapFaceTexID(int idx) = 0;
+		virtual void DisplayTexture(bool invert = true) = 0;
 		virtual inline void SetCubemapSettings(const CubemapSettings& settings) = 0;
 	};
 }

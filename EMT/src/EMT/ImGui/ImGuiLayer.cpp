@@ -63,6 +63,22 @@ namespace EMT {
 		m_PipeLine->GetLastRenderRes()->GetColorTexture()->DisplayTexture();
 		ImGui::End();
 
+		ImGui::Begin("IrradianceCubeMap");
+		m_PipeLine->GetPassContext().irradianceMapOutput.irradianceCubemap->DisplayTexture();
+		ImGui::End();
+
+		ImGui::Begin("LpreFilterCubeMap");
+		m_PipeLine->GetPassContext().lPrefilterOutput.lPreFilterCubemap->DisplayTexture();
+		ImGui::End();
+
+		ImGui::Begin("LUT");
+		m_PipeLine->GetPassContext().lutOutput.fbo->GetColorTexture()->DisplayTexture();
+		ImGui::End();
+
+		ImGui::Begin("Eavg");
+		m_PipeLine->GetPassContext().eavgOutput.fbo->GetColorTexture()->DisplayTexture();
+		ImGui::End();
+
 		ImGui::Begin("ShadowMap");
 		m_PipeLine->GetPassContext().shadowOutput.fbo->GetDepthStencilTexture()->DisplayTexture();
 		ImGui::End();

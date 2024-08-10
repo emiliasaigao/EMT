@@ -240,6 +240,11 @@
     <ClInclude Include="src\emtpch.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\LutGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\EavgGenPass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -392,8 +397,25 @@
     <ClCompile Include="src\emtpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\LutGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\EavgGenPass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\simplecolor.vert" />
+    <None Include="assets\shader\deferred\GbufferGenerate.vert" />
+    <None Include="assets\shader\deferred\GbufferGenerate.frag" />
+    <None Include="assets\shader\deferred\DeferredLighting.vert" />
+    <None Include="assets\shader\deferred\DeferredLighting.frag" />
+    <None Include="assets\shader\pbr\IrradianceMapGen.vert" />
+    <None Include="assets\shader\pbr\IrradianceMapGen.frag" />
+    <None Include="assets\shader\pbr\LightPreFilter.vert" />
+    <None Include="assets\shader\pbr\LightPreFilter.frag" />
+    <None Include="assets\shader\pbr\EavgGen.frag" />
+    <None Include="assets\shader\pbr\EavgGen.vert" />
+    <None Include="assets\shader\pbr\LutGen.frag" />
+    <None Include="assets\shader\pbr\LutGen.vert" />
   </ItemGroup>
 </Project>

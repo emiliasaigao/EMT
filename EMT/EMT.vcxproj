@@ -179,7 +179,12 @@
     <ClInclude Include="src\EMT\Renderer\Model\Shapes\Quad.h" />
     <ClInclude Include="src\EMT\Renderer\Model\Shapes\Sphere.h" />
     <ClInclude Include="src\EMT\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\EavgGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\LutGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\PassThroughPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPipeline.h" />
@@ -232,7 +237,12 @@
     <ClCompile Include="src\EMT\Renderer\Model\Shapes\Quad.cpp" />
     <ClCompile Include="src\EMT\Renderer\Model\Shapes\Sphere.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\EavgGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\LutGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\PassThroughPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPipeline.cpp" />
@@ -274,6 +284,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\shader\deferred\DeferredLighting.frag" />
+    <None Include="assets\shader\deferred\DeferredLighting.vert" />
+    <None Include="assets\shader\deferred\GbufferGenerate.frag" />
+    <None Include="assets\shader\deferred\GbufferGenerate.vert" />
+    <None Include="assets\shader\pbr\EavgGen.frag" />
+    <None Include="assets\shader\pbr\EavgGen.vert" />
+    <None Include="assets\shader\pbr\IrradianceMapGen.frag" />
+    <None Include="assets\shader\pbr\IrradianceMapGen.vert" />
+    <None Include="assets\shader\pbr\LightPreFilter.frag" />
+    <None Include="assets\shader\pbr\LightPreFilter.vert" />
+    <None Include="assets\shader\pbr\LutGen.frag" />
+    <None Include="assets\shader\pbr\LutGen.vert" />
     <None Include="assets\simplecolor.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

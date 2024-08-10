@@ -34,7 +34,7 @@ namespace EMT {
 			}
 		}
 		catch (std::fstream::failure e) {
-			EMT_CORE_ERROR("打开shader文件失败！");
+			EMT_CORE_ERROR("打开shader文件失败!:{0},{1}", vertexPath, fragmentPath);
 			return;
 		}
 

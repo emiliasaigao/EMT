@@ -18,7 +18,8 @@ namespace EMT {
 		// 1ºÅÌùÍ¼Î»Áô¸øÁËÔ¤¾í»ýÂþ·´ÉäÌùÍ¼
 		// 2ºÅÌùÍ¼Î»Áô¸øÁËÔ¤ÂË²¨¹âÕÕÌùÍ¼
 		// 3ºÅÌùÍ¼Î»Áô¸øÁËbrdfµÄLUTÌùÍ¼
-		int currentTextureUnit = 4;
+		// 4ºÅÌùÍ¼Î»Áô¸øÁËEavgÌùÍ¼
+		int currentTextureUnit = 5;
 
 		shader->setInt("material.texture_albedo", currentTextureUnit);
 		if (m_AlbedoMap)

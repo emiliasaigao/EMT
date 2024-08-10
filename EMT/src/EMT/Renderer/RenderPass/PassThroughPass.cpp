@@ -38,9 +38,9 @@ namespace EMT {
 			ssrInput.ssrFBO->GetColourTexture()->bind(6);
 			mPassThroughShader->SetUniform("ssrTexture", 6);
 		}*/
-		RenderPass::s_Context.lightOutput.fbo->GetColorTexture()->Bind(7);
+		RenderPass::s_Context.lightOutput.fbo->GetColorTexture()->Bind(8);
 		
-		m_Shader->setInt("colorTexture", 7);
+		m_Shader->setInt("colorTexture", 8);
 
 
 		Renderer::RenderNDCPlane();

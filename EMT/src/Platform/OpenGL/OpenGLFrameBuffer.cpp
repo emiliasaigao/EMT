@@ -27,6 +27,13 @@ namespace EMT {
 		UnBind();
 	}
 
+	void OpenGLFrameBuffer::SetColorTexture(int attachType, unsigned int textureType, unsigned int textureId, int miplevel) {
+		Bind();
+		glDrawBuffer(attachType);
+		glReadBuffer(attachType);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, attachType, textureType, textureId, miplevel);
+	}
+
 	void OpenGLFrameBuffer::AddDepthStencilTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) {
 		Bind();
 		m_DepthStencilTexture =Texture::Create(textureSettings);

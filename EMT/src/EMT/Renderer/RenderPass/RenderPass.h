@@ -13,6 +13,24 @@ namespace EMT {
 		Ref<GBuffer> gbuffer;
 	};
 
+	struct IrradianceMapPassOutput {
+		Ref<Cubemap> irradianceCubemap;
+		Ref<FrameBuffer> fbo;
+	};
+
+	struct LightPreFilterPassOutput {
+		Ref<Cubemap> lPreFilterCubemap;
+		Ref<FrameBuffer> fbo;
+	};
+
+	struct LutPassOutput {
+		Ref<FrameBuffer> fbo;
+	};
+
+	struct EavgPassOutput {
+		Ref<FrameBuffer> fbo;
+	};
+
 	struct LightingPassOutput {
 		Ref<FrameBuffer> fbo;
 	};
@@ -22,7 +40,7 @@ namespace EMT {
 	};
 
 	struct SSRPassOutput {
-		Ref<FrameBuffer> fbO;
+		Ref<FrameBuffer> fbo;
 	};
 
 	struct PassThroughOutput {
@@ -33,6 +51,10 @@ namespace EMT {
 		int windowWidth, windowHeight;
 		ShadowmapPassOutput shadowOutput;
 		GeometryPassOutput geometryOutput;
+		IrradianceMapPassOutput irradianceMapOutput;
+		LightPreFilterPassOutput lPrefilterOutput;
+		LutPassOutput lutOutput;
+		EavgPassOutput eavgOutput;
 		LightingPassOutput lightOutput;
 		PostProcessOutput postOutput;
 		SSRPassOutput ssrOutput;
