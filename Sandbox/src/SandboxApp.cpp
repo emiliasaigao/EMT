@@ -5,7 +5,7 @@
 class ExampleLayer : public EMT::Layer {
 public:
 	ExampleLayer(const EMT::Ref<EMT::Scene>& scene, const EMT::Ref<EMT::RenderPipeLine>& pipeLine)
-		: Layer("ExampleLayer"),m_LastX(800), m_LastY(450), m_Scene(scene), m_PipeLine(pipeLine) {
+		: Layer("ExampleLayer"),m_LastX(0), m_LastY(0),m_DeltaX(0),m_DeltaY(0),m_Scene(scene), m_PipeLine(pipeLine) {
 		
 	}
 
@@ -13,12 +13,17 @@ public:
 	}
 
 	void OnUpdate() override {
+
 		// 处理相机运动
 		if (EMT::Input::isKeyPressed(EMT_KEY_W)) m_Scene->GetCamera()->processKeyBoard(EMT::Camera_Movement::FORWARD, m_DeltaTime);
 		if (EMT::Input::isKeyPressed(EMT_KEY_S)) m_Scene->GetCamera()->processKeyBoard(EMT::Camera_Movement::BACK, m_DeltaTime);
 		if (EMT::Input::isKeyPressed(EMT_KEY_A)) m_Scene->GetCamera()->processKeyBoard(EMT::Camera_Movement::LEFT, m_DeltaTime);
 		if (EMT::Input::isKeyPressed(EMT_KEY_D)) m_Scene->GetCamera()->processKeyBoard(EMT::Camera_Movement::RIGHT, m_DeltaTime);
-		
+		if (EMT::Input::isMouseButtonPressed(1)) {
+			m_Scene->GetCamera()->processMouseMovement(m_DeltaX, m_DeltaY);
+		}
+		m_DeltaX = 0.0;
+		m_DeltaY = 0.0;
 		float curTime = EMT::RenderCommand::GetTime();
 		m_DeltaTime = curTime - m_Time;
 		m_Time = curTime;
@@ -41,18 +46,13 @@ private:
 	bool OnMouseMove(EMT::MouseMovedEvent& e) {
 		float xpos = e.GetX();
 		float ypos = e.GetY();
-		if (m_FirstMouse) {
-			xpos = m_LastX;
-			ypos = m_LastY;
-			m_FirstMouse = false;
-		}
-		float xoffset = xpos - m_LastX;
+
+		m_DeltaX = xpos - m_LastX;
 		// glfwSetCursorPosCallback返回给mouse_callback函数的(x, y) 是鼠标相对于窗口左【上】角的位置
 		// 所以需要将(ypos - lastY) 取反
-		float yoffset = m_LastY - ypos;
+		m_DeltaY = m_LastY - ypos;
 		m_LastX = xpos;
 		m_LastY = ypos;
-		m_Scene->GetCamera()->processMouseMovement(xoffset, yoffset);
 		return true;
 	}
 
@@ -69,6 +69,8 @@ private:
 	// 鼠标初始设定位置
 	float m_LastX;
 	float m_LastY;
+	float m_DeltaX;
+	float m_DeltaY;
 
 	EMT::Ref<EMT::Scene> m_Scene;
 	EMT::Ref<EMT::RenderPipeLine> m_PipeLine;

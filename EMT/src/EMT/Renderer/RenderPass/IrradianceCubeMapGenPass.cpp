@@ -52,9 +52,10 @@ namespace EMT {
 			Renderer::RenderCube();
 
 			// 为了能显示渲染出的立方体贴图，再渲染一遍到各自的六个面的纹理上
-			mfbo->SetColorTexture(EMT_COLOR_ATTACHMENT0, EMT_TEXTURE_2D, mIrrCubmap->GetCubemapFaceTexID(i), 0);
+			mfbo->SetColorTexture(EMT_COLOR_ATTACHMENT0, EMT_TEXTURE_2D, mIrrCubmap->GetCubemapFaceTexture(i)->GetTextureId(), 0);
 			mfbo->Clear();
 			Renderer::RenderCube();
+			//mIrrCubmap->GetCubemapFaceTexture(i)->CopyDataFormFBO2D(0, 0, 0, 0, 0, mIrrCubmap->GetWidth(), mIrrCubmap->GetHeight());
 		}
 		mfbo->UnBind();
 	}

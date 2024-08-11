@@ -36,7 +36,7 @@ namespace EMT {
 		float MouseSensitivity;
 		float Zoom;
 
-		Camera(vec3 position = vec3(0.f, 0.f, 0.f), vec3 up = vec3(0.f, 1.f, 0.f),
+		Camera(vec3 position = vec3(0.0f, 5.0f, 15.0f), vec3 up = vec3(0.f, 1.f, 0.f),
 			float yam = YAM, float pitch = PITCH)
 				: Front(vec3(0.f, 0.f, -1.f)), MoveSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
 			Position = position;

@@ -10,7 +10,7 @@ namespace EMT {
 		m_PreRenderPasses.push_back(std::make_shared<LutGenPass>(scene));
 		m_PreRenderPasses.push_back(std::make_shared<EavgGenPass>(scene));
 		PreDraw();
-		scene->GetSkybox()->m_Cubemap = RenderPass::s_Context.lPrefilterOutput.lPreFilterCubemap;
+		//scene->GetSkybox()->m_Cubemap = RenderPass::s_Context.lPrefilterOutput.lPreFilterCubemap;
 		m_RenderPasses.push_back(std::make_shared<ShadowMapPass>(scene));
 		m_RenderPasses.push_back(std::make_shared<ForwardLightingPass>(scene));
 		m_RenderPasses.push_back(std::make_shared<PassThroughPass>(scene));

@@ -68,6 +68,13 @@ namespace EMT {
 		}
 	}
 
+	void OpenGLTexture::CopyDataFormFBO2D(unsigned int level, unsigned int xoffset, unsigned int yoffset, unsigned int x, unsigned int y, unsigned int width, unsigned int height)
+	{
+		Bind();
+		glCopyTexSubImage2D(GL_TEXTURE_2D, level, xoffset, yoffset, x, y, width, height);
+		Unbind();
+	}
+
 	void OpenGLTexture::Bind(int unit /*= 0*/) {
 		glActiveTexture(GL_TEXTURE0 + unit);
 		glBindTexture(m_TextureTarget, m_RendererID);

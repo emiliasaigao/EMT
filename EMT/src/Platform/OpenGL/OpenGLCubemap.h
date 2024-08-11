@@ -21,7 +21,7 @@ namespace EMT {
 		virtual inline int GetWidth() override { return m_Width; }
 		virtual inline int GetHeight() override { return m_Height; }
 		virtual inline CubemapSettings* GetCubemapSettings() override { return &m_CubeMapSettings; }
-		virtual inline unsigned int GetCubemapFaceTexID(int idx) override { return m_CubeMapFaces[idx]->GetTextureId(); }
+		virtual inline Ref<Texture> GetCubemapFaceTexture(int idx) override { return m_CubeMapFaces[idx]; }
 		virtual unsigned int GetCubemapID() override { return m_RendererID; }
 		virtual inline void SetCubemapSettings(const CubemapSettings& settings) override { m_CubeMapSettings = settings; }
 

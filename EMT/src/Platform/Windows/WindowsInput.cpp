@@ -16,6 +16,7 @@ namespace EMT {
 
     bool WindowsInput::isMouseBottomPressedImpl(int button)
     {
+        // 0->ЪѓБъзѓМќ      1->ЪѓБъгвМќ     2->ЪѓБъжаМќ
         auto window = static_cast<GLFWwindow*>(Application::GetInstance().GetWindow()->GetNativeWindow());
         int statu = glfwGetMouseButton(window, button);
 

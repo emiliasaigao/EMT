@@ -48,6 +48,7 @@ namespace EMT {
 		virtual void Generate2DMultisampleTexture(unsigned int width, unsigned int height) = 0;
 		// 尝试生成MipMap，只有在被Generate之后有用
 		virtual void GenerateMips() = 0;
+		virtual void CopyDataFormFBO2D(unsigned int level, unsigned int xoffset, unsigned int yoffset, unsigned int x, unsigned int y, unsigned int width, unsigned int height) = 0;
 
 		virtual void Bind(int unit = 0) = 0;
 		virtual void Unbind() = 0;

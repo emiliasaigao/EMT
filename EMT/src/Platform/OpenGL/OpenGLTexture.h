@@ -13,6 +13,7 @@ namespace EMT {
 		void Generate2DMultisampleTexture(unsigned int width, unsigned int height);
 		// 尝试生成MipMap，只有在被Generate之后有用
 		void GenerateMips();
+		void CopyDataFormFBO2D(unsigned int level, unsigned int xoffset, unsigned int yoffset, unsigned int x, unsigned int y, unsigned int width, unsigned int height) override;
 
 		void Bind(int unit = 0);
 		void Unbind();
