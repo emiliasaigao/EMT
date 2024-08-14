@@ -5,8 +5,10 @@
 
 namespace EMT {
 	struct ShadowmapPassOutput {
-		glm::mat4 lightSpaceMatrix;
+		std::vector<glm::mat4> lightSpaceMatrices;
 		Ref<FrameBuffer> fbo;
+		std::vector<Ref<Texture>> debugDepthMaps;
+		Ref<FrameBuffer> debugfbo;
 	};
 
 	struct GeometryPassOutput {

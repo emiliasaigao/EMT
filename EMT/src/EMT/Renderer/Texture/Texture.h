@@ -46,6 +46,11 @@ namespace EMT {
 			int pixelDataType = EMT_UNSIGNED_BYTE,
 			const void* data = nullptr) = 0;
 		virtual void Generate2DMultisampleTexture(unsigned int width, unsigned int height) = 0;
+		virtual void Genarate2DTextureArray(unsigned int width, 
+			unsigned int height, int dataFormat, 
+			int pixelDataType = EMT_UNSIGNED_BYTE, 
+			const void* data = nullptr) = 0;
+
 		// 尝试生成MipMap，只有在被Generate之后有用
 		virtual void GenerateMips() = 0;
 		virtual void CopyDataFormFBO2D(unsigned int level, unsigned int xoffset, unsigned int yoffset, unsigned int x, unsigned int y, unsigned int width, unsigned int height) = 0;

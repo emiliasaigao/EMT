@@ -284,6 +284,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\shader\debug\CSMDebug.frag" />
+    <None Include="assets\shader\debug\CSMDebug.vert" />
     <None Include="assets\shader\deferred\DeferredLighting.frag" />
     <None Include="assets\shader\deferred\DeferredLighting.vert" />
     <None Include="assets\shader\deferred\GbufferGenerate.frag" />
@@ -296,6 +298,9 @@
     <None Include="assets\shader\pbr\LightPreFilter.vert" />
     <None Include="assets\shader\pbr\LutGen.frag" />
     <None Include="assets\shader\pbr\LutGen.vert" />
+    <None Include="assets\shader\shadow\CSMGen.frag" />
+    <None Include="assets\shader\shadow\CSMGen.geo" />
+    <None Include="assets\shader\shadow\CSMGen.vert" />
     <None Include="assets\simplecolor.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

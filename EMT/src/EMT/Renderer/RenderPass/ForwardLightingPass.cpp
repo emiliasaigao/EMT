@@ -42,21 +42,22 @@ namespace EMT {
 		Ref<Camera> camera = m_Scene->GetCamera();
 		Ref<LightManager> lightManager = m_Scene->GetLightManager();
 		// get shadowmap pass output and bind shadowmap to texture unit 0 
-		glm::mat4 lightSpaceMatrix = RenderPass::s_Context.shadowOutput.lightSpaceMatrix;
+		std::vector<glm::mat4> lightSpaceMatrix = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
 		RenderPass::s_Context.shadowOutput.fbo->GetDepthStencilTexture()->Bind(0);
 
 
 		m_Shader->Bind();
 		m_Shader->setInt("shadowMap", 0);
-		m_Shader->setMat4f("lightSpaceMatrix", lightSpaceMatrix);
+		m_Shader->setMat4f("lightSpaceMatrix", lightSpaceMatrix[2]);
 
 		// set view, projection matrix, note the model matrix is set in modelrenderer
 		m_Shader->setMat4f("view", camera->getViewMatrix());
 		m_Shader->setVec3f("viewPos", camera->Position);
 		m_Shader->setMat4f("projection", camera->getProjectionMatrix());
 
-		// set a directional light
-		m_Shader->setVec3f("directionalLightDir", glm::vec3(1.0f, 1.0f, 1.0f));
+		
+		glm::vec3 directionalLightDir = glm::normalize(lightManager->GetDirectionalLightDirection(0));
+		m_Shader->setVec3f("directionalLightDir", directionalLightDir);
 
 		RenderCommand::EnableDepthTest();
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::Less);

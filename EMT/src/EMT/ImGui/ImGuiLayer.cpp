@@ -80,7 +80,9 @@ namespace EMT {
 		ImGui::End();
 
 		ImGui::Begin("ShadowMap");
-		m_PipeLine->GetPassContext().shadowOutput.fbo->GetDepthStencilTexture()->DisplayTexture();
+		for (int i = 0; i < 4; ++i) {
+			m_PipeLine->GetPassContext().shadowOutput.debugDepthMaps[i]->DisplayTexture(false);
+		}
 		ImGui::End();
 
 		ImGui::Begin("LigthPass");

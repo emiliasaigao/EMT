@@ -64,7 +64,7 @@ namespace EMT {
 	// 保存所有结构体并设置缓冲区布局的类
 	class BufferLayout {
 	public:
-		BufferLayout() {}
+		BufferLayout() :m_Stride(0) {}
 		BufferLayout(const std::initializer_list<BufferElement>& elements) 
 			: m_Elements(elements)
 		{

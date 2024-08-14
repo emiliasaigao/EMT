@@ -19,6 +19,10 @@ namespace EMT {
 		virtual void AddDepthStencilTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) override {
 			OpenGLFrameBuffer::AddDepthStencilTexture(textureSettings, dataFormat, dataType, attachType);
 		}
+		
+		virtual void AddDepthStencilTextureArray(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) override {
+			OpenGLFrameBuffer::AddDepthStencilTextureArray(textureSettings, dataFormat, dataType, attachType);
+		}
 		virtual void AddDepthStencilRBO(int rboFormat, int attachType) override {
 			OpenGLFrameBuffer::AddDepthStencilRBO(rboFormat, attachType);
 		}

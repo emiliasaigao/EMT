@@ -41,6 +41,14 @@ namespace EMT {
 		glFramebufferTexture2D(GL_FRAMEBUFFER, attachType, GL_TEXTURE_2D, m_DepthStencilTexture->GetTextureId(), 0);
 		UnBind();
 	}
+	
+	void OpenGLFrameBuffer::AddDepthStencilTextureArray(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) {
+		Bind();
+		m_DepthStencilTexture = Texture::Create(textureSettings);
+		m_DepthStencilTexture->Genarate2DTextureArray(m_Width, m_Height, dataFormat, dataType);
+		glFramebufferTexture(GL_FRAMEBUFFER, attachType, m_DepthStencilTexture->GetTextureId(), 0);
+		UnBind();
+	}
 
 
 	/// <summary>

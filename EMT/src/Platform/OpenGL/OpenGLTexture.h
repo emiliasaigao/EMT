@@ -9,8 +9,10 @@ namespace EMT {
 		~OpenGLTexture();
 
 		// 生成texture
-		void Generate2DTexture(unsigned int width, unsigned int height, int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, const void* data = nullptr);
-		void Generate2DMultisampleTexture(unsigned int width, unsigned int height);
+		void Generate2DTexture(unsigned int width, unsigned int height, int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, const void* data = nullptr) override;
+		void Generate2DMultisampleTexture(unsigned int width, unsigned int height) override;
+		void Genarate2DTextureArray(unsigned int width, unsigned int height, int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, const void* data = nullptr) override;
+		
 		// 尝试生成MipMap，只有在被Generate之后有用
 		void GenerateMips();
 		void CopyDataFormFBO2D(unsigned int level, unsigned int xoffset, unsigned int yoffset, unsigned int x, unsigned int y, unsigned int width, unsigned int height) override;

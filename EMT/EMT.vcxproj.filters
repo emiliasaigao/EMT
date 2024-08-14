@@ -417,5 +417,10 @@
     <None Include="assets\shader\pbr\EavgGen.vert" />
     <None Include="assets\shader\pbr\LutGen.frag" />
     <None Include="assets\shader\pbr\LutGen.vert" />
+    <None Include="assets\shader\shadow\CSMGen.frag" />
+    <None Include="assets\shader\shadow\CSMGen.vert" />
+    <None Include="assets\shader\shadow\CSMGen.geo" />
+    <None Include="assets\shader\debug\CSMDebug.vert" />
+    <None Include="assets\shader\debug\CSMDebug.frag" />
   </ItemGroup>
 </Project>

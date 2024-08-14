@@ -50,7 +50,7 @@ namespace EMT {
 		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 		if (!success) {
 			glGetShaderInfoLog(vertexShader, 1024, NULL, infolog);
-			EMT_CORE_ERROR("顶点着色器编译失败！错误信息：\n");
+			EMT_CORE_ERROR("{0} :顶点着色器编译失败！错误信息：\n", vertexPath);
 			EMT_CORE_ERROR(infolog);
 			glDeleteShader(vertexShader);
 			return;
@@ -63,12 +63,11 @@ namespace EMT {
 		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
 		if (!success) {
 			glGetShaderInfoLog(fragmentShader, 512, NULL, infolog);
-			EMT_CORE_ERROR("片元着色器编译失败！错误信息：\n");
+			EMT_CORE_ERROR("{0} :片元着色器编译失败！错误信息：\n", fragmentPath);
 			EMT_CORE_ERROR(infolog);
 			glDeleteShader(fragmentShader);
 			return;
 		}
-
 
 		m_RendererID = glCreateProgram();
 		glAttachShader(m_RendererID, vertexShader);
@@ -83,7 +82,7 @@ namespace EMT {
 			glGetShaderiv(geometryShader, GL_COMPILE_STATUS, &success);
 			if (!success) {
 				glGetShaderInfoLog(geometryShader, 512, NULL, infolog);
-				EMT_CORE_ERROR("几何着色器编译失败！错误信息：\n");
+				EMT_CORE_ERROR("{0} 几何着色器编译失败！错误信息：\n", geometryPath);
 				EMT_CORE_ERROR(infolog);
 				return;
 			}
@@ -91,11 +90,12 @@ namespace EMT {
 			glDeleteShader(geometryShader);
 		}
 
+
 		glLinkProgram(m_RendererID);
 		glGetProgramiv(m_RendererID, GL_LINK_STATUS, &success);
 		if (!success) {
 			glGetProgramInfoLog(m_RendererID, 1024, NULL, infolog);
-			EMT_CORE_ERROR("着色器链接失败！错误信息：\n");
+			EMT_CORE_ERROR("{0} :着色器链接失败！错误信息：\n", vertexPath);
 			EMT_CORE_ERROR(infolog);
 			glDeleteShader(vertexShader);
 			glDeleteShader(fragmentShader);

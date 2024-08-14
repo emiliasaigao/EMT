@@ -64,6 +64,8 @@ namespace EMT {
 #define EMT_DEPTH_COMPONENT24 0x81A6
 #define EMT_DEPTH_COMPONENT32 0x81A7
 
+#define EMT_DEPTH_COMPONENT32F 0x8CAC
+
 // texture settings
 #define EMT_NEAREST 0x2600
 #define EMT_LINEAR 0x2601

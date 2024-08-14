@@ -10,6 +10,7 @@ namespace EMT {
 		virtual void AddColorTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) = 0;
 		virtual void SetColorTexture(int attachType, unsigned int textureType, unsigned int textureId, int miplevel) = 0;
 		virtual void AddDepthStencilTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) = 0;
+		virtual void AddDepthStencilTextureArray(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) = 0;
 		virtual void AddDepthStencilRBO(int rboFormat, int attachType) = 0;
 		virtual void SetUpFrameBuffer() = 0;
 
