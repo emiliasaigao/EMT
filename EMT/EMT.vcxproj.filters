@@ -245,6 +245,10 @@
     <ClInclude Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\LutGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\EavgGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredLightingPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\FXAAPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -402,6 +406,10 @@
     <ClCompile Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\LutGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\EavgGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredLightingPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\FXAAPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\simplecolor.vert" />
@@ -422,5 +430,11 @@
     <None Include="assets\shader\shadow\CSMGen.geo" />
     <None Include="assets\shader\debug\CSMDebug.vert" />
     <None Include="assets\shader\debug\CSMDebug.frag" />
+    <None Include="assets\shader\postprocess\FXAA.vert" />
+    <None Include="assets\shader\postprocess\FXAA.frag" />
+    <None Include="assets\shader\postprocess\SSAO.frag" />
+    <None Include="assets\shader\postprocess\SSAO.vert" />
+    <None Include="assets\shader\postprocess\SSAOBlur.vert" />
+    <None Include="assets\shader\postprocess\SSAOBlur.frag" />
   </ItemGroup>
 </Project>

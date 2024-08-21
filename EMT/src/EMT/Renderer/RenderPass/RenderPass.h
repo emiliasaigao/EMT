@@ -9,6 +9,7 @@ namespace EMT {
 		Ref<FrameBuffer> fbo;
 		std::vector<Ref<Texture>> debugDepthMaps;
 		Ref<FrameBuffer> debugfbo;
+		std::vector<std::pair<float, float>> frustum;
 	};
 
 	struct GeometryPassOutput {
@@ -45,6 +46,14 @@ namespace EMT {
 		Ref<FrameBuffer> fbo;
 	};
 
+	struct SSAOPassOutput {
+		Ref<FrameBuffer> fbo;
+	};
+
+	struct SSAOBlurPassOutput {
+		Ref<FrameBuffer> fbo;
+	};
+
 	struct PassThroughOutput {
 		Ref<FrameBuffer> fbo;
 	};
@@ -58,9 +67,13 @@ namespace EMT {
 		LutPassOutput lutOutput;
 		EavgPassOutput eavgOutput;
 		LightingPassOutput lightOutput;
-		PostProcessOutput postOutput;
+		SSAOPassOutput ssaoOutput;
+		SSAOBlurPassOutput ssaoBlurOutput;
+		PostProcessOutput postprocOutput;
 		SSRPassOutput ssrOutput;
 		PassThroughOutput passThroughOutput;
+		bool useSSAO = false;
+		float SSAOEffect = 1.0;
 	};
 
 	class RenderPass {

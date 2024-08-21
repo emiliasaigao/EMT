@@ -53,15 +53,7 @@ namespace EMT {
 		settings.HasMips = m_CubeMapSettings.HasMips;
 		m_CubeMapFaces[m_GeneratedFacesNum] = Texture::Create(settings);
 		m_CubeMapFaces[m_GeneratedFacesNum]->Generate2DTexture(width, height, dataFormat, pixelDataType, data);
-		/*TextureSettings colorTextureSettings;
-		colorTextureSettings.TextureFormat = EMT_RGB16F;
-		colorTextureSettings.TextureWrapSMode = EMT_CLAMP_TO_EDGE;
-		colorTextureSettings.TextureWrapTMode = EMT_CLAMP_TO_EDGE;
-		colorTextureSettings.TextureMagnificationFilterMode = EMT_LINEAR;
-		colorTextureSettings.TextureMinificationFilterMode = EMT_LINEAR;
-		colorTextureSettings.HasMips = false;
-		m_CubeMapFaces[m_GeneratedFacesNum] = Texture::Create(colorTextureSettings);
-		m_CubeMapFaces[m_GeneratedFacesNum]->Generate2DTexture(64, 64, EMT_RGB, EMT_FLOAT);*/
+		
 		++m_GeneratedFacesNum;
 
 		if (m_GeneratedFacesNum >= 6)

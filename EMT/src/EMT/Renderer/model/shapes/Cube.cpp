@@ -106,7 +106,7 @@ namespace EMT {
 			glm::vec3(0.0f,  1.0f,  0.0f)
 		};
 
-		std::vector<glm::vec2> m_TexCoords = {
+		m_TexCoords = {
 			// back face
 			glm::vec2(0.0f, 0.0f), // bottom-left
 			glm::vec2(1.0f, 1.0f), // top-right
@@ -156,7 +156,7 @@ namespace EMT {
 			glm::vec2(0.0f, 0.0f)  // bottom-left 
 		};
 
-		std::vector<glm::vec3> m_Tangents = {
+		m_Tangents = {
 			// back face
 			glm::vec3(1.0f, 0.0f, 0.0f),
 			glm::vec3(1.0f, 0.0f, 0.0f),
@@ -206,7 +206,7 @@ namespace EMT {
 			glm::vec3(1.0f, 0.0f, 0.0f)
 		};
 
-		std::vector<glm::vec3> m_Bitangents = {
+		m_Bitangents = {
 			// back face
 			glm::vec3(0.0f, 1.0f, 0.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f),

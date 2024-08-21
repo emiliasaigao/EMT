@@ -40,7 +40,7 @@ namespace EMT {
 		Ref<Skybox> skybox = scene->GetSkybox();
 		auto skyboxShader = skybox->m_SkyboxShader;
 		skyboxShader->Bind();
-		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::LessEqual);
+		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::LessEqual);
 
 		glm::mat4 view = glm::mat4(glm::mat3(scene->GetCamera()->getViewMatrix()));
 		skyboxShader->setMat4f("view", view);
@@ -50,7 +50,7 @@ namespace EMT {
 
 		skybox->m_Cube->Draw(skyboxShader, false);
 
-		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::Less);
+		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::Less);
 		skyboxShader->Unbind();
 	}
 

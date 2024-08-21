@@ -34,6 +34,13 @@ namespace EMT {
 		glFramebufferTexture2D(GL_FRAMEBUFFER, attachType, textureType, textureId, miplevel);
 	}
 
+	/// <summary>
+	/// 如果需要可读的深度/模板贴图的话
+	/// </summary>
+	/// <param name="textureSettings">贴图设置，注意设置textureformat</param>
+	/// <param name="dataFormat">数据通道格式</param>
+	/// <param name="dataType">数据基本类型</param>
+	/// <param name="attachType">附件类型</param>
 	void OpenGLFrameBuffer::AddDepthStencilTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) {
 		Bind();
 		m_DepthStencilTexture =Texture::Create(textureSettings);
@@ -42,6 +49,13 @@ namespace EMT {
 		UnBind();
 	}
 	
+	/// <summary>
+	/// 如果需要可读的深度/模板贴图数组的话（比如CSM）
+	/// </summary>
+	/// <param name="textureSettings">贴图设置，注意设置textureformat</param>
+	/// <param name="dataFormat">数据通道格式</param>
+	/// <param name="dataType">数据基本类型</param>
+	/// <param name="attachType">附件类型</param>
 	void OpenGLFrameBuffer::AddDepthStencilTextureArray(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) {
 		Bind();
 		m_DepthStencilTexture = Texture::Create(textureSettings);
@@ -49,7 +63,6 @@ namespace EMT {
 		glFramebufferTexture(GL_FRAMEBUFFER, attachType, m_DepthStencilTexture->GetTextureId(), 0);
 		UnBind();
 	}
-
 
 	/// <summary>
 	/// 如果需要深度/模板缓冲的话

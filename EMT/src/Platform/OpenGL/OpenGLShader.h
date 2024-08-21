@@ -19,6 +19,8 @@ namespace EMT {
 		virtual void setMat3f(const std::string& name, const glm::mat3& value) override;
 		virtual void setVec3f(const std::string& name, float x, float y, float z) override;
 		virtual void setVec3f(const std::string& name, const glm::vec3& value) override;
+		virtual void setVec2f(const std::string& name, float x, float y) override;
+		virtual void setVec2f(const std::string& name, const glm::vec2& value) override;
 		virtual void setVec3i(const std::string& name, int x, int y, int z) override;
 		virtual void setVec3i(const std::string& name, const glm::ivec3& value) override;
 

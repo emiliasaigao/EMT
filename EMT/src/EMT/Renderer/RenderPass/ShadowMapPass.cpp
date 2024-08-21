@@ -73,10 +73,11 @@ namespace EMT {
 			m_Shader->setMat4f(std::string("uLightVPMatrix[") + std::to_string(i) + std::string("]"), LightPVmatrix[i]);
 		}
 		RenderCommand::EnableDepthTest();
-		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::Less);
+		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::Less);
 		Renderer::Render(m_Scene, m_Shader, false);
 
 		RenderPass::s_Context.shadowOutput.lightSpaceMatrices = LightPVmatrix;
+		RenderPass::s_Context.shadowOutput.frustum = frustum;
 
 		/********************************************************************************/
 		RenderPass::s_Context.shadowOutput.debugfbo->Bind();

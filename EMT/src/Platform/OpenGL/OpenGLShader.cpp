@@ -157,6 +157,16 @@ namespace EMT {
 		glUniform3f(glGetUniformLocation(m_RendererID, name.c_str()), value[0], value[1], value[2]);
 	}
 
+	void OpenGLShader::setVec2f(const std::string& name, const glm::vec2& value)
+	{
+		glUniform2f(glGetUniformLocation(m_RendererID, name.c_str()), value[0], value[1]);
+	}
+
+	void OpenGLShader::setVec2f(const std::string& name, float x, float y)
+	{
+		glUniform2f(glGetUniformLocation(m_RendererID, name.c_str()), x, y);
+	}
+
 	void OpenGLShader::setVec3i(const std::string& name, int x, int y, int z)
 	{
 		glUniform3f(glGetUniformLocation(m_RendererID, name.c_str()), x, y, z);

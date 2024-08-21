@@ -180,8 +180,10 @@
     <ClInclude Include="src\EMT\Renderer\Model\Shapes\Sphere.h" />
     <ClInclude Include="src\EMT\Renderer\RenderCommand.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredLightingPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\EavgGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\FXAAPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\LutGenPass.h" />
@@ -191,6 +193,8 @@
     <ClInclude Include="src\EMT\Renderer\RenderPass\ShadowMapPass.h" />
     <ClInclude Include="src\EMT\Renderer\Renderer.h" />
     <ClInclude Include="src\EMT\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\Scene.h" />
     <ClInclude Include="src\EMT\Renderer\Shader.h" />
     <ClInclude Include="src\EMT\Renderer\Skybox.h" />
@@ -238,8 +242,10 @@
     <ClCompile Include="src\EMT\Renderer\Model\Shapes\Sphere.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredLightingPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\EavgGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\FXAAPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\LutGenPass.cpp" />
@@ -249,6 +255,8 @@
     <ClCompile Include="src\EMT\Renderer\RenderPass\ShadowMapPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\Renderer.cpp" />
     <ClCompile Include="src\EMT\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\Scene.cpp" />
     <ClCompile Include="src\EMT\Renderer\Shader.cpp" />
     <ClCompile Include="src\EMT\Renderer\Skybox.cpp" />
@@ -298,6 +306,12 @@
     <None Include="assets\shader\pbr\LightPreFilter.vert" />
     <None Include="assets\shader\pbr\LutGen.frag" />
     <None Include="assets\shader\pbr\LutGen.vert" />
+    <None Include="assets\shader\postprocess\FXAA.frag" />
+    <None Include="assets\shader\postprocess\FXAA.vert" />
+    <None Include="assets\shader\postprocess\SSAO.frag" />
+    <None Include="assets\shader\postprocess\SSAO.vert" />
+    <None Include="assets\shader\postprocess\SSAOBlur.frag" />
+    <None Include="assets\shader\postprocess\SSAOBlur.vert" />
     <None Include="assets\shader\shadow\CSMGen.frag" />
     <None Include="assets\shader\shadow\CSMGen.geo" />
     <None Include="assets\shader\shadow\CSMGen.vert" />

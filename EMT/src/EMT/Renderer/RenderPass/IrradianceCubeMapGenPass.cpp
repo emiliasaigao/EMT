@@ -5,7 +5,7 @@ namespace EMT {
 	IrradianceCubeMapGenPass::IrradianceCubeMapGenPass(const Ref<Scene>& scene)
 		:RenderPass(scene){
 		m_Shader = Shader::Create("../EMT/assets/shader/pbr/IrradianceMapGen.vert", "../EMT/assets/shader/pbr/IrradianceMapGen.frag");
-		RenderPass::s_Context.irradianceMapOutput.fbo = FrameBuffer::Create(64, 64);
+		RenderPass::s_Context.irradianceMapOutput.fbo = FrameBuffer::Create(32, 32);
 		
 		RenderPass::s_Context.irradianceMapOutput.fbo->AddDepthStencilRBO(EMT_DEPTH_COMPONENT24, EMT_DEPTH_ATTACHMENT);
 
@@ -19,7 +19,7 @@ namespace EMT {
 		settings.TextureFormat = EMT_RGB16F;
 		RenderPass::s_Context.irradianceMapOutput.irradianceCubemap = Cubemap::Create(settings);
 		for (int i = 0; i < 6; ++i) {
-			RenderPass::s_Context.irradianceMapOutput.irradianceCubemap->GenerateCubemapFace(EMT_TEXTURE_CUBE_MAP_POSITIVE_X + i, 64, 64, EMT_RGB, EMT_FLOAT);
+			RenderPass::s_Context.irradianceMapOutput.irradianceCubemap->GenerateCubemapFace(EMT_TEXTURE_CUBE_MAP_POSITIVE_X + i, 32, 32, EMT_RGB, EMT_FLOAT);
 		}
 
 	}

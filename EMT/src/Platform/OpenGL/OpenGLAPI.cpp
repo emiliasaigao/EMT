@@ -57,11 +57,38 @@ namespace EMT {
 		glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 	}
 
+	void OpenGLAPI::EnableStencilTest(){
+		glEnable(GL_STENCIL_TEST);
+	}
+
+	void OpenGLAPI::DisableStencilTest() {
+		glDisable(GL_STENCIL_TEST);
+	}
+
+	void OpenGLAPI::ChangeStencilFunc(CompareFunc func, int ref, unsigned int mask) {
+		glStencilFunc(GL_NEVER + (unsigned int)func, ref, mask);
+	}
+
+	void OpenGLAPI::ChangeStencilOption(StencilOption fail, StencilOption zfail, StencilOption zpass) {
+		glStencilOp(GL_KEEP + (unsigned int)fail, GL_KEEP + (unsigned int)zfail, GL_KEEP + (unsigned int)zpass);
+	}
+
+	void OpenGLAPI::ChangeStencilMask(unsigned int mask) {
+		glStencilMask(mask);
+	}
+
+	void OpenGLAPI::ChangeDepthFunc(CompareFunc func) {
+		glDepthFunc(GL_NEVER + (unsigned int)func);
+	}
+
 	void OpenGLAPI::SetViewport(int x, int y, int width, int height) {
 		glViewport(x, y, width, height);
 	}
 
-	void OpenGLAPI::ChangeDepthFunc(DepthFunc func) {
-		glDepthFunc(GL_NEVER + (unsigned int)func);
+	void OpenGLAPI::CopyFBODepthStencil(const Ref<FrameBuffer>& srcFBO, const Ref<FrameBuffer>& dstFBO) {
+		glBindFramebuffer(GL_READ_FRAMEBUFFER, srcFBO->GetFramebuffer());
+		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, dstFBO->GetFramebuffer());
+		glBlitFramebuffer(0, 0, srcFBO->GetWidth(), srcFBO->GetHeight(), 0, 0, dstFBO->GetWidth(), dstFBO->GetHeight(), GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
 	}
+
 }

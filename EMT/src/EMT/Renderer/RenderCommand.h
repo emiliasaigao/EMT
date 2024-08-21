@@ -14,8 +14,16 @@ namespace EMT {
 		inline static void EnableMultiSample() { s_RendererAPI->EnableMultiSample(); }
 		inline static void EnableCubeMapSeampless() { s_RendererAPI->EnableCubeMapSeampless(); }
 		inline static void DisableMultiSample() { s_RendererAPI->DisableMultiSample(); }
-		inline static void ChangeDepthFunc(RendererAPI::DepthFunc func) { s_RendererAPI->ChangeDepthFunc(func); }
+		inline static void ChangeDepthFunc(RendererAPI::CompareFunc func) { s_RendererAPI->ChangeDepthFunc(func); }
 		inline static void SetViewport(int x, int y, int width, int height) { s_RendererAPI->SetViewport(x,y,width,height); }
+		inline static void CopyFBODepthStencil(const Ref<FrameBuffer>& srcFBO, const Ref<FrameBuffer>& dstFBO) { s_RendererAPI->CopyFBODepthStencil(srcFBO, dstFBO); }
+		inline static void EnableStencilTest() { s_RendererAPI->EnableStencilTest(); }
+		inline static void DisableStencilTest() { s_RendererAPI->DisableStencilTest(); }
+
+		inline static void ChangeStencilFunc(RendererAPI::CompareFunc func, int ref, unsigned int mask) { s_RendererAPI->ChangeStencilFunc(func, ref, mask); }
+		inline static void ChangeStencilOption(RendererAPI::StencilOption fail, RendererAPI::StencilOption zfail, RendererAPI::StencilOption zpass) { s_RendererAPI->ChangeStencilOption(fail, zfail, zpass); }
+		inline static void ChangeStencilMask(unsigned int mask) { s_RendererAPI->ChangeStencilMask(mask); }
+	
 	private:
 		static RendererAPI* s_RendererAPI;
 	};

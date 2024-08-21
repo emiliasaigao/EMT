@@ -63,6 +63,11 @@ namespace EMT {
 		m_PipeLine->GetLastRenderRes()->GetColorTexture()->DisplayTexture();
 		ImGui::End();
 
+		ImGui::Begin("Effect Checkbox");
+		ImGui::Checkbox("Enable SSAO", &m_PipeLine->GetPassContext().useSSAO);
+		ImGui::DragFloat("SSAO Effect", &m_PipeLine->GetPassContext().SSAOEffect, DRAG_SPEED, 0.0, 1.0);
+		ImGui::End();
+
 		ImGui::Begin("IrradianceCubeMap");
 		m_PipeLine->GetPassContext().irradianceMapOutput.irradianceCubemap->DisplayTexture();
 		ImGui::End();

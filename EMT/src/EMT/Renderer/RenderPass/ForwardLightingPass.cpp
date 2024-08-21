@@ -8,7 +8,6 @@ namespace EMT {
 
 		RenderPass::s_Context.lightOutput.fbo = FrameBuffer::Create(RenderPass::s_Context.windowWidth, RenderPass::s_Context.windowHeight);
 
-		// add attachment and check whether success by call CreateFrameBuffer
 		TextureSettings colorTextureSettings;
 		colorTextureSettings.TextureFormat = EMT_RGBA32F;
 		colorTextureSettings.TextureWrapSMode = EMT_CLAMP_TO_EDGE;
@@ -41,7 +40,8 @@ namespace EMT {
 
 		Ref<Camera> camera = m_Scene->GetCamera();
 		Ref<LightManager> lightManager = m_Scene->GetLightManager();
-		// get shadowmap pass output and bind shadowmap to texture unit 0 
+		
+		// shadowPass的结果拿来算阴影
 		std::vector<glm::mat4> lightSpaceMatrix = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
 		RenderPass::s_Context.shadowOutput.fbo->GetDepthStencilTexture()->Bind(0);
 
@@ -50,7 +50,7 @@ namespace EMT {
 		m_Shader->setInt("shadowMap", 0);
 		m_Shader->setMat4f("lightSpaceMatrix", lightSpaceMatrix[2]);
 
-		// set view, projection matrix, note the model matrix is set in modelrenderer
+
 		m_Shader->setMat4f("view", camera->getViewMatrix());
 		m_Shader->setVec3f("viewPos", camera->Position);
 		m_Shader->setMat4f("projection", camera->getProjectionMatrix());
@@ -60,7 +60,7 @@ namespace EMT {
 		m_Shader->setVec3f("directionalLightDir", directionalLightDir);
 
 		RenderCommand::EnableDepthTest();
-		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::DepthFunc::Less);
+		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::Less);
 		Renderer::Render(m_Scene, m_Shader, true);
 		Renderer::RenderSkybox(m_Scene);
 	}
