@@ -7,10 +7,11 @@
 #include "LutGenPass.h"
 #include "EavgGenPass.h"
 #include "DeferredGeometryPass.h"
+#include "DeferredLightingPass.h"
+#include "SSRPass.h"
 #include "SSAOGenPass.h"
 #include "SSAOBlurGenPass.h"
 #include "FXAAPass.h"
-#include "DeferredLightingPass.h"
 
 namespace EMT {
 	class RenderPipeLine {
@@ -18,12 +19,12 @@ namespace EMT {
 		RenderPipeLine(const Ref<Scene>& scene, int windowWidth, int windowHeight);
 		~RenderPipeLine() {}
 		void Draw();
+		void PreDraw();
 		
 		void OnWindowResize(int windowWidth, int windowHeight);
-		Ref<FrameBuffer> GetLastRenderRes() { return RenderPass::s_Context.passThroughOutput.fbo; }
+		Ref<FrameBuffer> GetLastRenderRes() { return RenderPass::s_Context.postprocOutput.fbo; }
 		RenderPassContext& GetPassContext() { return RenderPass::s_Context; }
 	private:
-		void PreDraw();
 
 	private:
 		Ref<Scene> m_Scene;

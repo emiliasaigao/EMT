@@ -14,6 +14,7 @@ namespace EMT {
 		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray);
 
 		static void Render(const Ref<Scene>& scene, const Ref<Shader>& shader, bool isUseMaterial);
+		static void RenderSSRModels(const Ref<Scene>& scene, const Ref<Shader>& shader);
 		static void RenderSkybox(const Ref<Scene>& scene);
 		static void RenderNDCPlane();
 		static void RenderCube();

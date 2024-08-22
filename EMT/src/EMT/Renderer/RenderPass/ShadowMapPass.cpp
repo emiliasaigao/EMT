@@ -7,27 +7,6 @@ namespace EMT {
 		:RenderPass(scene) {
 		m_Shader = Shader::Create("../EMT/assets/shader/shadow/CSMGen.vert", "../EMT/assets/shader/shadow/CSMGen.frag", "../EMT/assets/shader/shadow/CSMGen.geo");
 		RenderPass::s_Context.shadowOutput.fbo = FrameBuffer::Create(SHADOWMAP_RESOLUTION_X, SHADOWMAP_RESOLUTION_Y);
-		
-		/****************************************************************************************************/
-		RenderPass::s_Context.shadowOutput.debugfbo = FrameBuffer::Create(SHADOWMAP_RESOLUTION_X, SHADOWMAP_RESOLUTION_Y);
-		CSMDebugShader = Shader::Create("../EMT/assets/shader/debug/CSMDebug.vert", "../EMT/assets/shader/debug/CSMDebug.frag");
-		TextureSettings debugTextureSettings;
-		debugTextureSettings.TextureFormat = EMT_RGBA32F;
-		debugTextureSettings.TextureWrapSMode = EMT_CLAMP_TO_EDGE;
-		debugTextureSettings.TextureWrapTMode = EMT_CLAMP_TO_EDGE;
-		debugTextureSettings.TextureMagnificationFilterMode = EMT_LINEAR;
-		debugTextureSettings.TextureMinificationFilterMode = EMT_LINEAR;
-		debugTextureSettings.HasMips = false;
-		for (int i = 0; i < 4; ++i) {
-			auto tex = Texture::Create(debugTextureSettings);
-			tex->Generate2DTexture(SHADOWMAP_RESOLUTION_X, SHADOWMAP_RESOLUTION_X, EMT_RGBA, EMT_FLOAT);
-			RenderPass::s_Context.shadowOutput.debugDepthMaps.push_back(tex);
-		}
-		RenderPass::s_Context.shadowOutput.debugfbo->SetColorTexture(EMT_COLOR_ATTACHMENT0,
-			EMT_TEXTURE_2D,
-			RenderPass::s_Context.shadowOutput.debugDepthMaps[0]->GetTextureId(), 0);
-		RenderPass::s_Context.shadowOutput.debugfbo->SetUpFrameBuffer();
-		/****************************************************************************************************/
 
 		TextureSettings depthStencilTextureSettings;
 		depthStencilTextureSettings.TextureFormat = EMT_DEPTH_COMPONENT32F; 
@@ -51,7 +30,6 @@ namespace EMT {
 		RenderCommand::SetViewport(0, 0, mfbo->GetWidth(), mfbo->GetHeight());
 
 		// setup
-		//ModelRenderer* modelRenderer = mScene->GetModelRenderer();
 		Ref<Camera> camera = m_Scene->GetCamera();
 		Ref<LightManager> lightManager = m_Scene->GetLightManager();
 		glm::vec3 directionalLightDir = glm::normalize(lightManager->GetDirectionalLightDirection(0));
@@ -79,20 +57,6 @@ namespace EMT {
 		RenderPass::s_Context.shadowOutput.lightSpaceMatrices = LightPVmatrix;
 		RenderPass::s_Context.shadowOutput.frustum = frustum;
 
-		/********************************************************************************/
-		RenderPass::s_Context.shadowOutput.debugfbo->Bind();
-		CSMDebugShader->Bind();
-		CSMDebugShader->setInt("colorTexture", 0);
-		mfbo->GetDepthStencilTexture()->Bind(0);
-		for (int i = 0; i < 4; ++i) {
-			RenderPass::s_Context.shadowOutput.debugfbo->SetColorTexture(EMT_COLOR_ATTACHMENT0,
-				EMT_TEXTURE_2D,
-				RenderPass::s_Context.shadowOutput.debugDepthMaps[i]->GetTextureId(), 0);
-			RenderPass::s_Context.shadowOutput.debugfbo->Clear();
-			CSMDebugShader->setInt("layer", i);
-			Renderer::RenderNDCPlane();
-		}
-		/********************************************************************************/
 	}
 
 	std::vector<glm::mat4> ShadowMapPass::getLightPVMatrix(std::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir) {

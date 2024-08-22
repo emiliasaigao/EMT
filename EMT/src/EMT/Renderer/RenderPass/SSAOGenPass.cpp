@@ -82,7 +82,10 @@ namespace EMT {
         m_Shader->setMat4f("view", camera->getViewMatrix());
         m_Shader->setFloat("windowWidth", RenderPass::s_Context.windowWidth);
         m_Shader->setFloat("windowHeight", RenderPass::s_Context.windowHeight);
+        m_Shader->setBool("useSSAO", RenderPass::s_Context.useSSAO);
         m_Shader->setFloat("SSAOEffect", RenderPass::s_Context.SSAOEffect);
+        m_Shader->setFloat("SSAORadius", RenderPass::s_Context.SSAORadius);
+        m_Shader->setInt("SSAOKernelSize", RenderPass::s_Context.SSAOKernelSize);
 
         Renderer::RenderNDCPlane();
 

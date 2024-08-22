@@ -11,6 +11,22 @@
 namespace EMT {
 	ImGuiLayer::ImGuiLayer(const Ref<Scene>& scene, const Ref<RenderPipeLine>& pipeLine)
 	: Layer("ImGuiLayer"),m_Scene(scene), m_PipeLine(pipeLine) {
+		std::vector<std::string> skyboxFilePaths;
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/right.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/left.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/top.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/bottom.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/back.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/front.png");
+		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
+		skyboxFilePaths = {};
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/right.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/left.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/top.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/bottom.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/back.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/front.png");
+		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
 	}
 
 	ImGuiLayer::~ImGuiLayer()
@@ -65,7 +81,24 @@ namespace EMT {
 
 		ImGui::Begin("Effect Checkbox");
 		ImGui::Checkbox("Enable SSAO", &m_PipeLine->GetPassContext().useSSAO);
+		ImGui::Checkbox("Enable SSR", &m_PipeLine->GetPassContext().useSSR);
 		ImGui::DragFloat("SSAO Effect", &m_PipeLine->GetPassContext().SSAOEffect, DRAG_SPEED, 0.0, 1.0);
+		ImGui::DragFloat("SSAO Radius", &m_PipeLine->GetPassContext().SSAORadius, DRAG_SPEED, 0.0, 10.0);
+		ImGui::DragInt("SSAO KernelSize", &m_PipeLine->GetPassContext().SSAOKernelSize, DRAG_SPEED, 0, 64);
+		ImGui::DragFloat("SSR Thickness", &m_PipeLine->GetPassContext().ssrThickness, DRAG_SPEED, 0.0, 5.0);
+		
+		if (ImGui::RadioButton("city_night", mCurSkyBoxIdx == 0)) {
+			mCurSkyBoxIdx = 0;
+		}
+		if (ImGui::RadioButton("sea", mCurSkyBoxIdx == 1)) {
+			mCurSkyBoxIdx = 1;
+		}
+		if (mCurSkyBoxIdx != mLastSkyBoxIdx) {
+			m_Scene->GetSkybox() = m_SkyBoxes[mCurSkyBoxIdx];
+			m_PipeLine->PreDraw();
+			mLastSkyBoxIdx = mCurSkyBoxIdx;
+		}
+
 		ImGui::End();
 
 		ImGui::Begin("IrradianceCubeMap");
@@ -84,11 +117,6 @@ namespace EMT {
 		m_PipeLine->GetPassContext().eavgOutput.fbo->GetColorTexture()->DisplayTexture();
 		ImGui::End();
 
-		ImGui::Begin("ShadowMap");
-		for (int i = 0; i < 4; ++i) {
-			m_PipeLine->GetPassContext().shadowOutput.debugDepthMaps[i]->DisplayTexture(false);
-		}
-		ImGui::End();
 
 		ImGui::Begin("LigthPass");
 		m_PipeLine->GetPassContext().lightOutput.fbo->GetColorTexture()->DisplayTexture();

@@ -24,5 +24,8 @@ namespace EMT {
 		float m_time = 0.f;
 		Ref<Scene> m_Scene;
 		Ref<RenderPipeLine> m_PipeLine;
+		std::vector<Ref<Skybox>> m_SkyBoxes;
+		int mCurSkyBoxIdx = 0;
+		int mLastSkyBoxIdx = 0;
 	};
 }

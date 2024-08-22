@@ -31,16 +31,12 @@ namespace EMT {
 
 		// bind shader
 		m_Shader->Bind();
-
-		// set ssr and deferred lighting
-		/*if (ssrInput.ssrFBO != nullptr)
-		{
-			ssrInput.ssrFBO->GetColourTexture()->bind(6);
-			mPassThroughShader->SetUniform("ssrTexture", 6);
-		}*/
-		RenderPass::s_Context.postprocOutput.fbo->GetColorTexture()->Bind(9);
-		
-		m_Shader->setInt("colorTexture", 9);
+		RenderPass::s_Context.lightOutput.fbo->GetColorTexture()->Bind(0);
+		RenderPass::s_Context.ssrOutput.fbo->GetColorTexture()->Bind(1);
+		RenderPass::s_Context.ssaoBlurOutput.fbo->GetColorTexture()->Bind(2);
+		m_Shader->setInt("colorTexture", 0);
+		m_Shader->setInt("ssrTexture", 1);
+		m_Shader->setInt("ssaoBlurTexture", 2);
 
 
 		Renderer::RenderNDCPlane();

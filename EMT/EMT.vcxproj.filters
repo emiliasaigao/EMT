@@ -249,6 +249,7 @@
     <ClInclude Include="src\EMT\Renderer\RenderPass\FXAAPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\SSRPass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -410,6 +411,7 @@
     <ClCompile Include="src\EMT\Renderer\RenderPass\FXAAPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\SSRPass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\simplecolor.vert" />
@@ -436,5 +438,9 @@
     <None Include="assets\shader\postprocess\SSAO.vert" />
     <None Include="assets\shader\postprocess\SSAOBlur.vert" />
     <None Include="assets\shader\postprocess\SSAOBlur.frag" />
+    <None Include="assets\shader\common\DepthGen.frag" />
+    <None Include="assets\shader\common\DepthGen.vert" />
+    <None Include="assets\shader\postprocess\SSR.vert" />
+    <None Include="assets\shader\postprocess\SSR.frag" />
   </ItemGroup>
 </Project>

@@ -17,9 +17,10 @@ namespace EMT {
 		~Scene() {}
 
 		inline Ref<Camera> GetCamera() { return mCamera; }
-		inline Ref<Skybox> GetSkybox() { return mSkybox; }
+		inline Ref<Skybox>& GetSkybox() { return mSkybox; }
 		inline Ref<LightManager> GetLightManager() { return mLightManager; }
 		inline std::vector<Ref<Model>>& GetModels() { return mModels; }
+
 	public:
 		void Init(int sceneID);
 

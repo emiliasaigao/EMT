@@ -17,8 +17,9 @@ namespace EMT {
 		m_RenderPasses.push_back(std::make_shared<DeferredLightingPass>(scene));
 		m_RenderPasses.push_back(std::make_shared<SSAOGenPass>(scene));
 		m_RenderPasses.push_back(std::make_shared<SSAOBlurGenPass>(scene));
-		m_RenderPasses.push_back(std::make_shared<FXAAPass>(scene));
+		m_RenderPasses.push_back(std::make_shared<SSRPass>(scene));
 		m_RenderPasses.push_back(std::make_shared<PassThroughPass>(scene));
+		m_RenderPasses.push_back(std::make_shared<FXAAPass>(scene));
 		RenderCommand::EnableCubeMapSeampless();
 	}
 

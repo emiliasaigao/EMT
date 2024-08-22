@@ -7,8 +7,6 @@ namespace EMT {
 	struct ShadowmapPassOutput {
 		std::vector<glm::mat4> lightSpaceMatrices;
 		Ref<FrameBuffer> fbo;
-		std::vector<Ref<Texture>> debugDepthMaps;
-		Ref<FrameBuffer> debugfbo;
 		std::vector<std::pair<float, float>> frustum;
 	};
 
@@ -72,8 +70,12 @@ namespace EMT {
 		PostProcessOutput postprocOutput;
 		SSRPassOutput ssrOutput;
 		PassThroughOutput passThroughOutput;
-		bool useSSAO = false;
+		bool useSSAO = true;
+		bool useSSR = false;
+		float ssrThickness = 1.2;
 		float SSAOEffect = 1.0;
+		float SSAORadius = 2.0;
+		int SSAOKernelSize = 32;
 	};
 
 	class RenderPass {

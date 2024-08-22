@@ -7,13 +7,13 @@ namespace EMT {
 		m_Shader = Shader::Create("../EMT/assets/shader/postprocess/SSAOBlur.vert", "../EMT/assets/shader/postprocess/SSAOBlur.frag");
 		RenderPass::s_Context.ssaoBlurOutput.fbo = FrameBuffer::Create(RenderPass::s_Context.windowWidth, RenderPass::s_Context.windowHeight);
 		TextureSettings colorTextureSettings;
-		colorTextureSettings.TextureFormat = EMT_RGBA32F;
+		colorTextureSettings.TextureFormat = EMT_R16F;
 		colorTextureSettings.TextureWrapSMode = EMT_CLAMP_TO_EDGE;
 		colorTextureSettings.TextureWrapTMode = EMT_CLAMP_TO_EDGE;
 		colorTextureSettings.TextureMagnificationFilterMode = EMT_LINEAR;
 		colorTextureSettings.TextureMinificationFilterMode = EMT_LINEAR;
 		colorTextureSettings.HasMips = false;
-		RenderPass::s_Context.ssaoBlurOutput.fbo->AddColorTexture(colorTextureSettings, EMT_RGBA, EMT_FLOAT, EMT_COLOR_ATTACHMENT0);
+		RenderPass::s_Context.ssaoBlurOutput.fbo->AddColorTexture(colorTextureSettings, EMT_RED, EMT_FLOAT, EMT_COLOR_ATTACHMENT0);
 		RenderPass::s_Context.ssaoBlurOutput.fbo->SetUpFrameBuffer();
 	}
 
@@ -30,8 +30,6 @@ namespace EMT {
 		RenderPass::s_Context.ssaoOutput.fbo->GetColorTexture()->Bind(0);
 		RenderPass::s_Context.lightOutput.fbo->GetColorTexture()->Bind(1);
 		m_Shader->setInt("SSAOTexture", 0);
-		m_Shader->setInt("colorTexture", 1);
-		m_Shader->setBool("useSSAO", RenderPass::s_Context.useSSAO);
 
 		Renderer::RenderNDCPlane();
 		mfbo->UnBind();

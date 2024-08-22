@@ -28,7 +28,7 @@ namespace EMT {
 		RenderCommand::SetViewport(0, 0, mfbo->GetWidth(), mfbo->GetHeight());
 		m_Shader->Bind();
 
-		RenderPass::s_Context.ssaoBlurOutput.fbo->GetColorTexture()->Bind(8);
+		RenderPass::s_Context.passThroughOutput.fbo->GetColorTexture()->Bind(8);
 
 		m_Shader->setInt("inputTexture", 8);
 		m_Shader->setVec2f("texelSize", glm::vec2(1.0f / mfbo->GetWidth(), 1.0f / mfbo->GetHeight()));
