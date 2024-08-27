@@ -4,20 +4,20 @@
 namespace EMT {
 	Mesh::Mesh() {}
 
-	Mesh::Mesh(std::vector<glm::vec3>& positions,
-		std::vector<glm::vec2>& uvs,
-		std::vector<glm::vec3>& normals,
-		std::vector<unsigned int>& indices)
+	Mesh::Mesh(esgstl::vector<glm::vec3>& positions,
+		esgstl::vector<glm::vec2>& uvs,
+		esgstl::vector<glm::vec3>& normals,
+		esgstl::vector<unsigned int>& indices)
 		: m_Positions(positions), m_TexCoords(uvs), m_Normals(normals), m_Indices(indices)
 	{
 	}
 
-	Mesh::Mesh(std::vector<glm::vec3>& positions,
-		std::vector<glm::vec2>& uvs,
-		std::vector<glm::vec3>& normals,
-		std::vector<glm::vec3>& tangents,
-		std::vector<glm::vec3>& bitangents,
-		std::vector<unsigned int>& indices)
+	Mesh::Mesh(esgstl::vector<glm::vec3>& positions,
+		esgstl::vector<glm::vec2>& uvs,
+		esgstl::vector<glm::vec3>& normals,
+		esgstl::vector<glm::vec3>& tangents,
+		esgstl::vector<glm::vec3>& bitangents,
+		esgstl::vector<unsigned int>& indices)
 		: m_Positions(positions), m_TexCoords(uvs), m_Normals(normals), m_Tangents(tangents), m_Bitangents(bitangents), m_Indices(indices)
 	{
 	}
@@ -37,7 +37,7 @@ namespace EMT {
 
 	void Mesh::SetupMesh() {
 
-		std::vector<Vertex> vertices;
+		esgstl::vector<Vertex> vertices;
 		for (unsigned int i = 0;i < m_Positions.size();++i) {
 			Vertex newVertex;
 			if (m_Positions.size() > 0)

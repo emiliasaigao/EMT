@@ -25,17 +25,17 @@ namespace EMT {
 		friend Model;
 	public:
 		Mesh();
-		Mesh(std::vector<glm::vec3>& positions, 
-			 std::vector<glm::vec2>& uvs, 
-			 std::vector<glm::vec3>& normals, 
-			 std::vector<unsigned int>& indices);
+		Mesh(esgstl::vector<glm::vec3>& positions, 
+			 esgstl::vector<glm::vec2>& uvs, 
+			 esgstl::vector<glm::vec3>& normals, 
+			 esgstl::vector<unsigned int>& indices);
 
-		Mesh(std::vector<glm::vec3>& positions, 
-			 std::vector<glm::vec2>& uvs, 
-			 std::vector<glm::vec3>& normals, 
-			 std::vector<glm::vec3>& tangents, 
-			 std::vector<glm::vec3>& bitangents, 
-			 std::vector<unsigned int>& indices);
+		Mesh(esgstl::vector<glm::vec3>& positions, 
+			 esgstl::vector<glm::vec2>& uvs, 
+			 esgstl::vector<glm::vec3>& normals, 
+			 esgstl::vector<glm::vec3>& tangents, 
+			 esgstl::vector<glm::vec3>& bitangents, 
+			 esgstl::vector<unsigned int>& indices);
 
 		~Mesh() {}
 
@@ -50,13 +50,13 @@ namespace EMT {
 		void SetupMesh();
 
 	protected:
-		std::vector<glm::vec3> m_Positions;
-		std::vector<glm::vec2> m_TexCoords;
-		std::vector<glm::vec3> m_Normals;
-		std::vector<glm::vec3> m_Tangents;
-		std::vector<glm::vec3> m_Bitangents;
+		esgstl::vector<glm::vec3> m_Positions;
+		esgstl::vector<glm::vec2> m_TexCoords;
+		esgstl::vector<glm::vec3> m_Normals;
+		esgstl::vector<glm::vec3> m_Tangents;
+		esgstl::vector<glm::vec3> m_Bitangents;
 
-		std::vector<unsigned int> m_Indices;
+		esgstl::vector<unsigned int> m_Indices;
 		
 		//unsigned int mVAO, mVBO, mEBO;
 		Ref<VertexArray> m_VAO;

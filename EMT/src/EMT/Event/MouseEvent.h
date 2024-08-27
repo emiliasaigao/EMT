@@ -14,7 +14,7 @@ namespace EMT {
 		virtual std::string ToString() const override {
 			std::stringstream ss;
 			ss << "MouseMovedEvent: " << m_MouseX << "," << m_MouseY;
-			return ss.str();
+			return ss.str().data();
 		}
 
 		EVENT_CLASS_TYPE(MouseMoved);
@@ -34,7 +34,7 @@ namespace EMT {
 		virtual std::string ToString() const override {
 			std::stringstream ss;
 			ss << "MouseScrolledEvent: " << m_XOffset << "," << m_YOffset;
-			return ss.str();
+			return ss.str().data();
 		}
 
 		EVENT_CLASS_TYPE(MouseScrolled);
@@ -63,7 +63,7 @@ namespace EMT {
 		virtual std::string ToString() const override {
 			std::stringstream ss;
 			ss << "MouseButtonPressedEvent:" << m_Button;
-			return ss.str();
+			return ss.str().data();
 		}
 
 		EVENT_CLASS_TYPE(MouseButtonPressed);
@@ -78,7 +78,7 @@ namespace EMT {
 		virtual std::string ToString() const override {
 			std::stringstream ss;
 			ss << "MouseButtonReleasedEvent:" << m_Button;
-			return ss.str();
+			return ss.str().data();
 		}
 
 		EVENT_CLASS_TYPE(MouseButtonReleased);

@@ -3,7 +3,18 @@
 #include "Cubemap.h"
 #include "stb_image/stb_image.h"
 
+namespace esgstl {
+	template <class CharType, class CharTraits>
+	struct hash<std::basic_string<CharType, CharTraits>> {
+		size_t operator()(const std::basic_string<CharType, CharTraits>& str) const noexcept {
+			return bitwise_hash((const unsigned char*)str.c_str(),
+				str.size() * sizeof(CharType));
+		}
+	};
+}
+
 namespace EMT {
+
 	class TextureLoader
 	{
 	public:
@@ -11,7 +22,7 @@ namespace EMT {
 
 		
 		static Ref<Texture> Load2DTexture(const std::string& path, TextureSettings* settings = nullptr);
-		static Ref<Cubemap> LoadCubemapTexture(const std::vector<std::string>& paths, CubemapSettings* settings = nullptr);
+		static Ref<Cubemap> LoadCubemapTexture(const esgstl::vector<std::string>& paths, CubemapSettings* settings = nullptr);
 
 		static void DestroyCachedTexture();
 
@@ -29,7 +40,7 @@ namespace EMT {
 		static inline Ref<Texture> GetNoRoughness() { return s_BlackTexture; }
 
 	private:
-		static std::unordered_map<std::string, Ref<Texture>> mTextureCache;
+		static esgstl::unordered_map<std::string, Ref<Texture>> mTextureCache;
 
 		// ≤‚ ‘”√ƒ¨»œÃ˘Õº
 		static Ref<Texture> s_DefaultAlbedo;

@@ -35,7 +35,7 @@ namespace EMT {
 		glm::vec3 directionalLightDir = glm::normalize(lightManager->GetDirectionalLightDirection(0));
 
 		float lambda = 0.8;
-		std::vector<std::pair<float, float>> frustum(EMT::CSCADED_SIZE);
+		esgstl::vector<std::pair<float, float>> frustum(EMT::CSCADED_SIZE);
 		float n = 0.1f;
 		float f = 100.f;
 		frustum[0].first = n;
@@ -48,7 +48,7 @@ namespace EMT {
 		m_Shader->Bind();
 		auto LightPVmatrix = getLightPVMatrix(frustum, directionalLightDir);
 		for (int i = 0; i < 4; ++i) {
-			m_Shader->setMat4f(std::string("uLightVPMatrix[") + std::to_string(i) + std::string("]"), LightPVmatrix[i]);
+			m_Shader->setMat4f(std::string("uLightVPMatrix[") + std::to_string(i).data() + std::string("]"), LightPVmatrix[i]);
 		}
 		RenderCommand::EnableDepthTest();
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::Less);
@@ -59,11 +59,11 @@ namespace EMT {
 
 	}
 
-	std::vector<glm::mat4> ShadowMapPass::getLightPVMatrix(std::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir) {
-		std::vector<glm::mat4> LightVPMatrix;
+	esgstl::vector<glm::mat4> ShadowMapPass::getLightPVMatrix(esgstl::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir) {
+		esgstl::vector<glm::mat4> LightVPMatrix;
 
 		// ndc标准设备空间的八个顶点
-		std::vector<glm::vec3> ndcPos = { glm::vec3(-1.0f, -1.0f, -1.0f),glm::vec3(1.0f, -1.0f, -1.0f) ,
+		esgstl::vector<glm::vec3> ndcPos = { glm::vec3(-1.0f, -1.0f, -1.0f),glm::vec3(1.0f, -1.0f, -1.0f) ,
 									glm::vec3(-1.0f, 1.0f, -1.0f) ,glm::vec3(1.0f, 1.0f, -1.0f) ,
 									glm::vec3(-1.0f, -1.0f, 1.0f) ,glm::vec3(1.0f, -1.0f, 1.0f) ,
 									glm::vec3(-1.0f, 1.0f, 1.0f),glm::vec3(1.0f, 1.0f, 1.0f) };
@@ -75,7 +75,7 @@ namespace EMT {
 															float(RenderPass::s_Context.windowWidth) / float(RenderPass::s_Context.windowHeight),
 															frustum[i].first, frustum[i].second);
 			glm::mat4 inv_PV = glm::inverse(cameraProjection * cameraView);
-			std::vector<glm::vec4> corners;
+			esgstl::vector<glm::vec4> corners;
 
 			for (int j = 0; j < 8; ++j) {
 				glm::vec4 corner = inv_PV * glm::vec4(ndcPos[i], 1.f);

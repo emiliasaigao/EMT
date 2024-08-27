@@ -19,7 +19,7 @@ namespace EMT {
 		inline Ref<Camera> GetCamera() { return mCamera; }
 		inline Ref<Skybox>& GetSkybox() { return mSkybox; }
 		inline Ref<LightManager> GetLightManager() { return mLightManager; }
-		inline std::vector<Ref<Model>>& GetModels() { return mModels; }
+		inline esgstl::vector<Ref<Model>>& GetModels() { return mModels; }
 
 	public:
 		void Init(int sceneID);
@@ -29,6 +29,6 @@ namespace EMT {
 		Ref<LightManager> mLightManager;
 		Ref<Skybox> mSkybox;
 
-		std::vector<Ref<Model>> mModels;
+		esgstl::vector<Ref<Model>> mModels;
 	};
 }

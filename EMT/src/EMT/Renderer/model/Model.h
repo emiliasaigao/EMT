@@ -15,7 +15,7 @@ namespace EMT {
 		Model(){}
 		Model(const std::string& path);
 		Model(const Mesh& mesh);
-		Model(const std::vector<Mesh>& meshes);
+		Model(const esgstl::vector<Mesh>& meshes);
 		~Model() {}
 
 		void Draw(const Ref<Shader>& shader, bool isUseMaterial) const;
@@ -27,7 +27,7 @@ namespace EMT {
 		inline const glm::vec3& GetScale() const { return mScale; }
 		inline const float& GetRotation() const { return mRotation; }
 		inline const glm::vec3& GetRotateAxis() const { return mRotateAxis; }
-		inline std::vector<Mesh>* GetMeshes() { return &mMeshes; }
+		inline esgstl::vector<Mesh>* GetMeshes() { return &mMeshes; }
 		inline Mesh* GetMesh(int index = 0) { return &mMeshes[index]; }
 
 		inline void SetPosition(const glm::vec3& pos) { mPosition = pos; }
@@ -47,7 +47,7 @@ namespace EMT {
 
 	private:
 
-		std::vector<Mesh> mMeshes;
+		esgstl::vector<Mesh> mMeshes;
 
 		std::string mDirectory;
 		std::string mName;

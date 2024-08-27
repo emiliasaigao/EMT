@@ -5,9 +5,9 @@
 
 namespace EMT {
 	struct ShadowmapPassOutput {
-		std::vector<glm::mat4> lightSpaceMatrices;
+		esgstl::vector<glm::mat4> lightSpaceMatrices;
 		Ref<FrameBuffer> fbo;
-		std::vector<std::pair<float, float>> frustum;
+		esgstl::vector<std::pair<float, float>> frustum;
 	};
 
 	struct GeometryPassOutput {

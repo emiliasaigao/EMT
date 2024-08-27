@@ -12,12 +12,12 @@ namespace EMT {
 		void AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) override;
 		void SetElementBuffer(const Ref<ElementBuffer>& elementBuffer) override;
 
-		const std::vector<Ref<VertexBuffer>>& GetVertexBuffers() const override { return m_VertexBuffers; }
+		const esgstl::vector<Ref<VertexBuffer>>& GetVertexBuffers() const override { return m_VertexBuffers; }
 		const Ref<ElementBuffer>& GetElementBuffer() const override { return m_ElementBuffer; }
 
 	private:
 		unsigned int m_RendererID;
-		std::vector<Ref<VertexBuffer>> m_VertexBuffers;
+		esgstl::vector<Ref<VertexBuffer>> m_VertexBuffers;
 		Ref<ElementBuffer> m_ElementBuffer;
 	};
 }

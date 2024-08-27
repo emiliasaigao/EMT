@@ -12,7 +12,7 @@ namespace EMT {
 		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) = 0;
 		virtual void SetElementBuffer(const Ref<ElementBuffer>& elementBuffer) = 0;
 
-		virtual const std::vector<Ref<VertexBuffer>>& GetVertexBuffers() const = 0;
+		virtual const esgstl::vector<Ref<VertexBuffer>>& GetVertexBuffers() const = 0;
 		virtual const Ref<ElementBuffer>& GetElementBuffer() const = 0;
 
 		static Ref<VertexArray> Create();

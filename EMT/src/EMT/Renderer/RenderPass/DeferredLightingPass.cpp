@@ -38,14 +38,14 @@ void EMT::DeferredLightingPass::Draw() {
 
 	Ref<Camera> camera = m_Scene->GetCamera();
 	Ref<LightManager> lightManager = m_Scene->GetLightManager();
-	std::vector<glm::mat4> lightSpaceMatrices = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
-	std::vector<std::pair<float, float>> frustum = RenderPass::s_Context.shadowOutput.frustum;
+	esgstl::vector<glm::mat4> lightSpaceMatrices = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
+	esgstl::vector<std::pair<float, float>> frustum = RenderPass::s_Context.shadowOutput.frustum;
 
 	// 将Gbuffer的深度模板缓冲拷贝过来（减少fragment绘制）
 	RenderCommand::CopyFBODepthStencil(RenderPass::s_Context.geometryOutput.gbuffer, mfbo);
 	
 	// shadowPass的结果拿来算阴影
-	std::vector<glm::mat4> lightSpaceMatrix = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
+	esgstl::vector<glm::mat4> lightSpaceMatrix = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
 	RenderPass::s_Context.shadowOutput.fbo->GetDepthStencilTexture()->Bind(0);
 
 	RenderCommand::DisableDepthTest();
@@ -59,8 +59,8 @@ void EMT::DeferredLightingPass::Draw() {
 	m_Shader->setVec3f("viewPos", camera->Position);
 	m_Shader->setMat4f("view", camera->getViewMatrix());
 	for (int i = 0; i < EMT::CSCADED_SIZE; ++i) {
-		m_Shader->setMat4f(std::string("lightSpaceMatrix[") + std::to_string(i) + std::string("]"), lightSpaceMatrices[i]);
-		m_Shader->setFloat(std::string("frustum[") + std::to_string(i) + std::string("]"), frustum[i].second);
+		m_Shader->setMat4f(std::string("lightSpaceMatrix[") + std::to_string(i).data() + std::string("]"), lightSpaceMatrices[i]);
+		m_Shader->setFloat(std::string("frustum[") + std::to_string(i).data() + std::string("]"), frustum[i].second);
 	}
 	RenderPass::s_Context.shadowOutput.fbo->GetDepthStencilTexture()->Bind(0);
 	m_Shader->setInt("shadowMap", 0);

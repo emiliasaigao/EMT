@@ -8,7 +8,7 @@
 namespace EMT {
 	class Skybox {
 	public:
-		Skybox(const std::vector<std::string>& paths);
+		Skybox(const esgstl::vector<std::string>& paths);
 		~Skybox() {}
 		
 	public:

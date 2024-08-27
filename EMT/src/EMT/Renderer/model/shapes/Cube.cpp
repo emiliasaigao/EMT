@@ -4,7 +4,7 @@
 namespace EMT {
 	Cube::Cube()
 	{
-		m_Positions = std::vector<glm::vec3>
+		m_Positions = esgstl::vector<glm::vec3>
 		{
 			// back face
 			glm::vec3(-1.0f, -1.0f, -1.0f),
@@ -55,7 +55,7 @@ namespace EMT {
 			glm::vec3(-1.0f,  1.0f,  1.0f)
 		};
 
-		m_Normals = std::vector<glm::vec3>
+		m_Normals = esgstl::vector<glm::vec3>
 		{
 			// back face
 			glm::vec3(0.0f,  0.0f, -1.0f),

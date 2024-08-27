@@ -11,14 +11,14 @@ namespace EMT {
 	Model::Model(const Mesh& mesh) {
 		mMeshes.push_back(mesh);
 		mName = "None_";
-		mName += std::to_string(noNameNum);
+		mName += std::to_string(noNameNum).c_str();
 		noNameNum++;
 	}
 
-	Model::Model(const std::vector<Mesh>& meshes) {
+	Model::Model(const esgstl::vector<Mesh>& meshes) {
 		mMeshes = meshes;
 		mName = "None_";
-		mName += std::to_string(noNameNum);
+		mName += std::to_string(noNameNum).c_str();
 		noNameNum++;
 	}
 
@@ -42,13 +42,13 @@ namespace EMT {
 
 	void Model::LoadModel(const std::string& path) {
 		Assimp::Importer import;
-		const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+		const aiScene* scene = import.ReadFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 			EMT_CORE_ERROR("ERROR::ASSIMP:: {0}",import.GetErrorString());
 			return;
 		}
-
+		
 		mDirectory = path.substr(0, path.find_last_of('/'));
 		mName = mDirectory.substr(mDirectory.find_last_of('/') + 1, mDirectory.size());
 
@@ -74,12 +74,12 @@ namespace EMT {
 	Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 	{
 		// 开辟顶点数据所需空间
-		std::vector<glm::vec3> positions;
-		std::vector<glm::vec2> uvs;
-		std::vector<glm::vec3> normals;
-		std::vector<glm::vec3> tangents;
-		std::vector<glm::vec3> bitangents;
-		std::vector<unsigned int> indices;
+		esgstl::vector<glm::vec3> positions;
+		esgstl::vector<glm::vec2> uvs;
+		esgstl::vector<glm::vec3> normals;
+		esgstl::vector<glm::vec3> tangents;
+		esgstl::vector<glm::vec3> bitangents;
+		esgstl::vector<unsigned int> indices;
 
 		positions.reserve(mesh->mNumVertices);
 		uvs.reserve(mesh->mNumVertices);
@@ -176,7 +176,7 @@ namespace EMT {
 		if (ImGui::TreeNode("Meshes"))
 		{
 			for (int i = 0; i < mMeshes.size(); i++) {
-				if (ImGui::TreeNode((std::string("mesh_") + std::to_string(i)).c_str()))
+				if (ImGui::TreeNode((std::string("mesh_") + std::to_string(i).data()).c_str()))
 				{
 					mMeshes[i].OnImGuiRender();
 					ImGui::TreePop();

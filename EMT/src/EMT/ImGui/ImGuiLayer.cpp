@@ -11,7 +11,7 @@
 namespace EMT {
 	ImGuiLayer::ImGuiLayer(const Ref<Scene>& scene, const Ref<RenderPipeLine>& pipeLine)
 	: Layer("ImGuiLayer"),m_Scene(scene), m_PipeLine(pipeLine) {
-		std::vector<std::string> skyboxFilePaths;
+		esgstl::vector<std::string> skyboxFilePaths;
 		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/right.png");
 		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/left.png");
 		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/top.png");

@@ -31,7 +31,7 @@ namespace EMT {
 		unsigned int m_RendererID;
 		int m_Width, m_Height;
 		int m_GeneratedFacesNum;
-		std::vector<Ref<Texture>> m_CubeMapFaces;
+		esgstl::vector<Ref<Texture>> m_CubeMapFaces;
 		CubemapSettings m_CubeMapSettings;
 	};
 }

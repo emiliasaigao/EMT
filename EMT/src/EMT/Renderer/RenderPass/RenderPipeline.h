@@ -28,7 +28,7 @@ namespace EMT {
 
 	private:
 		Ref<Scene> m_Scene;
-		std::vector<Ref<RenderPass>> m_RenderPasses;
-		std::vector<Ref<RenderPass>> m_PreRenderPasses;
+		esgstl::vector<Ref<RenderPass>> m_RenderPasses;
+		esgstl::vector<Ref<RenderPass>> m_PreRenderPasses;
 	};
 }
