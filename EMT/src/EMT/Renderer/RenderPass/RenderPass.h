@@ -70,9 +70,12 @@ namespace EMT {
 		PostProcessOutput postprocOutput;
 		SSRPassOutput ssrOutput;
 		PassThroughOutput passThroughOutput;
+		int shadowType = 0;
+		float PCSSLightSize = 15;
 		bool useSSAO = true;
 		bool useSSR = false;
 		float ssrThickness = 1.2;
+		float ssrEffect = 1.0;
 		float SSAOEffect = 1.0;
 		float SSAORadius = 2.0;
 		int SSAOKernelSize = 32;

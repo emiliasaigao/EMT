@@ -32,7 +32,7 @@ namespace EMT {
 		static inline Ref<Texture> GetDefaultAlbedo() { return s_DefaultAlbedo; }
 		static inline Ref<Texture> GetDefaultNormal() { return s_DefaultNormal; }
 		static inline Ref<Texture> GetDefaultMetallic() { return s_BlackTexture; }
-		static inline Ref<Texture> GetDefaultRoughness() { return s_BlackTexture; }
+		static inline Ref<Texture> GetDefaultRoughness() { return s_WhiteTexture; }
 		static inline Ref<Texture> GetDefaultAO() { return s_WhiteTexture; }
 		static inline Ref<Texture> GetFullMetallic() { return s_WhiteTexture; }
 		static inline Ref<Texture> GetNoMetallic() { return s_BlackTexture; }

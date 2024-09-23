@@ -65,6 +65,9 @@ void EMT::DeferredLightingPass::Draw() {
 	RenderPass::s_Context.shadowOutput.fbo->GetDepthStencilTexture()->Bind(0);
 	m_Shader->setInt("shadowMap", 0);
 
+	m_Shader->setInt("shadowType", RenderPass::s_Context.shadowType);
+	m_Shader->setFloat("LIGHT_WORLD_SIZE", RenderPass::s_Context.PCSSLightSize);
+
 	RenderPass::s_Context.irradianceMapOutput.irradianceCubemap->Bind(1);
 	m_Shader->setInt("irrandianceMap", 1);
 	RenderPass::s_Context.lPrefilterOutput.lPreFilterCubemap->Bind(2);

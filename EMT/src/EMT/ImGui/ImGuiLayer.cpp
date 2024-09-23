@@ -27,6 +27,22 @@ namespace EMT {
 		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/back.png");
 		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/front.png");
 		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
+		skyboxFilePaths = {};
+		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/right.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/left.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/top.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/bottom.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/back.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/front.png");
+		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
+		skyboxFilePaths = {};
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night/right.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night/left.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night/top.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night/bottom.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night/back.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night/front.png");
+		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
 	}
 
 	ImGuiLayer::~ImGuiLayer()
@@ -86,12 +102,33 @@ namespace EMT {
 		ImGui::DragFloat("SSAO Radius", &m_PipeLine->GetPassContext().SSAORadius, DRAG_SPEED, 0.0, 10.0);
 		ImGui::DragInt("SSAO KernelSize", &m_PipeLine->GetPassContext().SSAOKernelSize, DRAG_SPEED, 0, 64);
 		ImGui::DragFloat("SSR Thickness", &m_PipeLine->GetPassContext().ssrThickness, DRAG_SPEED, 0.0, 5.0);
+		ImGui::DragFloat("SSR Effect", &m_PipeLine->GetPassContext().ssrEffect, DRAG_SPEED, 0.0, 1.0);
+		ImGui::DragFloat("PCSS Light World Size", &m_PipeLine->GetPassContext().PCSSLightSize, DRAG_SPEED, 0.0, 100);
 		
+		ImGui::Text("ShadowType");
+		int& shadowType = m_PipeLine->GetPassContext().shadowType;
+		if (ImGui::RadioButton("PCF", shadowType == 0)) {
+			shadowType = 0;
+		}
+		if (ImGui::RadioButton("PCSS", shadowType == 1)) {
+			shadowType = 1;
+		}
+		if (ImGui::RadioButton("VSSM", shadowType == 2)) {
+			shadowType = 2;
+		}
+
+		ImGui::Text("Skybox");
 		if (ImGui::RadioButton("city_night", mCurSkyBoxIdx == 0)) {
 			mCurSkyBoxIdx = 0;
 		}
 		if (ImGui::RadioButton("sea", mCurSkyBoxIdx == 1)) {
 			mCurSkyBoxIdx = 1;
+		}
+		if (ImGui::RadioButton("daily", mCurSkyBoxIdx == 2)) {
+			mCurSkyBoxIdx = 2;
+		}
+		if (ImGui::RadioButton("night", mCurSkyBoxIdx == 3)) {
+			mCurSkyBoxIdx = 3;
 		}
 		if (mCurSkyBoxIdx != mLastSkyBoxIdx) {
 			m_Scene->GetSkybox() = m_SkyBoxes[mCurSkyBoxIdx];
@@ -133,8 +170,8 @@ namespace EMT {
 			auto models = m_Scene->GetModels();
 			for (auto& model : models)
 			{
-				if (ImGui::TreeNode(model->GetName().c_str())) {
-					model->OnImGuiRender();
+				if (ImGui::TreeNode(model.GetName().c_str())) {
+					model.OnImGuiRender();
 					ImGui::TreePop();
 				}
 			}

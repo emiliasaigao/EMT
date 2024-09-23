@@ -78,10 +78,10 @@ private:
 
 class SandboxApp : public EMT::Application {
 public:
-	SandboxApp()
-	:m_Scene(new EMT::Scene()){
-		m_RenderPipeLine = std::make_shared<EMT::RenderPipeLine>(m_Scene, GetWindow()->GetWidth(), GetWindow()->GetHeight());
+	SandboxApp(){
 		EMT::TextureLoader::InitDefaultTextures();
+		m_Scene.reset(new EMT::Scene());
+		m_RenderPipeLine = std::make_shared<EMT::RenderPipeLine>(m_Scene, GetWindow()->GetWidth(), GetWindow()->GetHeight());
 		PushLayer(new ExampleLayer(m_Scene, m_RenderPipeLine));
 		PushOverLayer(new EMT::ImGuiLayer(m_Scene, m_RenderPipeLine));
 	}

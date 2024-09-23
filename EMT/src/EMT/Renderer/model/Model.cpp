@@ -9,34 +9,75 @@ namespace EMT {
 	}
 
 	Model::Model(const Mesh& mesh) {
-		mMeshes.push_back(mesh);
+		
+		m_BVH = std::make_shared<BVHAccel<Mesh>>(std::initializer_list<Mesh>{mesh});
 		mName = "None_";
 		mName += std::to_string(noNameNum).c_str();
 		noNameNum++;
 	}
 
 	Model::Model(const esgstl::vector<Mesh>& meshes) {
-		mMeshes = meshes;
+		m_BVH = std::make_shared<BVHAccel<Mesh>>(meshes);
 		mName = "None_";
 		mName += std::to_string(noNameNum).c_str();
 		noNameNum++;
 	}
 
+	Model::Model(Model&& model)
+		:mDirectory(std::move(model.mDirectory)),
+		mName(std::move(model.mName)),
+		mCenter(std::move(model.mCenter)),
+		mPosition(std::move(model.mPosition)),
+		mScale(std::move(model.mScale)),
+		mRotateAxis(std::move(model.mRotateAxis)),
+		m_BVH(std::move(model.m_BVH)){
+	}
 
-	void Model::Draw(const Ref<Shader>& shader, bool isUseMaterial) const {
+	Model::Model(const Model& model)
+		:mDirectory(model.mDirectory),
+		mName(model.mName),
+		mCenter(model.mCenter),
+		mPosition(model.mPosition),
+		mScale(model.mScale),
+		mRotation(model.mRotation),
+		mRotateAxis(model.mRotateAxis),
+		m_BVH(model.m_BVH){
+	}
 
-		for (unsigned int i = 0; i < mMeshes.size(); ++i) {
+	Model& Model::operator=(Model&& model) {
+		Model tmp(std::move(model));
+		std::swap(*this, tmp);
+		return *this;
+	}
+
+	Model& Model::operator=(const Model& model) {
+		mDirectory = model.mDirectory;
+		mName = model.mName;
+		mCenter = model.mCenter;
+		mPosition = model.mPosition;
+		mScale = model.mScale;
+		mRotation = model.mRotation;
+		mRotateAxis = model.mRotateAxis;
+		m_BVH = model.m_BVH;
+		return *this;
+	}
+
+
+	void Model::Draw(const Ref<Shader>& shader, const std::array<Plane, 6>& frustum, bool isUseMaterial) const {
+		//auto meshes = GetViewableMeshes(frustum);
+		auto meshes = GetMeshes();
+		for (unsigned int i = 0; i < meshes.size(); ++i) {
 
 			if (isUseMaterial) {
-				mMeshes[i].m_Material->BindMaterial(shader);
+				meshes[i].m_Material->BindMaterial(shader);
 
 				// check whether to use normal mapping
-				if (mMeshes[i].HasTangents())
+				if (meshes[i].HasTangents())
 					shader->setInt("useNormalMapping", 1);
 				else
 					shader->setInt("useNormalMapping", 0);
 			}
-			mMeshes[i].Draw();
+			meshes[i].Draw();
 		}
 	}
 
@@ -52,23 +93,29 @@ namespace EMT {
 		mDirectory = path.substr(0, path.find_last_of('/'));
 		mName = mDirectory.substr(mDirectory.find_last_of('/') + 1, mDirectory.size());
 
-		ProcessNode(scene->mRootNode, scene);
+		esgstl::vector<Mesh> meshes;
+		ProcessNode(scene->mRootNode, scene, meshes);
+
+		// TODO：构建BVH
+		m_BVH = std::make_shared<BVHAccel<Mesh>>(std::move(meshes));
 	}
 
 
-	void Model::ProcessNode(aiNode* node, const aiScene* scene)
+	void Model::ProcessNode(aiNode* node, const aiScene* scene, esgstl::vector<Mesh>& meshes)
 	{
 		for (size_t i = 0; i < node->mNumMeshes; i++) {
 			// 获取节点中的网格数据
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-			mMeshes.push_back(ProcessMesh(mesh, scene));
+			Mesh emtMesh = ProcessMesh(mesh, scene);
+			meshes.push_back(emtMesh);
 		}
 
 		// 递归处理子节点
 		for (size_t i = 0; i < node->mNumChildren; i++)
 		{
-			ProcessNode(node->mChildren[i], scene);
+			ProcessNode(node->mChildren[i], scene, meshes);
 		}
+		
 	}
 
 	Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
@@ -175,6 +222,7 @@ namespace EMT {
 		ImGui::DragFloat3("RotateAxis", &mRotateAxis[0], DRAG_SPEED, -1, 1);
 		if (ImGui::TreeNode("Meshes"))
 		{
+			auto mMeshes = GetMeshes();
 			for (int i = 0; i < mMeshes.size(); i++) {
 				if (ImGui::TreeNode((std::string("mesh_") + std::to_string(i).data()).c_str()))
 				{
@@ -185,6 +233,30 @@ namespace EMT {
 			ImGui::TreePop();
 		}
 
+	}
+
+	esgstl::vector<Mesh*> Model::GetViewableMeshes(const std::array<Plane, 6>& frustum) const
+	{
+		esgstl::vector<Mesh*> viewableMeshes;
+		auto root = m_BVH->root;
+		esgstl::queue<Ref<BVHBuildNode<Mesh>>> queue;
+		queue.push(root);
+		while (!queue.empty()) {
+			auto node = queue.front();
+			queue.pop();
+			// 如果相交，则进一步探寻子节点
+			if (!node->bounds.OverlapFrustum(frustum)) {
+				// 如果已经是叶子节点，则将叶子节点的model加入结果集中
+				if (node->left == nullptr && node->right == nullptr)
+					viewableMeshes.push_back(node->object);
+				else {
+					// 否则向下探寻子节点的相交关系
+					queue.push(node->left);
+					queue.push(node->right);
+				}
+			}
+		}
+		return viewableMeshes;
 	}
 
 }

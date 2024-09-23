@@ -28,10 +28,11 @@ namespace EMT {
 	
 	void Renderer::Render(const Ref<Scene>& scene, const Ref<Shader>& shader, bool isUseMaterial) {
 		shader->Bind();
-		auto models = scene->GetModels();
-		for (const auto& model : models) {
+		auto models = scene->GetViewableModels();
+		//auto models = scene->GetModels();
+		for (auto& model : models) {
 			SetupModelMatrix(model, shader, isUseMaterial);
-			model->Draw(shader, isUseMaterial);
+			model->Draw(shader, scene->GetFrustumPlanes(), isUseMaterial);
 		}
 		shader->Unbind();
 	}
@@ -48,7 +49,7 @@ namespace EMT {
 		skybox->m_Cubemap->Bind();
 		skyboxShader->setInt("skybox", 0);
 
-		skybox->m_Cube->Draw(skyboxShader, false);
+		RenderCube();
 
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::Less);
 		skyboxShader->Unbind();
@@ -67,7 +68,7 @@ namespace EMT {
 	}
 
 
-	void Renderer::SetupModelMatrix(const Ref<Model>& model, const Ref<Shader>& shader, bool isUseMaterial) {
+	void Renderer::SetupModelMatrix(Model* model, const Ref<Shader>& shader, bool isUseMaterial) {
 		glm::mat4 modelMatrix(1.0f);
 		glm::mat4 translate = glm::translate(glm::mat4(1.0f), model->GetPosition());
 

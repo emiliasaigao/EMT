@@ -250,6 +250,10 @@
     <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\SSRPass.h" />
+    <ClInclude Include="src\EMT\Renderer\Model\AABB.h" />
+    <ClInclude Include="src\EMT\Renderer\BVH.h" />
+    <ClInclude Include="src\EMT\Renderer\Ray.h" />
+    <ClInclude Include="src\EMT\Renderer\Model\Triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -412,6 +416,8 @@
     <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\SSRPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\BVH.cpp" />
+    <ClCompile Include="src\EMT\Renderer\Model\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\simplecolor.vert" />

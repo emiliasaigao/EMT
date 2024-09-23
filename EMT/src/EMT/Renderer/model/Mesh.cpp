@@ -36,6 +36,9 @@ namespace EMT {
 
 
 	void Mesh::SetupMesh() {
+		// º∆À„∞¸Œß∫–”√
+		glm::vec3 min_vert = glm::vec3(std::numeric_limits<float>::infinity());
+		glm::vec3 max_vert = glm::vec3(-std::numeric_limits<float>::infinity());
 
 		esgstl::vector<Vertex> vertices;
 		for (unsigned int i = 0;i < m_Positions.size();++i) {
@@ -66,14 +69,26 @@ namespace EMT {
 		});
 		
 		m_VAO->AddVertexBuffer(m_VBO);
-			
+		
+		esgstl::vector<Triangle> triangles;
 		if (m_Indices.size() > 0) {
 			m_EBO = ElementBuffer::Create(&m_Indices[0], m_Indices.size());
 			m_VAO->SetElementBuffer(m_EBO);
+			triangles.reserve(m_Indices.size() / 3);
+			for (int i = 0; i < m_Indices.size(); i += 3) {
+				triangles.emplace_back(m_Positions[m_Indices[i]], m_Positions[m_Indices[i + 1]], m_Positions[m_Indices[i + 2]]);
+			}
 		}
+		else {
+			triangles.reserve(m_Positions.size() / 3);
+			for (int i = 0; i < m_Positions.size(); i += 3) {
+				triangles.emplace_back(m_Positions[i], m_Positions[i + 1], m_Positions[i + 2]);
+			}
+		}
+		m_BVH = std::make_shared<BVHAccel<Triangle>>(triangles);
 
 		m_VAO->Unbind();
-
+		
 	}
 
 	void Mesh::OnImGuiRender() {

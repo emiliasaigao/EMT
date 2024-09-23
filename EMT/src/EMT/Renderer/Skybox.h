@@ -12,7 +12,6 @@ namespace EMT {
 		~Skybox() {}
 		
 	public:
-		Ref<Model> m_Cube;
 		Ref<Cubemap> m_Cubemap;
 		Ref<Shader> m_SkyboxShader;
 	};

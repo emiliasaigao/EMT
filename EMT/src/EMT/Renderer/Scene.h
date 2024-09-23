@@ -3,6 +3,7 @@
 #include "EMT/Core.h"
 #include "Camera.h"
 #include "Skybox.h"
+#include "BVH.h"
 #include "light/LightManager.h"
 #include "model/Model.h"
 #include "model/shapes/Cube.h"
@@ -10,6 +11,7 @@
 #include "model/shapes/Sphere.h"
 
 namespace EMT {
+
 	class Scene
 	{
 	public:
@@ -19,7 +21,13 @@ namespace EMT {
 		inline Ref<Camera> GetCamera() { return mCamera; }
 		inline Ref<Skybox>& GetSkybox() { return mSkybox; }
 		inline Ref<LightManager> GetLightManager() { return mLightManager; }
-		inline esgstl::vector<Ref<Model>>& GetModels() { return mModels; }
+		inline esgstl::vector<Model>& GetModels() { return mBVH->GetPrimitives(); }
+		inline const std::array<Plane, 6>& GetFrustumPlanes() const { return mFrustumPlanes; }
+
+		esgstl::vector<Model*> GetViewableModels();
+
+	private:
+		void flushFrustumPlanes();
 
 	public:
 		void Init(int sceneID);
@@ -29,6 +37,7 @@ namespace EMT {
 		Ref<LightManager> mLightManager;
 		Ref<Skybox> mSkybox;
 
-		esgstl::vector<Ref<Model>> mModels;
+		Ref<BVHAccel<Model>> mBVH;
+		std::array<Plane, 6> mFrustumPlanes;
 	};
 }
