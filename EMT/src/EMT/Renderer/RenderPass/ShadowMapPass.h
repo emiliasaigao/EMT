@@ -14,6 +14,6 @@ namespace EMT {
 
 		virtual void Draw() override;
 	private:
-		esgstl::vector<glm::mat4> getLightPVMatrix(esgstl::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir);
+		esgstl::vector<glm::mat4> getLightPVMatrix(const esgstl::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir);
 	};
 }

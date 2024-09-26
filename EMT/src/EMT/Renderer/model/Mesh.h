@@ -2,7 +2,6 @@
 #include "./Material.h"
 #include "./glm/glm.hpp"
 #include "./Triangle.h"
-#include "EMT/Renderer/BVH.h"
 #include "EMT/Renderer/VertexArray.h"
 #include "EMT/Renderer/Buffer.h"
 #include "EMT/Renderer/RenderCommand.h"
@@ -49,6 +48,9 @@ namespace EMT {
 		inline Ref<Material> GetMaterial() { return m_Material; }
 
 		inline const AABB& GetAABB() { return m_BVH->WorldBound(); }
+		inline void SetBVHNode(Ref<BVHBuildNode<Mesh>> node) {
+			m_BVH_Node = node;
+		}
 
 	protected:
 		void SetupMesh();
@@ -68,5 +70,6 @@ namespace EMT {
 		Ref<ElementBuffer> m_EBO;
 		Ref<Material> m_Material; 
 		Ref<BVHAccel<Triangle>> m_BVH;
+		Ref<BVHBuildNode<Mesh>> m_BVH_Node;
 	};
 }

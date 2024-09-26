@@ -52,14 +52,15 @@ namespace EMT {
 		}
 		RenderCommand::EnableDepthTest();
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::Less);
-		Renderer::Render(m_Scene, m_Shader, false);
+		auto MaxFrustumLightPVMatrix = getLightPVMatrix({ {n,f} }, directionalLightDir);
+		Renderer::Render(m_Scene, m_Shader, false, MaxFrustumLightPVMatrix[0]);
 
 		RenderPass::s_Context.shadowOutput.lightSpaceMatrices = LightPVmatrix;
 		RenderPass::s_Context.shadowOutput.frustum = frustum;
 
 	}
 
-	esgstl::vector<glm::mat4> ShadowMapPass::getLightPVMatrix(esgstl::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir) {
+	esgstl::vector<glm::mat4> ShadowMapPass::getLightPVMatrix(const esgstl::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir) {
 		esgstl::vector<glm::mat4> LightVPMatrix;
 
 		// ndc标准设备空间的八个顶点
@@ -70,7 +71,7 @@ namespace EMT {
 
 		// 找到这八个顶点的世界坐标，需要乘上view和Projection的逆
 		glm::mat4 cameraView = m_Scene->GetCamera()->getViewMatrix();
-		for (int i = 0; i < EMT::CSCADED_SIZE; ++i) {
+		for (int i = 0; i < frustum.size(); ++i) {
 			glm::mat4 cameraProjection = glm::perspective(glm::radians(m_Scene->GetCamera()->Zoom),
 															float(RenderPass::s_Context.windowWidth) / float(RenderPass::s_Context.windowHeight),
 															frustum[i].first, frustum[i].second);

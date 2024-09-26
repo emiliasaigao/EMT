@@ -100,6 +100,37 @@ namespace EMT {
             return (i == 0) ? pMin : pMax;
         }
 
+        void Transform(const glm::mat4& transform) {
+            // AABB 的 8 个顶点
+            glm::vec3 vertices[8] = {
+                pMin,
+                glm::vec3(pMax.x, pMin.y, pMin.z),
+                glm::vec3(pMin.x, pMax.y, pMin.z),
+                glm::vec3(pMin.x, pMin.y, pMax.z),
+                glm::vec3(pMax.x, pMax.y, pMin.z),
+                glm::vec3(pMin.x, pMax.y, pMax.z),
+                glm::vec3(pMax.x, pMin.y, pMax.z),
+                pMax
+            };
+
+            // 初始化变换后的最小点和最大点
+            glm::vec3 newMin = glm::vec3(std::numeric_limits<float>::max());
+            glm::vec3 newMax = glm::vec3(std::numeric_limits<float>::lowest());
+
+            // 对 8 个顶点应用变换矩阵
+            for (int i = 0; i < 8; ++i) {
+                glm::vec4 transformedVertex = transform * glm::vec4(vertices[i], 1.0f);
+                glm::vec3 transformedPos = glm::vec3(transformedVertex); // 忽略 w 分量
+
+                // 更新新的 AABB 的最小和最大点
+                newMin = glm::min(newMin, transformedPos);
+                newMax = glm::max(newMax, transformedPos);
+            }
+
+            pMax = newMax;
+            pMin = newMin;
+        }
+
     private:
         // 计算最远点（Positive Vertex）
         glm::vec3 getPositiveVertex(const glm::vec3& normal) const {
@@ -132,5 +163,11 @@ namespace EMT {
         ret.pMin = glm::min(b.pMin, p);
         ret.pMax = glm::max(b.pMax, p);
         return ret;
+    }
+
+    inline AABB Transform(const AABB& b, const glm::mat4& transform) {
+        AABB res = b;
+        res.Transform(transform);
+        return res;
     }
 }

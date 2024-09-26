@@ -24,17 +24,20 @@ namespace EMT {
 	}
 
 	Model::Model(Model&& model)
-		:mDirectory(std::move(model.mDirectory)),
+		:hasTransformed(model.hasTransformed),
+		mDirectory(std::move(model.mDirectory)),
 		mName(std::move(model.mName)),
 		mCenter(std::move(model.mCenter)),
 		mPosition(std::move(model.mPosition)),
 		mScale(std::move(model.mScale)),
+		mRotation(model.mRotation),
 		mRotateAxis(std::move(model.mRotateAxis)),
 		m_BVH(std::move(model.m_BVH)){
 	}
 
 	Model::Model(const Model& model)
-		:mDirectory(model.mDirectory),
+		:hasTransformed(model.hasTransformed),
+		mDirectory(model.mDirectory),
 		mName(model.mName),
 		mCenter(model.mCenter),
 		mPosition(model.mPosition),
@@ -51,6 +54,7 @@ namespace EMT {
 	}
 
 	Model& Model::operator=(const Model& model) {
+		hasTransformed = model.hasTransformed,
 		mDirectory = model.mDirectory;
 		mName = model.mName;
 		mCenter = model.mCenter;
@@ -64,20 +68,20 @@ namespace EMT {
 
 
 	void Model::Draw(const Ref<Shader>& shader, const std::array<Plane, 6>& frustum, bool isUseMaterial) const {
-		//auto meshes = GetViewableMeshes(frustum);
-		auto meshes = GetMeshes();
+		auto meshes = GetViewableMeshes(frustum);
+		//auto meshes = GetMeshes();
 		for (unsigned int i = 0; i < meshes.size(); ++i) {
 
 			if (isUseMaterial) {
-				meshes[i].m_Material->BindMaterial(shader);
+				meshes[i]->m_Material->BindMaterial(shader);
 
 				// check whether to use normal mapping
-				if (meshes[i].HasTangents())
+				if (meshes[i]->HasTangents())
 					shader->setInt("useNormalMapping", 1);
 				else
 					shader->setInt("useNormalMapping", 0);
 			}
-			meshes[i].Draw();
+			meshes[i]->Draw();
 		}
 	}
 
@@ -216,10 +220,18 @@ namespace EMT {
 		//ImGui::Text(mDirectory.c_str());
 
 		ImGui::Text((std::string("Center: (") + std::to_string(mCenter.x) + ", " + std::to_string(mCenter.y) + ", " + std::to_string(mCenter.z) + " )").c_str());
-		ImGui::DragFloat3("Pos", &mPosition[0], DRAG_SPEED);
-		ImGui::DragFloat3("Scale", &mScale[0], DRAG_SPEED);
-		ImGui::DragFloat("Rotate_Angle", &mRotation, DRAG_SPEED * 10, -180, 180);
-		ImGui::DragFloat3("RotateAxis", &mRotateAxis[0], DRAG_SPEED, -1, 1);
+		if (ImGui::DragFloat3("Pos", &mPosition[0], DRAG_SPEED)) {
+			SetPosition(mPosition);
+		}
+		if (ImGui::DragFloat3("Scale", &mScale[0], DRAG_SPEED)) {
+			SetScale(mScale);
+		};
+		if (ImGui::DragFloat("Rotate_Angle", &mRotation, DRAG_SPEED * 10, -180, 180)) {
+			SetRotation(mRotation);
+		}
+		if (ImGui::DragFloat3("RotateAxis", &mRotateAxis[0], DRAG_SPEED, -1, 1)) {
+			SetRotateAxis(mRotateAxis);
+		}
 		if (ImGui::TreeNode("Meshes"))
 		{
 			auto mMeshes = GetMeshes();
@@ -245,7 +257,7 @@ namespace EMT {
 			auto node = queue.front();
 			queue.pop();
 			// 如果相交，则进一步探寻子节点
-			if (!node->bounds.OverlapFrustum(frustum)) {
+			if (node->curBounds.OverlapFrustum(frustum)) {
 				// 如果已经是叶子节点，则将叶子节点的model加入结果集中
 				if (node->left == nullptr && node->right == nullptr)
 					viewableMeshes.push_back(node->object);
@@ -257,6 +269,32 @@ namespace EMT {
 			}
 		}
 		return viewableMeshes;
+	}
+
+	void Model::UpdateBVH() {
+		const glm::mat4& transform = GetModelMatrix();
+		// 自下从上更新Model层级BVH
+		auto node = m_BVH_Node;
+		node->curBounds = Transform(node->srcBounds, transform);
+		node = node->parent;
+		while (node) {
+			node->curBounds = Union(node->left->curBounds, node->right->curBounds);
+			node = node->parent;
+		}
+		// 整体更新Mesh层级BVH
+		m_BVH->UpdateGlobal(transform);
+	}
+
+	glm::mat4 Model::GetModelMatrix() const
+	{
+		glm::mat4 modelMatrix(1.0f);
+		glm::mat4 translate = glm::translate(glm::mat4(1.0f), GetPosition());
+
+		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::radians(GetRotation()), GetRotateAxis());
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), GetScale());
+		glm::mat4 centerTranslate = glm::translate(glm::mat4(1.0f), (-GetCenter()));
+		modelMatrix = translate * rotate * scale * centerTranslate;
+		return modelMatrix;
 	}
 
 }

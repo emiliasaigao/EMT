@@ -7,11 +7,13 @@
 namespace EMT {
     template <class T>
     struct BVHBuildNode {
-        AABB bounds;
+        AABB srcBounds;
+        AABB curBounds;
+        Ref<BVHBuildNode<T>> parent;
         Ref<BVHBuildNode<T>> left;
         Ref<BVHBuildNode<T>> right;
         T* object;
-        BVHBuildNode():bounds(),left(nullptr),right(nullptr),object(nullptr) {}
+        BVHBuildNode() :srcBounds(), curBounds(), parent(nullptr), left(nullptr), right(nullptr), object(nullptr) {}
     };
 
     template <class T>
@@ -24,8 +26,11 @@ namespace EMT {
 
         inline esgstl::vector<T>& GetPrimitives() { return m_Primitives; }
 
+        void UpdateGlobal(const glm::mat4& transform);
         Intersection Intersect(const Ray& ray) const;
         bool IntersectP(const Ray& ray) const;
+
+    public:
         Ref<BVHBuildNode<T>> root;
 
     private:
@@ -39,13 +44,14 @@ namespace EMT {
 
         // BVHAccel Private Data
         esgstl::vector<T> m_Primitives;
+        glm::mat4 m_Transform = glm::mat4(1);
     };
 
 
-    
+
     template<class T>
-    BVHAccel<T>::BVHAccel(const esgstl::vector<T>& p) 
-        : m_Primitives(p){
+    BVHAccel<T>::BVHAccel(const esgstl::vector<T>& p)
+        : m_Primitives(p) {
         esgstl::vector<T*> objectPtrs(m_Primitives.size());
         std::transform(m_Primitives.begin(), m_Primitives.end(), objectPtrs.begin(), [](T& object) {return &object;});
         root = recursiveBuild(objectPtrs);
@@ -61,7 +67,7 @@ namespace EMT {
 
     template<class T>
     inline const AABB& BVHAccel<T>::WorldBound() const {
-        return root->bounds;
+        return root->curBounds;
     }
 
     template<class T>
@@ -94,8 +100,10 @@ namespace EMT {
                 bounds = Union(bounds, objs[i]->GetAABB());
             // 如果只有一个对象了，则这是叶子节点
             if (objs.size() == 1) {
-                node->bounds = objs[0]->GetAABB();
+                node->srcBounds = objs[0]->GetAABB();
+                node->curBounds = node->srcBounds;
                 node->object = objs[0];
+                node->object->SetBVHNode(node);
                 node->left = nullptr;
                 node->right = nullptr;
             }
@@ -103,10 +111,13 @@ namespace EMT {
             else if (objs.size() == 2) {
                 node->left = std::make_shared<BVHBuildNode<T>>();
                 node->right = std::make_shared<BVHBuildNode<T>>();
+                node->left->parent = node;
+                node->right->parent = node;
                 taskStack.push(BVHBuildTask{ {task.objects[0]}, node->left });
                 taskStack.push(BVHBuildTask{ {task.objects[1]}, node->right });
 
-                node->bounds = Union(node->left->bounds, node->right->bounds);
+                node->srcBounds = Union(node->left->srcBounds, node->right->srcBounds);
+                node->curBounds = node->srcBounds;
             }
             // 否则，用表面积启发算法寻找相对最优子树构建
             else {
@@ -123,12 +134,15 @@ namespace EMT {
                     auto ending = objs.end();
                     node->left = std::make_shared<BVHBuildNode<T>>();
                     node->right = std::make_shared<BVHBuildNode<T>>();
+                    node->left->parent = node;
+                    node->right->parent = node;
                     esgstl::vector<T*> leftshapes = esgstl::vector<T*>(beginning, middling);
                     esgstl::vector<T*> rightshapes = esgstl::vector<T*>(middling, ending);
                     taskStack.push(BVHBuildTask{ std::move(leftshapes), node->left });
                     taskStack.push(BVHBuildTask{ std::move(rightshapes), node->right });
 
-                    node->bounds = bounds;
+                    node->srcBounds = bounds;
+                    node->curBounds = node->srcBounds;
                     continue;
                 }
 
@@ -174,7 +188,7 @@ namespace EMT {
                     AABB leftbounds, rightbounds;
                     for (int m = 0; m < leftshapes.size(); m++) {
                         leftbounds = Union(leftbounds, leftshapes[m]->GetAABB().Centroid());
-                        
+
                     }
                     for (int n = 0; n < rightshapes.size(); n++)
                         rightbounds = Union(rightbounds, rightshapes[n]->GetAABB().Centroid());
@@ -193,13 +207,16 @@ namespace EMT {
 
                 node->left = std::make_shared<BVHBuildNode<T>>();
                 node->right = std::make_shared<BVHBuildNode<T>>();
+                node->left->parent = node;
+                node->right->parent = node;
                 taskStack.push(BVHBuildTask{ std::move(bestleftshapes), node->left });
-                taskStack.push(BVHBuildTask{ std::move(bestrightshapes), node->right});
+                taskStack.push(BVHBuildTask{ std::move(bestrightshapes), node->right });
 
-                node->bounds = bounds;
+                node->srcBounds = bounds;
+                node->curBounds = node->srcBounds;
             }
         }
-      
+
         return root;
     }
 
@@ -208,9 +225,8 @@ namespace EMT {
         // 前序遍历BVH树
         Intersection intersection;
         std::array<int, 3> dirIsNeg = { int(ray.direction.x > 0),int(ray.direction.y > 0),int(ray.direction.z > 0) };
-        if (!node->bounds.IntersectP(ray, ray.direction_inv, dirIsNeg)) return intersection;
-        if (!(node->left) && !(node->right))
-        {
+        if (!node->curBounds.IntersectP(ray, ray.direction_inv, dirIsNeg)) return intersection;
+        if (!(node->left) && !(node->right)) {
             return node->object->getIntersection(ray);
         }
         Intersection i1 = getIntersection(node->left, ray);
@@ -219,4 +235,25 @@ namespace EMT {
         return i1.distance > i2.distance ? i2 : i1;
     }
 
+    template<class T>
+    void BVHAccel<T>::UpdateGlobal(const glm::mat4& transform) {
+        std::stack<Ref<BVHBuildNode<T>>> stc;
+        stc.push(root);
+        while (!stc.empty()) {
+            auto node = stc.top();
+            stc.pop();
+            if (node) {
+                stc.push(node);
+                stc.push(nullptr);
+                if (node->right) stc.push(node->right);
+                if (node->left) stc.push(node->left);
+            }
+            else {
+                node = stc.top();
+                stc.pop();
+                if (node->left == nullptr && node->right == nullptr) node->curBounds = Transform(node->srcBounds, transform);
+                else node->curBounds = Union(node->left->curBounds, node->right->curBounds);
+            }
+        }
+    }
 }

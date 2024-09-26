@@ -10,10 +10,17 @@ namespace EMT {
 		Init(sceneID);
 	}
 
-	esgstl::vector<Model*> Scene::GetViewableModels() {
+	esgstl::vector<Model*> Scene::GetViewableModels(const glm::mat4& VP) {
 		esgstl::vector<Model*> viewableModels;
-		flushFrustumPlanes();
-		auto frustum = GetFrustumPlanes();
+		glm::mat4 viewProjMatrix;
+		if (VP == glm::mat4(1)) {
+			viewProjMatrix = mCamera->getProjectionMatrix() * mCamera->getViewMatrix();
+		}
+		else {
+			viewProjMatrix = VP;
+		}
+		flushFrustumPlanes(viewProjMatrix);
+		auto& frustum = GetFrustumPlanes();
 		auto root = mBVH->root;
 		std::queue<Ref<BVHBuildNode<Model>>> queue;
 		queue.push(root);
@@ -21,7 +28,7 @@ namespace EMT {
 			auto node = queue.front();
 			queue.pop();
 			// 如果相交，则进一步探寻子节点
-			if (node->bounds.OverlapFrustum(frustum)) {
+			if (node->curBounds.OverlapFrustum(frustum)) {
 				// 如果已经是叶子节点，则将叶子节点的model加入结果集中
 				if (node->left == nullptr && node->right == nullptr)
 					viewableModels.push_back(node->object);
@@ -35,9 +42,17 @@ namespace EMT {
 		return viewableModels;
 	}
 
-	void Scene::flushFrustumPlanes()
+	void Scene::OnUpdate() {
+		for (auto& model : GetModels()) {
+			if (model.hasTransformed) {
+				model.UpdateBVH();
+				model.hasTransformed = false;
+			}
+		}
+	}
+
+	void Scene::flushFrustumPlanes(const glm::mat4& viewProjMatrix)
 	{
-		auto viewProjMatrix = mCamera->getProjectionMatrix() * mCamera->getViewMatrix();
 		std::array<Plane, 6>& planes = mFrustumPlanes;
 
 		// 提取六个平面方程 (a, b, c, d) 对应 ax + by + cz + d = 0
@@ -94,8 +109,8 @@ namespace EMT {
 
 
 		Model cube2 = Model(Cube());
-		/*cube2.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-		cube2.SetScale(glm::vec3(30.0f, 0.5f, 30.0f));*/
+		cube2.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+		cube2.SetScale(glm::vec3(30.0f, 0.5f, 30.0f));
 		cube2.GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_Color.png", &srgbTextureSettings));
 		//cube2->GetMesh(0)->GetMaterial()->SetRoughnessMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_Roughness.png"));
 		cube2.GetMesh(0)->GetMaterial()->SetRoughnessMap(TextureLoader::GetDefaultRoughness());
@@ -118,28 +133,34 @@ namespace EMT {
 		//	seele->GetMesh(i)->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_NormalGL.png"));
 		//}
 		//mModels.push_back(seele);
-		//Model marble_bust = Model("../EMT/assets/model/marble_bust/marble_bust_01_4k.fbx");
-		//marble_bust.SetScale(glm::vec3(5.f, 5.f, 5.f));
-		//marble_bust.SetPosition(glm::vec3(3.f, 2.f, 2.f));
-		//marble_bust.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
-		//marble_bust.SetRotation(-90.f);
+		Model marble_bust = Model("../EMT/assets/model/marble_bust/marble_bust_01_4k.fbx");
+		marble_bust.SetScale(glm::vec3(5.f, 5.f, 5.f));
+		marble_bust.SetPosition(glm::vec3(3.f, 2.f, 2.f));
+		marble_bust.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
+		marble_bust.SetRotation(-90.f);
+		mModels.push_back(std::move(marble_bust));
 
-		//mModels.push_back(std::move(marble_bust));
-
-		//Model gun = Model("../EMT/assets/model/Cerberus/Cerberus_LP.FBX");
-		//gun.GetMesh()->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_A.tga", &srgbTextureSettings));
-		//gun.GetMesh()->GetMaterial()->SetMetallicMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_M.tga"));
-		//gun.GetMesh()->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_N.tga"));
-		//gun.GetMesh()->GetMaterial()->SetRoughnessMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_R.tga"));
-		//gun.GetMesh()->GetMaterial()->SetAmbientOcclusionMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Raw/Cerberus_AO.tga"));
-		//gun.SetScale(glm::vec3(0.05f, 0.05f, 0.05f));
-		//gun.SetPosition(glm::vec3(-2.0f, 4.f, 0.f));
-		//gun.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
-		//gun.SetRotation(-90.f);
-		//mModels.push_back(std::move(gun));
+		Model gun = Model("../EMT/assets/model/Cerberus/Cerberus_LP.FBX");
+		gun.GetMesh()->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_A.tga", &srgbTextureSettings));
+		gun.GetMesh()->GetMaterial()->SetMetallicMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_M.tga"));
+		gun.GetMesh()->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_N.tga"));
+		gun.GetMesh()->GetMaterial()->SetRoughnessMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_R.tga"));
+		gun.GetMesh()->GetMaterial()->SetAmbientOcclusionMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Raw/Cerberus_AO.tga"));
+		gun.SetScale(glm::vec3(0.05f, 0.05f, 0.05f));
+		gun.SetPosition(glm::vec3(-2.0f, 4.f, 0.f));
+		gun.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
+		gun.SetRotation(-90.f);
+		mModels.push_back(std::move(gun));
 
 		mBVH = std::make_shared<BVHAccel<Model>>(mModels);
 		
+		for (auto& model : mBVH->GetPrimitives()) {
+			if (model.hasTransformed) {
+				model.UpdateBVH();
+				model.hasTransformed = false;
+			}
+		}
+
 		//TODO: skybox
 		esgstl::vector<std::string> skyboxFilePaths;
 		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/right.png");

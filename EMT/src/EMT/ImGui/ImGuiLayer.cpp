@@ -167,7 +167,7 @@ namespace EMT {
 		//model
 		if (ImGui::TreeNode("Models"))
 		{
-			auto models = m_Scene->GetModels();
+			auto& models = m_Scene->GetModels();
 			for (auto& model : models)
 			{
 				if (ImGui::TreeNode(model.GetName().c_str())) {

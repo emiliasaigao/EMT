@@ -25,6 +25,8 @@ namespace EMT {
 		void Draw(const Ref<Shader>& shader, const std::array<Plane, 6>& frustum, bool isUseMaterial) const;
 		void OnImGuiRender();
 		esgstl::vector<Mesh*> GetViewableMeshes(const std::array<Plane, 6>& frustum) const;
+		void UpdateBVH();
+		glm::mat4 GetModelMatrix() const;
 
 		// Getters and Setters
 		inline const glm::vec3& GetCenter() const { return mCenter; }
@@ -37,10 +39,28 @@ namespace EMT {
 		inline const std::string& GetName() { return mName; }
 		inline const AABB& GetAABB() const { return m_BVH->WorldBound(); }
 
-		inline void SetPosition(const glm::vec3& pos) { mPosition = pos; }
-		inline void SetScale(const glm::vec3& scale) { mScale = scale; }
-		inline void SetRotation(const float rotation) { mRotation = rotation; }
-		inline void SetRotateAxis(const glm::vec3& axis) { mRotateAxis = axis; }
+		inline void SetPosition(const glm::vec3& pos) { 
+			hasTransformed = true;
+			mPosition = pos; 
+		}
+		inline void SetScale(const glm::vec3& scale) { 
+			hasTransformed = true;
+			mScale = scale; 
+		}
+		inline void SetRotation(const float rotation) {
+			hasTransformed = true;
+			mRotation = rotation; 
+		}
+		inline void SetRotateAxis(const glm::vec3& axis) {
+			hasTransformed = true;
+			mRotateAxis = axis; 
+		}
+		inline void SetBVHNode(Ref<BVHBuildNode<Model>> node) {
+			m_BVH_Node = node;
+		}
+
+	public:
+		bool hasTransformed = false;
 
 	private:
 		void LoadModel(const std::string& path);
@@ -62,5 +82,6 @@ namespace EMT {
 		static unsigned int noNameNum;
 
 		Ref<BVHAccel<Mesh>> m_BVH;
+		Ref<BVHBuildNode<Model>> m_BVH_Node;
 	};
 }

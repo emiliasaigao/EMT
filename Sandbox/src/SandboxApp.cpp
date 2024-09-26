@@ -29,6 +29,7 @@ public:
 		m_Time = curTime;
 		EMT::RenderCommand::SetClearColor(glm::vec4(0.2));
 		EMT::RenderCommand::Clear();
+		m_Scene->OnUpdate();
 		m_PipeLine->Draw();
 	}
 
