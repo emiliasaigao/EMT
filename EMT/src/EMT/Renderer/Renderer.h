@@ -18,6 +18,7 @@ namespace EMT {
 		static void RenderNDCPlane();
 		static void RenderCube();
 
+		static void SetupModelMatrix(Model* model, const Ref<Shader>& shader, bool isUseMaterial);
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
 	private:
@@ -28,6 +29,5 @@ namespace EMT {
 		};
 
 		static SceneData* s_SceneData;
-		static void SetupModelMatrix(Model* model, const Ref<Shader>& shader, bool isUseMaterial);
 	};
 }

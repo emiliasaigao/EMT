@@ -2,8 +2,21 @@
 #include "Triangle.h"
 
 namespace EMT {
-    Intersection Triangle::GetIntersection(Ray ray) {
+    Intersection Triangle::GetIntersection(const Ray& ray) {
         Intersection inter;
+        if (m_Transform && *m_Transform != glm::mat4(1)) {
+            const glm::mat4& M = *m_Transform;
+            glm::vec4 v1_transformed = M * glm::vec4(m_p0, 1.f);
+            glm::vec4 v2_transformed = M * glm::vec4(m_p1, 1.f);
+            glm::vec4 v3_transformed = M * glm::vec4(m_p2, 1.f);
+            m_p0 = glm::vec3(v1_transformed / v1_transformed.w);
+            m_p1 = glm::vec3(v2_transformed / v2_transformed.w);
+            m_p2 = glm::vec3(v3_transformed / v3_transformed.w);
+
+            m_e1 = m_p1 - m_p0;
+            m_e2 = m_p2 - m_p0;
+            m_Normal = glm::normalize(glm::cross(m_e1, m_e2));
+        }
 
         if (glm::dot(ray.direction, m_Normal) > 0)
             return inter;

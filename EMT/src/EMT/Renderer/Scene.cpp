@@ -42,6 +42,15 @@ namespace EMT {
 		return viewableModels;
 	}
 
+	Model* Scene::GetSelectedModel(const Ray& ray) {
+		Intersection inter = mBVH->Intersect(ray);
+		if (inter.happened) {
+			inter.model->IsSelected = true;
+			return inter.model;
+		}
+		return nullptr;
+	}
+
 	void Scene::OnUpdate() {
 		for (auto& model : GetModels()) {
 			if (model.hasTransformed) {
@@ -108,14 +117,16 @@ namespace EMT {
 		//cube1->GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/texture/wood.png", &srgbTextureSettings));
 
 
-		Model cube2 = Model(Cube());
-		cube2.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-		cube2.SetScale(glm::vec3(30.0f, 0.5f, 30.0f));
-		cube2.GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_Color.png", &srgbTextureSettings));
-		//cube2->GetMesh(0)->GetMaterial()->SetRoughnessMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_Roughness.png"));
-		cube2.GetMesh(0)->GetMaterial()->SetRoughnessMap(TextureLoader::GetDefaultRoughness());
-		cube2.GetMesh(0)->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_NormalGL.png"));
-		mModels.push_back(std::move(cube2));
+		//Model cube2{ Cube() };
+		//cube2.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+		//cube2.SetScale(glm::vec3(30.0f, 0.5f, 30.0f));
+		//cube2.GetMesh(0)->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_Color.png", &srgbTextureSettings));
+		////cube2->GetMesh(0)->GetMaterial()->SetRoughnessMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_Roughness.png"));
+		//cube2.GetMesh(0)->GetMaterial()->SetRoughnessMap(TextureLoader::GetDefaultRoughness());
+		//cube2.GetMesh(0)->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_NormalGL.png"));
+		//mModels.push_back(std::move(cube2));
+
+
 
 
 		/*Ref<Model> sphere1 = std::make_shared<Model>(Sphere());
@@ -133,7 +144,11 @@ namespace EMT {
 		//	seele->GetMesh(i)->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/texture/Wood092_1K-PNG/Wood092_1K-PNG_NormalGL.png"));
 		//}
 		//mModels.push_back(seele);
-		Model marble_bust = Model("../EMT/assets/model/marble_bust/marble_bust_01_4k.fbx");
+		Model marble_bust = Model("../EMT/assets/model/marble_bust/marble_bust_01_2k.fbx");
+		marble_bust.GetMesh()->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/model/marble_bust/textures/marble_bust_01_diff_2k.png", &srgbTextureSettings));
+		marble_bust.GetMesh()->GetMaterial()->SetMixtureMap(TextureLoader::Load2DTexture("../EMT/assets/model/marble_bust/textures/marble_bust_01_arm_2k.png"));
+		marble_bust.GetMesh()->GetMaterial()->SeperateMixture();
+		marble_bust.GetMesh()->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/model/marble_bust/textures/marble_bust_01_nor_gl_2k.png"));
 		marble_bust.SetScale(glm::vec3(5.f, 5.f, 5.f));
 		marble_bust.SetPosition(glm::vec3(3.f, 2.f, 2.f));
 		marble_bust.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
@@ -147,12 +162,35 @@ namespace EMT {
 		gun.GetMesh()->GetMaterial()->SetRoughnessMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_R.tga"));
 		gun.GetMesh()->GetMaterial()->SetAmbientOcclusionMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Raw/Cerberus_AO.tga"));
 		gun.SetScale(glm::vec3(0.05f, 0.05f, 0.05f));
-		gun.SetPosition(glm::vec3(-2.0f, 4.f, 0.f));
+		gun.SetPosition(glm::vec3(-0.0f, 4.f, 0.f));
 		gun.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
 		gun.SetRotation(-90.f);
 		mModels.push_back(std::move(gun));
 
-		mBVH = std::make_shared<BVHAccel<Model>>(mModels);
+		Model stone_fire_pit = Model("../EMT/assets/model/stone_fire_pit/stone_fire_pit_2k.fbx");
+		stone_fire_pit.GetMesh()->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/model/stone_fire_pit/textures/stone_fire_pit_diff_2k.png", &srgbTextureSettings));
+		stone_fire_pit.GetMesh()->GetMaterial()->SetMixtureMap(TextureLoader::Load2DTexture("../EMT/assets/model/stone_fire_pit/textures/stone_fire_pit_arm_2k.png"));
+		stone_fire_pit.GetMesh()->GetMaterial()->SeperateMixture();
+		stone_fire_pit.GetMesh()->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/model/stone_fire_pit/textures/stone_fire_pit_nor_gl_2k.png"));
+		stone_fire_pit.SetScale(glm::vec3(20.f, 20.f, 20.f));
+		stone_fire_pit.SetPosition(glm::vec3(0.f, -1.f, 0.f));
+		stone_fire_pit.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
+		stone_fire_pit.SetRotation(-90.f);
+		mModels.push_back(std::move(stone_fire_pit));
+
+		Model Ottoman = Model("../EMT/assets/model/Ottoman/Ottoman_01_2k.fbx");
+		Ottoman.GetMesh()->GetMaterial()->SetAlbedoMap(TextureLoader::Load2DTexture("../EMT/assets/model/Ottoman/textures/Ottoman_01_diff_2k.png", &srgbTextureSettings));
+		Ottoman.GetMesh()->GetMaterial()->SetMixtureMap(TextureLoader::Load2DTexture("../EMT/assets/model/Ottoman/textures/Ottoman_01_arm_2k.png"));
+		Ottoman.GetMesh()->GetMaterial()->SeperateMixture();
+		Ottoman.GetMesh()->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/model/Ottoman/textures/Ottoman_01_nor_gl_2k.png"));
+		
+		Ottoman.SetScale(glm::vec3(5.f, 5.f, 5.f));
+		Ottoman.SetPosition(glm::vec3(-5.f, 2.f, 0.f));
+		Ottoman.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
+		Ottoman.SetRotation(-90.f);
+		mModels.push_back(std::move(Ottoman));
+
+		mBVH = std::make_shared<BVHAccel<Model>>(esgstl::move(mModels));
 		
 		for (auto& model : mBVH->GetPrimitives()) {
 			if (model.hasTransformed) {

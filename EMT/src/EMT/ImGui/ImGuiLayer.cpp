@@ -104,6 +104,8 @@ namespace EMT {
 		ImGui::DragFloat("SSR Thickness", &m_PipeLine->GetPassContext().ssrThickness, DRAG_SPEED, 0.0, 5.0);
 		ImGui::DragFloat("SSR Effect", &m_PipeLine->GetPassContext().ssrEffect, DRAG_SPEED, 0.0, 1.0);
 		ImGui::DragFloat("PCSS Light World Size", &m_PipeLine->GetPassContext().PCSSLightSize, DRAG_SPEED, 0.0, 100);
+		ImGui::DragFloat("Outline Thickness", &m_PipeLine->GetPassContext().OutlineThickness, DRAG_SPEED, 0.005, 0.01);
+
 		
 		ImGui::Text("ShadowType");
 		int& shadowType = m_PipeLine->GetPassContext().shadowType;
@@ -138,7 +140,7 @@ namespace EMT {
 
 		ImGui::End();
 
-		ImGui::Begin("IrradianceCubeMap");
+		/*ImGui::Begin("IrradianceCubeMap");
 		m_PipeLine->GetPassContext().irradianceMapOutput.irradianceCubemap->DisplayTexture();
 		ImGui::End();
 
@@ -152,12 +154,7 @@ namespace EMT {
 
 		ImGui::Begin("Eavg");
 		m_PipeLine->GetPassContext().eavgOutput.fbo->GetColorTexture()->DisplayTexture();
-		ImGui::End();
-
-
-		ImGui::Begin("LigthPass");
-		m_PipeLine->GetPassContext().lightOutput.fbo->GetColorTexture()->DisplayTexture();
-		ImGui::End();
+		ImGui::End();*/
 
 		ImGui::Begin("Scene_Hierarchy");
 		//all kinds of light
@@ -165,11 +162,12 @@ namespace EMT {
 		lightManager->OnImGuiRender();
 
 		//model
-		if (ImGui::TreeNode("Models"))
-		{
+		if (ImGui::TreeNode("Models")) {
 			auto& models = m_Scene->GetModels();
-			for (auto& model : models)
-			{
+			for (auto& model : models) {
+				if (model.IsSelected) {
+					ImGui::SetNextItemOpen(true);
+				}
 				if (ImGui::TreeNode(model.GetName().c_str())) {
 					model.OnImGuiRender();
 					ImGui::TreePop();

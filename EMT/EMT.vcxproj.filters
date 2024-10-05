@@ -254,6 +254,7 @@
     <ClInclude Include="src\EMT\Renderer\BVH.h" />
     <ClInclude Include="src\EMT\Renderer\Ray.h" />
     <ClInclude Include="src\EMT\Renderer\Model\Triangle.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\OutlineGenPass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -418,6 +419,7 @@
     <ClCompile Include="src\EMT\Renderer\RenderPass\SSRPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\BVH.cpp" />
     <ClCompile Include="src\EMT\Renderer\Model\Triangle.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\OutlineGenPass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\simplecolor.vert" />
@@ -448,5 +450,7 @@
     <None Include="assets\shader\common\DepthGen.vert" />
     <None Include="assets\shader\postprocess\SSR.vert" />
     <None Include="assets\shader\postprocess\SSR.frag" />
+    <None Include="assets\shader\common\OutlineGen.vert" />
+    <None Include="assets\shader\common\OutlineGen.frag" />
   </ItemGroup>
 </Project>

@@ -191,6 +191,7 @@
     <ClInclude Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\LutGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\OutlineGenPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\PassThroughPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPass.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPipeline.h" />
@@ -256,6 +257,7 @@
     <ClCompile Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\LutGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\OutlineGenPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\PassThroughPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPass.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPipeline.cpp" />
@@ -302,6 +304,8 @@
   <ItemGroup>
     <None Include="assets\shader\common\DepthGen.frag" />
     <None Include="assets\shader\common\DepthGen.vert" />
+    <None Include="assets\shader\common\OutlineGen.frag" />
+    <None Include="assets\shader\common\OutlineGen.vert" />
     <None Include="assets\shader\debug\CSMDebug.frag" />
     <None Include="assets\shader\debug\CSMDebug.vert" />
     <None Include="assets\shader\deferred\DeferredLighting.frag" />

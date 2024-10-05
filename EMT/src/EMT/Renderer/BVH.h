@@ -227,7 +227,7 @@ namespace EMT {
         std::array<int, 3> dirIsNeg = { int(ray.direction.x > 0),int(ray.direction.y > 0),int(ray.direction.z > 0) };
         if (!node->curBounds.IntersectP(ray, ray.direction_inv, dirIsNeg)) return intersection;
         if (!(node->left) && !(node->right)) {
-            return node->object->getIntersection(ray);
+            return node->object->GetIntersection(ray);
         }
         Intersection i1 = getIntersection(node->left, ray);
         Intersection i2 = getIntersection(node->right, ray);
@@ -251,7 +251,10 @@ namespace EMT {
             else {
                 node = stc.top();
                 stc.pop();
-                if (node->left == nullptr && node->right == nullptr) node->curBounds = Transform(node->srcBounds, transform);
+                if (node->left == nullptr && node->right == nullptr) {
+                    node->curBounds = Transform(node->srcBounds, transform);
+                    node->object->SetTransform(transform);
+                }
                 else node->curBounds = Union(node->left->curBounds, node->right->curBounds);
             }
         }

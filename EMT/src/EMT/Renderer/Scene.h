@@ -25,6 +25,8 @@ namespace EMT {
 		inline const std::array<Plane, 6>& GetFrustumPlanes() const { return mFrustumPlanes; }
 
 		esgstl::vector<Model*> GetViewableModels(const glm::mat4& VP);
+		Model* GetSelectedModel(const Ray& ray);
+
 		void OnUpdate();
 	private:
 		void flushFrustumPlanes(const glm::mat4& viewProjMatrix);

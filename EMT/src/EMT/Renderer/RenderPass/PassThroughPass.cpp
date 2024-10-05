@@ -34,9 +34,12 @@ namespace EMT {
 		RenderPass::s_Context.lightOutput.fbo->GetColorTexture()->Bind(0);
 		RenderPass::s_Context.ssrOutput.fbo->GetColorTexture()->Bind(1);
 		RenderPass::s_Context.ssaoBlurOutput.fbo->GetColorTexture()->Bind(2);
+		RenderPass::s_Context.outlineGenOutput.fbo->GetColorTexture()->Bind(3);
 		m_Shader->setInt("colorTexture", 0);
 		m_Shader->setInt("ssrTexture", 1);
 		m_Shader->setInt("ssaoBlurTexture", 2);
+		m_Shader->setInt("outlineMaskTexture", 3);
+
 
 
 		Renderer::RenderNDCPlane();

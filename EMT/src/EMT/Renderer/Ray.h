@@ -10,7 +10,7 @@ namespace EMT {
         glm::vec3 coords;
         glm::vec3 normal;
         double distance;
-        Ref<Model> model;
+        Model* model;
         Intersection():happened(false), coords(),normal(),distance(std::numeric_limits<double>::max()),model(nullptr) {}
     };
 

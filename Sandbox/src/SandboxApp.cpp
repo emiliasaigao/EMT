@@ -41,6 +41,7 @@ public:
 		EMT::EventDispatcher dispatcher(e);
 		dispatcher.DisPacth<EMT::MouseMovedEvent>(BIND_EVENT_FCN(ExampleLayer::OnMouseMove));
 		dispatcher.DisPacth<EMT::MouseScrolledEvent>(BIND_EVENT_FCN(ExampleLayer::OnMouseScroll));
+		dispatcher.DisPacth<EMT::MouseButtonPressedEvent>(BIND_EVENT_FCN(ExampleLayer::OnMouseButtonPress));
 	}
 
 private:
@@ -59,6 +60,13 @@ private:
 
 	bool OnMouseScroll(EMT::MouseScrolledEvent& e) {
 		m_Scene->GetCamera()->processMouseScroll(e.GetYOffset());
+		return true;
+	}
+
+	bool OnMouseButtonPress(EMT::MouseButtonPressedEvent& e) {
+		if (e.GetMouseButtonCode() == 0) {
+			m_PipeLine->OnTrySelectModel(m_LastX, m_LastY);
+		}
 		return true;
 	}
 

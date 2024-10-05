@@ -5,7 +5,7 @@
 #include "EMT/Renderer/VertexArray.h"
 #include "EMT/Renderer/Buffer.h"
 #include "EMT/Renderer/RenderCommand.h"
-
+#include "EMT/Log.h"
 namespace EMT {
 	struct Vertex {
 		// зјБъ
@@ -38,6 +38,11 @@ namespace EMT {
 			 esgstl::vector<glm::vec3>& bitangents, 
 			 esgstl::vector<unsigned int>& indices);
 
+		Mesh(const Mesh& rhs);
+		Mesh(Mesh&& rhs);
+		//Mesh& operator=(const Mesh& rhs);
+		//Mesh& operator=(Mesh&& rhs);
+
 		~Mesh() {}
 
 		void Draw() const;
@@ -48,9 +53,13 @@ namespace EMT {
 		inline Ref<Material> GetMaterial() { return m_Material; }
 
 		inline const AABB& GetAABB() { return m_BVH->WorldBound(); }
+		Intersection GetIntersection(const Ray& ray) { return m_BVH->Intersect(ray); }
+
 		inline void SetBVHNode(Ref<BVHBuildNode<Mesh>> node) {
 			m_BVH_Node = node;
 		}
+
+		void SetTransform(const glm::mat4& transform);
 
 	protected:
 		void SetupMesh();
@@ -64,12 +73,12 @@ namespace EMT {
 
 		esgstl::vector<unsigned int> m_Indices;
 		
-		//unsigned int mVAO, mVBO, mEBO;
 		Ref<VertexArray> m_VAO;
 		Ref<VertexBuffer> m_VBO;
 		Ref<ElementBuffer> m_EBO;
 		Ref<Material> m_Material; 
 		Ref<BVHAccel<Triangle>> m_BVH;
 		Ref<BVHBuildNode<Mesh>> m_BVH_Node;
+		glm::mat4 m_Transform;
 	};
 }

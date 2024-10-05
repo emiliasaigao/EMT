@@ -52,6 +52,11 @@ namespace EMT {
 		Ref<FrameBuffer> fbo;
 	};
 
+	struct OutLineGenPassOutput {
+		Model* model;
+		Ref<FrameBuffer> fbo;
+	};
+
 	struct PassThroughOutput {
 		Ref<FrameBuffer> fbo;
 	};
@@ -69,6 +74,7 @@ namespace EMT {
 		SSAOBlurPassOutput ssaoBlurOutput;
 		PostProcessOutput postprocOutput;
 		SSRPassOutput ssrOutput;
+		OutLineGenPassOutput outlineGenOutput;
 		PassThroughOutput passThroughOutput;
 		int shadowType = 0;
 		float PCSSLightSize = 15;
@@ -79,6 +85,7 @@ namespace EMT {
 		float SSAOEffect = 1.0;
 		float SSAORadius = 2.0;
 		int SSAOKernelSize = 32;
+		float OutlineThickness = 0.005f;
 	};
 
 	class RenderPass {

@@ -1,6 +1,7 @@
 #pragma once
 #include <limits>
 #include <array>
+#include "../Ray.h"
 #include "glm/glm.hpp"
 
 namespace EMT {
@@ -61,6 +62,25 @@ namespace EMT {
                 fmax(pMin.z, b.pMin.z)),
                 glm::vec3(fmin(pMax.x, b.pMax.x), fmin(pMax.y, b.pMax.y),
                     fmin(pMax.z, b.pMax.z)));
+        }
+
+        bool IntersectP(const Ray& ray, const glm::vec3& invDir, const std::array<int, 3>& dirIsNeg) const {
+            // 注意，disIsNeg是记录光线方向正负的数组
+            // std::array<int, 3> dirIsNeg = 
+            // { int(ray.direction.x > 0),int(ray.direction.y > 0),int(ray.direction.z > 0) };
+            // 因为如果光线方向是正的，那么它肯定先过坐标值较小的那个轴平面
+            // 下面的逻辑都是基于光线方向是正的情况的，所以如果实际光线方向为负，则需要交换一下tmin和tmax
+
+            glm::vec3 tmin = (pMin - ray.origin) * invDir;
+            glm::vec3 tmax = (pMax - ray.origin) * invDir;
+
+            for (int i = 0; i < 3; i++) {
+                if (!dirIsNeg[i]) std::swap(tmin[i], tmax[i]);
+            }
+
+            float texit = std::min(tmax.x, std::min(tmax.y, tmax.z));
+            float tenter = std::max(tmin.x, std::max(tmin.y, tmin.z));
+            return tenter <= texit && texit > 0;
         }
 
         glm::vec3 Offset(const glm::vec3& p) const {

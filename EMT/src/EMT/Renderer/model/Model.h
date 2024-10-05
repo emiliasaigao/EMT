@@ -38,6 +38,13 @@ namespace EMT {
 		inline Mesh* GetMesh(int index = 0) const { return &(m_BVH->GetPrimitives()[index]); }
 		inline const std::string& GetName() { return mName; }
 		inline const AABB& GetAABB() const { return m_BVH->WorldBound(); }
+		Intersection GetIntersection(const Ray& ray) {
+			auto res = m_BVH->Intersect(ray);
+			if (res.happened) {
+				res.model = this;
+			}
+			return res;
+		}
 
 		inline void SetPosition(const glm::vec3& pos) { 
 			hasTransformed = true;
@@ -60,7 +67,9 @@ namespace EMT {
 		}
 
 	public:
+		// 相对原始模型是否发生了变换
 		bool hasTransformed = false;
+		bool IsSelected = false;
 
 	private:
 		void LoadModel(const std::string& path);

@@ -8,7 +8,6 @@ namespace EMT {
 
 		RenderPass::s_Context.eavgOutput.fbo = FrameBuffer::Create(512, 512);
 
-		// add attachment and check whether success by call CreateFrameBuffer
 		TextureSettings colorTextureSettings;
 		colorTextureSettings.TextureFormat = EMT_R16F;
 		colorTextureSettings.TextureWrapSMode = EMT_CLAMP_TO_EDGE;

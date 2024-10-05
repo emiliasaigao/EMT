@@ -218,6 +218,11 @@ namespace EMT {
 
 	void Model::OnImGuiRender() {
 		//ImGui::Text(mDirectory.c_str());
+		if (IsSelected) {
+			// 当模型被选中时，修改背景颜色为黄色
+			ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(1.0f, 1.0f, 0.0f, 0.3f));  // 设置背景颜色为半透明的黄色
+			ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(1.0f, 1.0f, 0.0f, 0.5f));  // 设置树节点标题的颜色为黄色
+		}
 
 		ImGui::Text((std::string("Center: (") + std::to_string(mCenter.x) + ", " + std::to_string(mCenter.y) + ", " + std::to_string(mCenter.z) + " )").c_str());
 		if (ImGui::DragFloat3("Pos", &mPosition[0], DRAG_SPEED)) {
@@ -245,6 +250,10 @@ namespace EMT {
 			ImGui::TreePop();
 		}
 
+		if (IsSelected) {
+			// 恢复原本的样式
+			ImGui::PopStyleColor(2);
+		}
 	}
 
 	esgstl::vector<Mesh*> Model::GetViewableMeshes(const std::array<Plane, 6>& frustum) const
@@ -296,5 +305,6 @@ namespace EMT {
 		modelMatrix = translate * rotate * scale * centerTranslate;
 		return modelMatrix;
 	}
+
 
 }
