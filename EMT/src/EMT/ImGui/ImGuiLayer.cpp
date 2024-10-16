@@ -104,7 +104,8 @@ namespace EMT {
 		ImGui::DragFloat("SSR Thickness", &m_PipeLine->GetPassContext().ssrThickness, DRAG_SPEED, 0.0, 5.0);
 		ImGui::DragFloat("SSR Effect", &m_PipeLine->GetPassContext().ssrEffect, DRAG_SPEED, 0.0, 1.0);
 		ImGui::DragFloat("PCSS Light World Size", &m_PipeLine->GetPassContext().PCSSLightSize, DRAG_SPEED, 0.0, 100);
-		ImGui::DragFloat("Outline Thickness", &m_PipeLine->GetPassContext().OutlineThickness, DRAG_SPEED, 0.005, 0.01);
+		ImGui::DragFloat("Outline Thickness", &m_PipeLine->GetPassContext().OutlineThickness, DRAG_SPEED * 0.1, 0.01, 0.1);
+		ImGui::DragFloat("VSSM Bias", &m_PipeLine->GetPassContext().vssmBias, DRAG_SPEED * 0.01, 0.001, 0.01);
 
 		
 		ImGui::Text("ShadowType");
@@ -140,6 +141,9 @@ namespace EMT {
 
 		ImGui::End();
 
+		//ImGui::Begin("Debug");
+		//m_PipeLine->GetPassContext().debugPassOutput.fbo->GetColorTexture()->DisplayTexture();
+		//ImGui::End();
 		/*ImGui::Begin("IrradianceCubeMap");
 		m_PipeLine->GetPassContext().irradianceMapOutput.irradianceCubemap->DisplayTexture();
 		ImGui::End();

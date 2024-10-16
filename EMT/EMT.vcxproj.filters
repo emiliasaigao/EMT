@@ -255,6 +255,9 @@
     <ClInclude Include="src\EMT\Renderer\Ray.h" />
     <ClInclude Include="src\EMT\Renderer\Model\Triangle.h" />
     <ClInclude Include="src\EMT\Renderer\RenderPass\OutlineGenPass.h" />
+    <ClInclude Include="src\EMT\Renderer\ComputeShader.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLComputeShader.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\DebugPass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -420,6 +423,9 @@
     <ClCompile Include="src\EMT\Renderer\BVH.cpp" />
     <ClCompile Include="src\EMT\Renderer\Model\Triangle.cpp" />
     <ClCompile Include="src\EMT\Renderer\RenderPass\OutlineGenPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\ComputeShader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLComputeShader.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\DebugPass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\simplecolor.vert" />
@@ -452,5 +458,8 @@
     <None Include="assets\shader\postprocess\SSR.frag" />
     <None Include="assets\shader\common\OutlineGen.vert" />
     <None Include="assets\shader\common\OutlineGen.frag" />
+    <None Include="assets\shader\computeShader\SATGen.comp" />
+    <None Include="assets\shader\debug\SATDebug.vert" />
+    <None Include="assets\shader\debug\SATDebug.frag" />
   </ItemGroup>
 </Project>

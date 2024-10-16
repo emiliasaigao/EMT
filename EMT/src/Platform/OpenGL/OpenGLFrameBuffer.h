@@ -10,6 +10,8 @@ namespace EMT {
 		~OpenGLFrameBuffer();
 
 		virtual void AddColorTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) override;
+		virtual void AddColorTextureArray(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) override;
+		
 		virtual void SetColorTexture(int attachType, unsigned int textureType, unsigned int textureId, int miplevel) override;
 		virtual void AddDepthStencilTexture(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) override;
 		virtual void AddDepthStencilTextureArray(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) override;

@@ -13,6 +13,7 @@
 #include "SSAOBlurGenPass.h"
 #include "FXAAPass.h"
 #include "OutlineGenPass.h"
+#include "DebugPass.h"
 
 namespace EMT {
 	class RenderPipeLine {

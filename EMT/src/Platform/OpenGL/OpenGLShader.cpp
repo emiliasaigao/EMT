@@ -2,7 +2,6 @@
 #include "OpenGLShader.h"
 
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 namespace EMT {
 	OpenGLShader::OpenGLShader(const std::string& vertexPath, const std::string& fragmentPath, const std::string& geometryPath)

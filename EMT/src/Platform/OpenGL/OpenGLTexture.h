@@ -9,17 +9,18 @@ namespace EMT {
 		~OpenGLTexture();
 
 		// 生成texture
-		void Generate2DTexture(unsigned int width, unsigned int height, int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, const void* data = nullptr) override;
-		void Generate2DMultisampleTexture(unsigned int width, unsigned int height) override;
-		void Genarate2DTextureArray(unsigned int width, unsigned int height, int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, const void* data = nullptr) override;
-		
-		// 尝试生成MipMap，只有在被Generate之后有用
-		void GenerateMips();
-		void CopyDataFormFBO2D(unsigned int level, unsigned int xoffset, unsigned int yoffset, unsigned int x, unsigned int y, unsigned int width, unsigned int height) override;
+		virtual void Generate2DTexture(unsigned int width, unsigned int height, int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, const void* data = nullptr) override;
+		virtual void Generate2DMultisampleTexture(unsigned int width, unsigned int height) override;
+		virtual void Genarate2DTextureArray(unsigned int width, unsigned int height, int dataFormat, int pixelDataType = EMT_UNSIGNED_BYTE, const void* data = nullptr) override;
 
-		void Bind(int unit = 0);
-		void Unbind();
-		void DisplayTexture(bool invert = true);
+		// 尝试生成MipMap，只有在被Generate之后有用
+		virtual void GenerateMips();
+		virtual void CopyDataFormFBO2D(unsigned int level, unsigned int xoffset, unsigned int yoffset, unsigned int x, unsigned int y, unsigned int width, unsigned int height) override;
+
+		virtual void Bind(int unit = 0);
+		virtual void Unbind();
+		virtual void DisplayTexture(bool invert = true);
+		virtual void ClearTexture(const glm::vec4& color);
 
 		// 两个函数只能在Generate之前使用
 		inline void SetTextureSettings(TextureSettings settings) { m_TextureSettings = settings; }

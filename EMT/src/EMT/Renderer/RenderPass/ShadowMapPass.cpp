@@ -6,6 +6,7 @@ namespace EMT {
 	ShadowMapPass::ShadowMapPass(const Ref<Scene>& scene)
 		:RenderPass(scene) {
 		m_Shader = Shader::Create("../EMT/assets/shader/shadow/CSMGen.vert", "../EMT/assets/shader/shadow/CSMGen.frag", "../EMT/assets/shader/shadow/CSMGen.geo");
+		m_SATGenShader = ComputeShader::Create("../EMT/assets/shader/computeShader/SATGen.comp");
 		RenderPass::s_Context.shadowOutput.fbo = FrameBuffer::Create(SHADOWMAP_RESOLUTION_X, SHADOWMAP_RESOLUTION_Y);
 
 		TextureSettings depthStencilTextureSettings;
@@ -16,6 +17,20 @@ namespace EMT {
 		depthStencilTextureSettings.TextureMinificationFilterMode = EMT_NEAREST;
 		depthStencilTextureSettings.HasBorder = true;	
 		depthStencilTextureSettings.HasMips = false;
+
+		TextureSettings colorTextureSettings;
+		colorTextureSettings.TextureFormat = EMT_RG32F;
+		colorTextureSettings.TextureWrapSMode = EMT_CLAMP_TO_BORDER;
+		colorTextureSettings.TextureWrapTMode = EMT_CLAMP_TO_BORDER;
+		colorTextureSettings.TextureMagnificationFilterMode = EMT_NEAREST;
+		colorTextureSettings.TextureMinificationFilterMode = EMT_NEAREST;
+		colorTextureSettings.HasBorder = true;
+		colorTextureSettings.HasMips = false;
+		RenderPass::s_Context.shadowOutput.fbo->AddColorTextureArray(colorTextureSettings, EMT_RG, EMT_FLOAT, EMT_COLOR_ATTACHMENT0);
+		
+		// 初始化SAT贴图，为RG32存储格式，分辨率同阴影贴图
+		m_DepthSAT = Texture::Create(colorTextureSettings);
+		m_DepthSAT->Genarate2DTextureArray(SHADOWMAP_RESOLUTION_X, SHADOWMAP_RESOLUTION_Y, EMT_RG, EMT_FLOAT);
 
 		RenderPass::s_Context.shadowOutput.fbo->AddDepthStencilTextureArray(depthStencilTextureSettings, EMT_DEPTH_COMPONENT, EMT_FLOAT, EMT_DEPTH_ATTACHMENT);
 		RenderPass::s_Context.shadowOutput.fbo->SetUpFrameBuffer();
@@ -55,6 +70,18 @@ namespace EMT {
 		auto MaxFrustumLightPVMatrix = getLightPVMatrix({ {n,f} }, directionalLightDir);
 		Renderer::Render(m_Scene, m_Shader, false, MaxFrustumLightPVMatrix[0]);
 
+		// 通过ComputeShader计算深度贴图(R通道)和深度平方贴图(G通道)的SAT贴图
+		m_DepthSAT->ClearTexture();
+		// 第一遍计算每行的前缀和，写到结果图像的列里去（转置存放）
+		m_SATGenShader->Bind();
+		RenderCommand::BindImageTexture(0, mfbo->GetColorTexture(), 0, RendererAPI::ImageAccess::ReadOnly, EMT_RG32F);
+		RenderCommand::BindImageTexture(1, m_DepthSAT, 0, RendererAPI::ImageAccess::WriteOnly, EMT_RG32F);
+		m_SATGenShader->ProcessCompute(1024, 2, 4);
+		// 第二遍还是计算每行的前缀和，但其实相当于计算列的前缀和，再写道结果图像的行里去
+		RenderCommand::BindImageTexture(0, m_DepthSAT, 0, RendererAPI::ImageAccess::ReadOnly, EMT_RG32F);
+		RenderCommand::BindImageTexture(1, mfbo->GetColorTexture(), 0, RendererAPI::ImageAccess::WriteOnly, EMT_RG32F);
+		m_SATGenShader->ProcessCompute(1024, 2, 4);
+
 		RenderPass::s_Context.shadowOutput.lightSpaceMatrices = LightPVmatrix;
 		RenderPass::s_Context.shadowOutput.frustum = frustum;
 
@@ -89,7 +116,9 @@ namespace EMT {
 
 			float len = frustum[i].second - frustum[i].first;
 
-			float x = (len / 2.0f) + ((far_len - near_len) / (8 * len));
+			float x = (len / 2.0f) + ((far_len - near_len)  / (8 * len));
+
+			x = x * 1.5f;
 
 			float radius = std::sqrt(x * x + near_len * 0.25f);
 

@@ -27,6 +27,14 @@ namespace EMT {
 		UnBind();
 	}
 
+	void OpenGLFrameBuffer::AddColorTextureArray(const TextureSettings& textureSettings, int dataFormat, int dataType, int attachType) {
+		Bind();
+		m_ColorTexture = Texture::Create(textureSettings);
+		m_ColorTexture->Genarate2DTextureArray(m_Width, m_Height, dataFormat, dataType);
+		glFramebufferTexture(GL_FRAMEBUFFER, attachType, m_ColorTexture->GetTextureId(), 0);
+		UnBind();
+	}
+
 	void OpenGLFrameBuffer::SetColorTexture(int attachType, unsigned int textureType, unsigned int textureId, int miplevel) {
 		Bind();
 		glDrawBuffer(attachType);
@@ -125,6 +133,7 @@ namespace EMT {
 
 	void OpenGLFrameBuffer::Clear() {
 		glStencilMask(0xFF);
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 

@@ -24,5 +24,6 @@ namespace EMT {
 		virtual void SetViewport(int x, int y, int width, int height) override;
 		virtual void CopyFBODepthStencil(const Ref<FrameBuffer>& srcFBO, const Ref<FrameBuffer>& dstFBO) override;
 		virtual void ChangeDepthFunc(CompareFunc func) override;
+		virtual void BindImageTexture(unsigned int location, const Ref<Texture>& texture, int mipMapLevel, RendererAPI::ImageAccess access, unsigned int format) override;
 	};
 }

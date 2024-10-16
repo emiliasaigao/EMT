@@ -66,6 +66,7 @@ void EMT::DeferredLightingPass::Draw() {
 	m_Shader->setInt("shadowMap", 0);
 
 	m_Shader->setInt("shadowType", RenderPass::s_Context.shadowType);
+	m_Shader->setFloat("vssmBias", RenderPass::s_Context.vssmBias);
 	m_Shader->setFloat("LIGHT_WORLD_SIZE", RenderPass::s_Context.PCSSLightSize);
 
 	RenderPass::s_Context.irradianceMapOutput.irradianceCubemap->Bind(1);
@@ -85,6 +86,9 @@ void EMT::DeferredLightingPass::Draw() {
 	m_Shader->setInt("positionTexture", 7);
 	RenderPass::s_Context.geometryOutput.gbuffer->GetColorTextureByIndex(3)->Bind(8);
 	m_Shader->setInt("mixtureTexture", 8);
+	RenderPass::s_Context.shadowOutput.fbo->GetColorTexture()->Bind(9);
+	m_Shader->setInt("depthSAT", 9);
+
 
 	// 打开模板测试，只对有片元存在的像素进行着色计算
 	RenderCommand::EnableStencilTest();

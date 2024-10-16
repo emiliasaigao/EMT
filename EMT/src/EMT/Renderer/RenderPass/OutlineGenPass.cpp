@@ -62,7 +62,10 @@ namespace EMT {
 			RenderCommand::ChangeStencilMask(0x00);
 
 			m_Shader->Bind();
-			m_Shader->setMat4f("view", camera->getViewMatrix());
+			auto view = camera->getViewMatrix();
+			m_Shader->setMat4f("view", view);
+			glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(view)));
+			m_Shader->setMat3f("normalMatrix", normalMatrix);
 			m_Shader->setMat4f("projection", camera->getProjectionMatrix());
 			m_Shader->setFloat("outlineThickness", RenderPass::s_Context.OutlineThickness);
 			Renderer::SetupModelMatrix(mModel, m_Shader, false);

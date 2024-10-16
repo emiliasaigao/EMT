@@ -21,6 +21,10 @@ namespace EMT {
 			Keep = 0, Replace = 1, Zero = 2
 		};
 
+		enum class ImageAccess {
+			ReadOnly = 0, WriteOnly = 1, ReadWrite = 2
+		};
+
 	public:
 		virtual void SetClearColor(const glm::vec4& color) = 0;
 		virtual void Clear() = 0;
@@ -44,6 +48,8 @@ namespace EMT {
 
 		virtual void SetViewport(int x, int y, int width, int height) = 0;
 		virtual void CopyFBODepthStencil(const Ref<FrameBuffer>& srcFBO, const Ref<FrameBuffer>& dstFBO) = 0;
+
+		virtual void BindImageTexture(unsigned int location, const Ref<Texture>& texture, int mipMapLevel, RendererAPI::ImageAccess access, unsigned int format) = 0;
 
 		inline static API GetAPI() { return s_API; }
 		
