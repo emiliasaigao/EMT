@@ -81,6 +81,11 @@ namespace EMT {
 		glDepthFunc(GL_NEVER + (unsigned int)func);
 	}
 
+	void OpenGLAPI::BindImageTexture(unsigned int location, const Ref<Texture>& texture, int mipMapLevel, RendererAPI::ImageAccess access, unsigned int format)
+	{
+		glBindImageTexture(location, texture->GetTextureId(), mipMapLevel, GL_TRUE, 0, GL_READ_ONLY + unsigned int(access), format);
+	}
+
 	void OpenGLAPI::SetViewport(int x, int y, int width, int height) {
 		glViewport(x, y, width, height);
 	}

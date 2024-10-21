@@ -61,7 +61,7 @@ namespace EMT {
         m_Shader->setInt("noiseMap", 2);
         
         for (int i = 0; i < 64; ++i) {
-            m_Shader->setVec3f(std::string("samples[") + std::to_string(i) + std::string("]"), ssaoKernel[i]);
+            m_Shader->setVec3f(std::string("samples[") + std::to_string(i).data() + std::string("]"), ssaoKernel[i]);
         }
 	}
 

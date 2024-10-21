@@ -21,8 +21,8 @@ namespace EMT {
 		void InitBasicLights();
 
 	private:
-		std::vector<DirectionalLight> mDirectionalLights;
-		std::vector<PointLight> mPointLights;
-		std::vector<SpotLight> mSpotLights;
+		esgstl::vector<DirectionalLight> mDirectionalLights;
+		esgstl::vector<PointLight> mPointLights;
+		esgstl::vector<SpotLight> mSpotLights;
 	};
 }

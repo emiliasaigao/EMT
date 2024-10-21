@@ -42,7 +42,7 @@ namespace EMT {
 		Ref<LightManager> lightManager = m_Scene->GetLightManager();
 		
 		// shadowPass的结果拿来算阴影
-		std::vector<glm::mat4> lightSpaceMatrix = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
+		esgstl::vector<glm::mat4> lightSpaceMatrix = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
 		RenderPass::s_Context.shadowOutput.fbo->GetDepthStencilTexture()->Bind(0);
 
 

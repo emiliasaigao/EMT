@@ -15,6 +15,7 @@ namespace EMT {
 		glfwMakeContextCurrent(m_Window);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		EMT_CORE_ASSERT(status, "Glad ≥ı ºªØ ß∞‹£°");
+
 	}
 
 	void OpenGLContext::SwapBuffers()

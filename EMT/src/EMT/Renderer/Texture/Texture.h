@@ -58,6 +58,7 @@ namespace EMT {
 		virtual void Bind(int unit = 0) = 0;
 		virtual void Unbind() = 0;
 		virtual void DisplayTexture(bool invert = true) = 0;
+		virtual void ClearTexture(const glm::vec4& color = glm::vec4(0.0)) = 0;
 
 		// 两个函数只能在Generate之前使用
 		virtual inline void SetTextureSettings(TextureSettings settings) = 0;

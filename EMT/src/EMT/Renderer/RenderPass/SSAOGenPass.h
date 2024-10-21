@@ -12,8 +12,8 @@ namespace EMT {
 		virtual void Draw() override;
 		virtual void OnWindowResize() override;
 	private:
-		std::vector<glm::vec3> ssaoKernel;
-		std::vector<glm::vec3> ssaoNoise;
+		esgstl::vector<glm::vec3> ssaoKernel;
+		esgstl::vector<glm::vec3> ssaoNoise;
 		Ref<Texture> noiseTexture;
 	};
 }

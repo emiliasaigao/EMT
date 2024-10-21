@@ -146,4 +146,16 @@ namespace EMT {
 			ImGui::Image((void*)(intptr_t)m_RendererID, ImVec2(m_Width, m_Height), ImVec2(0, 1), ImVec2(1, 0));
 		else ImGui::Image((void*)(intptr_t)m_RendererID, ImVec2(512, 512), ImVec2(0, 1), ImVec2(1, 0));
 	}
+	
+	void OpenGLTexture::ClearTexture(const glm::vec4& color) {
+		Bind();
+		
+		if (m_TextureTarget == GL_TEXTURE_2D_ARRAY) {
+			for (int i = 0; i < EMT::CSCADED_SIZE; ++i) {
+				glClearTexImage(m_RendererID, i, m_TextureSettings.TextureFormat, m_TextureSettings.dataType, &color[0]);
+			}
+		}
+		else glClearTexImage(m_RendererID, 0, m_TextureSettings.TextureFormat, m_TextureSettings.dataType, &color[0]);
+		Unbind();
+	}
 }

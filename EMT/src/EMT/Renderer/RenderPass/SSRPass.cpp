@@ -46,6 +46,7 @@ namespace EMT {
 		m_Shader->setMat4f("projection", camera->getProjectionMatrix());
 		m_Shader->setBool("useSSR", RenderPass::s_Context.useSSR);
 		m_Shader->setFloat("thickness", RenderPass::s_Context.ssrThickness);
+		m_Shader->setFloat("ssrEffect", RenderPass::s_Context.ssrEffect);
 
 		RenderPass::s_Context.geometryOutput.gbuffer->GetColorTextureByIndex(1)->Bind(1);
 		RenderPass::s_Context.geometryOutput.gbuffer->GetColorTextureByIndex(2)->Bind(2);

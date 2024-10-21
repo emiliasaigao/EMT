@@ -9,77 +9,128 @@ namespace EMT {
 	}
 
 	Model::Model(const Mesh& mesh) {
-		mMeshes.push_back(mesh);
+		
+		m_BVH = std::make_shared<BVHAccel<Mesh>>(std::initializer_list<Mesh>{mesh});
 		mName = "None_";
-		mName += std::to_string(noNameNum);
+		mName += std::to_string(noNameNum).c_str();
 		noNameNum++;
 	}
 
-	Model::Model(const std::vector<Mesh>& meshes) {
-		mMeshes = meshes;
+	Model::Model(const esgstl::vector<Mesh>& meshes) {
+		m_BVH = std::make_shared<BVHAccel<Mesh>>(meshes);
 		mName = "None_";
-		mName += std::to_string(noNameNum);
+		mName += std::to_string(noNameNum).c_str();
 		noNameNum++;
 	}
 
+	Model::Model(Model&& model)
+		:hasTransformed(model.hasTransformed),
+		mDirectory(std::move(model.mDirectory)),
+		mName(std::move(model.mName)),
+		mCenter(std::move(model.mCenter)),
+		mPosition(std::move(model.mPosition)),
+		mScale(std::move(model.mScale)),
+		mRotation(model.mRotation),
+		mRotateAxis(std::move(model.mRotateAxis)),
+		m_BVH(std::move(model.m_BVH)){
+	}
 
-	void Model::Draw(const Ref<Shader>& shader, bool isUseMaterial) const {
+	Model::Model(const Model& model)
+		:hasTransformed(model.hasTransformed),
+		mDirectory(model.mDirectory),
+		mName(model.mName),
+		mCenter(model.mCenter),
+		mPosition(model.mPosition),
+		mScale(model.mScale),
+		mRotation(model.mRotation),
+		mRotateAxis(model.mRotateAxis),
+		m_BVH(model.m_BVH){
+	}
 
-		for (unsigned int i = 0; i < mMeshes.size(); ++i) {
+	Model& Model::operator=(Model&& model) {
+		Model tmp(std::move(model));
+		std::swap(*this, tmp);
+		return *this;
+	}
+
+	Model& Model::operator=(const Model& model) {
+		hasTransformed = model.hasTransformed,
+		mDirectory = model.mDirectory;
+		mName = model.mName;
+		mCenter = model.mCenter;
+		mPosition = model.mPosition;
+		mScale = model.mScale;
+		mRotation = model.mRotation;
+		mRotateAxis = model.mRotateAxis;
+		m_BVH = model.m_BVH;
+		return *this;
+	}
+
+
+	void Model::Draw(const Ref<Shader>& shader, const std::array<Plane, 6>& frustum, bool isUseMaterial) const {
+		auto meshes = GetViewableMeshes(frustum);
+		//auto meshes = GetMeshes();
+		for (unsigned int i = 0; i < meshes.size(); ++i) {
 
 			if (isUseMaterial) {
-				mMeshes[i].m_Material->BindMaterial(shader);
+				meshes[i]->m_Material->BindMaterial(shader);
 
 				// check whether to use normal mapping
-				if (mMeshes[i].HasTangents())
+				if (meshes[i]->HasTangents())
 					shader->setInt("useNormalMapping", 1);
 				else
 					shader->setInt("useNormalMapping", 0);
 			}
-			mMeshes[i].Draw();
+			meshes[i]->Draw();
 		}
 	}
 
 	void Model::LoadModel(const std::string& path) {
 		Assimp::Importer import;
-		const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+		const aiScene* scene = import.ReadFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 			EMT_CORE_ERROR("ERROR::ASSIMP:: {0}",import.GetErrorString());
 			return;
 		}
-
+		
 		mDirectory = path.substr(0, path.find_last_of('/'));
 		mName = mDirectory.substr(mDirectory.find_last_of('/') + 1, mDirectory.size());
 
-		ProcessNode(scene->mRootNode, scene);
+		esgstl::vector<Mesh> meshes;
+		ProcessNode(scene->mRootNode, scene, meshes);
+
+		// TODO：构建BVH
+		m_BVH = std::make_shared<BVHAccel<Mesh>>(std::move(meshes));
 	}
 
 
-	void Model::ProcessNode(aiNode* node, const aiScene* scene)
+	void Model::ProcessNode(aiNode* node, const aiScene* scene, esgstl::vector<Mesh>& meshes)
 	{
 		for (size_t i = 0; i < node->mNumMeshes; i++) {
 			// 获取节点中的网格数据
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-			mMeshes.push_back(ProcessMesh(mesh, scene));
+			Mesh emtMesh = ProcessMesh(mesh, scene);
+			meshes.push_back(emtMesh);
 		}
 
 		// 递归处理子节点
 		for (size_t i = 0; i < node->mNumChildren; i++)
 		{
-			ProcessNode(node->mChildren[i], scene);
+			ProcessNode(node->mChildren[i], scene, meshes);
 		}
+		
 	}
 
 	Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 	{
 		// 开辟顶点数据所需空间
-		std::vector<glm::vec3> positions;
-		std::vector<glm::vec2> uvs;
-		std::vector<glm::vec3> normals;
-		std::vector<glm::vec3> tangents;
-		std::vector<glm::vec3> bitangents;
-		std::vector<unsigned int> indices;
+		esgstl::vector<glm::vec3> positions;
+		esgstl::vector<glm::vec2> uvs;
+		esgstl::vector<glm::vec3> normals;
+		esgstl::vector<glm::vec3> tangents;
+		esgstl::vector<glm::vec3> bitangents;
+		esgstl::vector<unsigned int> indices;
 
 		positions.reserve(mesh->mNumVertices);
 		uvs.reserve(mesh->mNumVertices);
@@ -167,16 +218,30 @@ namespace EMT {
 
 	void Model::OnImGuiRender() {
 		//ImGui::Text(mDirectory.c_str());
+		if (IsSelected) {
+			// 当模型被选中时，修改背景颜色为黄色
+			ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(1.0f, 1.0f, 0.0f, 0.3f));  // 设置背景颜色为半透明的黄色
+			ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(1.0f, 1.0f, 0.0f, 0.5f));  // 设置树节点标题的颜色为黄色
+		}
 
 		ImGui::Text((std::string("Center: (") + std::to_string(mCenter.x) + ", " + std::to_string(mCenter.y) + ", " + std::to_string(mCenter.z) + " )").c_str());
-		ImGui::DragFloat3("Pos", &mPosition[0], DRAG_SPEED);
-		ImGui::DragFloat3("Scale", &mScale[0], DRAG_SPEED);
-		ImGui::DragFloat("Rotate_Angle", &mRotation, DRAG_SPEED * 10, -180, 180);
-		ImGui::DragFloat3("RotateAxis", &mRotateAxis[0], DRAG_SPEED, -1, 1);
+		if (ImGui::DragFloat3("Pos", &mPosition[0], DRAG_SPEED)) {
+			SetPosition(mPosition);
+		}
+		if (ImGui::DragFloat3("Scale", &mScale[0], DRAG_SPEED)) {
+			SetScale(mScale);
+		};
+		if (ImGui::DragFloat("Rotate_Angle", &mRotation, DRAG_SPEED * 10, -180, 180)) {
+			SetRotation(mRotation);
+		}
+		if (ImGui::DragFloat3("RotateAxis", &mRotateAxis[0], DRAG_SPEED, -1, 1)) {
+			SetRotateAxis(mRotateAxis);
+		}
 		if (ImGui::TreeNode("Meshes"))
 		{
+			auto mMeshes = GetMeshes();
 			for (int i = 0; i < mMeshes.size(); i++) {
-				if (ImGui::TreeNode((std::string("mesh_") + std::to_string(i)).c_str()))
+				if (ImGui::TreeNode((std::string("mesh_") + std::to_string(i).data()).c_str()))
 				{
 					mMeshes[i].OnImGuiRender();
 					ImGui::TreePop();
@@ -185,6 +250,61 @@ namespace EMT {
 			ImGui::TreePop();
 		}
 
+		if (IsSelected) {
+			// 恢复原本的样式
+			ImGui::PopStyleColor(2);
+		}
 	}
+
+	esgstl::vector<Mesh*> Model::GetViewableMeshes(const std::array<Plane, 6>& frustum) const
+	{
+		esgstl::vector<Mesh*> viewableMeshes;
+		auto root = m_BVH->root;
+		esgstl::queue<Ref<BVHBuildNode<Mesh>>> queue;
+		queue.push(root);
+		while (!queue.empty()) {
+			auto node = queue.front();
+			queue.pop();
+			// 如果相交，则进一步探寻子节点
+			if (node->curBounds.OverlapFrustum(frustum)) {
+				// 如果已经是叶子节点，则将叶子节点的model加入结果集中
+				if (node->left == nullptr && node->right == nullptr)
+					viewableMeshes.push_back(node->object);
+				else {
+					// 否则向下探寻子节点的相交关系
+					queue.push(node->left);
+					queue.push(node->right);
+				}
+			}
+		}
+		return viewableMeshes;
+	}
+
+	void Model::UpdateBVH() {
+		const glm::mat4& transform = GetModelMatrix();
+		// 自下从上更新Model层级BVH
+		auto node = m_BVH_Node;
+		node->curBounds = Transform(node->srcBounds, transform);
+		node = node->parent;
+		while (node) {
+			node->curBounds = Union(node->left->curBounds, node->right->curBounds);
+			node = node->parent;
+		}
+		// 整体更新Mesh层级BVH
+		m_BVH->UpdateGlobal(transform);
+	}
+
+	glm::mat4 Model::GetModelMatrix() const
+	{
+		glm::mat4 modelMatrix(1.0f);
+		glm::mat4 translate = glm::translate(glm::mat4(1.0f), GetPosition());
+
+		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::radians(GetRotation()), GetRotateAxis());
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), GetScale());
+		glm::mat4 centerTranslate = glm::translate(glm::mat4(1.0f), (-GetCenter()));
+		modelMatrix = translate * rotate * scale * centerTranslate;
+		return modelMatrix;
+	}
+
 
 }

@@ -52,7 +52,7 @@ namespace EMT {
 
 
 		virtual inline Ref<Texture> GetColorTextureByIndex(int index) override { return mRenderTargets[index]; }
-		virtual inline std::vector<Ref<Texture>>& GetColorTextures() override { return mRenderTargets; };
+		virtual inline esgstl::vector<Ref<Texture>>& GetColorTextures() override { return mRenderTargets; };
 	private:
 		void Init();
 	
@@ -64,6 +64,6 @@ namespace EMT {
 		// 1 法线贴图     RGB32F ->       normal.x     normal.y        normal.z
 		// 2 世界坐标贴图 RGB32F ->       pos.x		  pos.y		      pos.z
 		// 3 混合贴图     RGB8  ->        roughness    metallic        ambientOcclusion
-		std::vector<Ref<Texture>> mRenderTargets;
+		esgstl::vector<Ref<Texture>> mRenderTargets;
 	};
 }

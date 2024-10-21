@@ -25,7 +25,7 @@ namespace EMT {
 		virtual std::string ToString() const override {
 			std::stringstream ss;
 			ss << "KeyPressedEvent:" << m_KeyCode << "(" << m_RepeatCount << " repeats)";
-			return ss.str();
+			return ss.str().data();
 		}
 
 		EVENT_CLASS_TYPE(KeyPressed);
@@ -42,7 +42,7 @@ namespace EMT {
 		virtual std::string ToString() const override {
 			std::stringstream ss;
 			ss << "KeyTypedEvent:" << m_KeyCode;
-			return ss.str();
+			return ss.str().data();
 		}
 
 		EVENT_CLASS_TYPE(KeyTyped);
@@ -58,7 +58,7 @@ namespace EMT {
 		virtual std::string ToString() const override {
 			std::stringstream ss;
 			ss << "KeyReleasedEvent:" << m_KeyCode;
-			return ss.str();
+			return ss.str().data();
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased);

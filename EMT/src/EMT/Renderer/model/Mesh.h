@@ -1,10 +1,11 @@
 #pragma once
 #include "./Material.h"
 #include "./glm/glm.hpp"
+#include "./Triangle.h"
 #include "EMT/Renderer/VertexArray.h"
 #include "EMT/Renderer/Buffer.h"
 #include "EMT/Renderer/RenderCommand.h"
-
+#include "EMT/Log.h"
 namespace EMT {
 	struct Vertex {
 		// зјБъ
@@ -25,17 +26,22 @@ namespace EMT {
 		friend Model;
 	public:
 		Mesh();
-		Mesh(std::vector<glm::vec3>& positions, 
-			 std::vector<glm::vec2>& uvs, 
-			 std::vector<glm::vec3>& normals, 
-			 std::vector<unsigned int>& indices);
+		Mesh(esgstl::vector<glm::vec3>& positions, 
+			 esgstl::vector<glm::vec2>& uvs, 
+			 esgstl::vector<glm::vec3>& normals, 
+			 esgstl::vector<unsigned int>& indices);
 
-		Mesh(std::vector<glm::vec3>& positions, 
-			 std::vector<glm::vec2>& uvs, 
-			 std::vector<glm::vec3>& normals, 
-			 std::vector<glm::vec3>& tangents, 
-			 std::vector<glm::vec3>& bitangents, 
-			 std::vector<unsigned int>& indices);
+		Mesh(esgstl::vector<glm::vec3>& positions, 
+			 esgstl::vector<glm::vec2>& uvs, 
+			 esgstl::vector<glm::vec3>& normals, 
+			 esgstl::vector<glm::vec3>& tangents, 
+			 esgstl::vector<glm::vec3>& bitangents, 
+			 esgstl::vector<unsigned int>& indices);
+
+		Mesh(const Mesh& rhs);
+		Mesh(Mesh&& rhs);
+		//Mesh& operator=(const Mesh& rhs);
+		//Mesh& operator=(Mesh&& rhs);
 
 		~Mesh() {}
 
@@ -46,22 +52,33 @@ namespace EMT {
 
 		inline Ref<Material> GetMaterial() { return m_Material; }
 
+		inline const AABB& GetAABB() { return m_BVH->WorldBound(); }
+		Intersection GetIntersection(const Ray& ray) { return m_BVH->Intersect(ray); }
+
+		inline void SetBVHNode(Ref<BVHBuildNode<Mesh>> node) {
+			m_BVH_Node = node;
+		}
+
+		void SetTransform(const glm::mat4& transform);
+
 	protected:
 		void SetupMesh();
 
 	protected:
-		std::vector<glm::vec3> m_Positions;
-		std::vector<glm::vec2> m_TexCoords;
-		std::vector<glm::vec3> m_Normals;
-		std::vector<glm::vec3> m_Tangents;
-		std::vector<glm::vec3> m_Bitangents;
+		esgstl::vector<glm::vec3> m_Positions;
+		esgstl::vector<glm::vec2> m_TexCoords;
+		esgstl::vector<glm::vec3> m_Normals;
+		esgstl::vector<glm::vec3> m_Tangents;
+		esgstl::vector<glm::vec3> m_Bitangents;
 
-		std::vector<unsigned int> m_Indices;
+		esgstl::vector<unsigned int> m_Indices;
 		
-		//unsigned int mVAO, mVBO, mEBO;
 		Ref<VertexArray> m_VAO;
 		Ref<VertexBuffer> m_VBO;
 		Ref<ElementBuffer> m_EBO;
 		Ref<Material> m_Material; 
+		Ref<BVHAccel<Triangle>> m_BVH;
+		Ref<BVHBuildNode<Mesh>> m_BVH_Node;
+		glm::mat4 m_Transform;
 	};
 }

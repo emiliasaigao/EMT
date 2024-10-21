@@ -26,12 +26,12 @@ namespace EMT {
 		RenderCommand::DrawIndexed(vertexArray);
 	}
 	
-	void Renderer::Render(const Ref<Scene>& scene, const Ref<Shader>& shader, bool isUseMaterial) {
+	void Renderer::Render(const Ref<Scene>& scene, const Ref<Shader>& shader, bool isUseMaterial, const glm::mat4& VP) {
 		shader->Bind();
-		auto models = scene->GetModels();
-		for (const auto& model : models) {
+		auto models = scene->GetViewableModels(VP);
+		for (auto& model : models) {
 			SetupModelMatrix(model, shader, isUseMaterial);
-			model->Draw(shader, isUseMaterial);
+			model->Draw(shader, scene->GetFrustumPlanes(), isUseMaterial);
 		}
 		shader->Unbind();
 	}
@@ -48,7 +48,7 @@ namespace EMT {
 		skybox->m_Cubemap->Bind();
 		skyboxShader->setInt("skybox", 0);
 
-		skybox->m_Cube->Draw(skyboxShader, false);
+		RenderCube();
 
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::Less);
 		skyboxShader->Unbind();
@@ -67,16 +67,9 @@ namespace EMT {
 	}
 
 
-	void Renderer::SetupModelMatrix(const Ref<Model>& model, const Ref<Shader>& shader, bool isUseMaterial) {
-		glm::mat4 modelMatrix(1.0f);
-		glm::mat4 translate = glm::translate(glm::mat4(1.0f), model->GetPosition());
-
-		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::radians(model->GetRotation()), model->GetRotateAxis());
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), model->GetScale());
-		glm::mat4 centerTranslate = glm::translate(glm::mat4(1.0f), (-model->GetCenter()));
-
+	void Renderer::SetupModelMatrix(Model* model, const Ref<Shader>& shader, bool isUseMaterial) {
+		glm::mat4 modelMatrix = model->GetModelMatrix();
 		
-		modelMatrix = translate * rotate * scale * centerTranslate;
 		shader->setMat4f("model", modelMatrix);
 
 		if (isUseMaterial)

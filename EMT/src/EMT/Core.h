@@ -60,8 +60,6 @@ namespace EMT {
 //drag ui speed
 #define DRAG_SPEED 0.01
 
-//Bone setting. Never change, the code is coupled hard to change
-#define MAX_BONE_INFLUENCE 4
-#define MAX_BONES 100
+#define EPSILON 0.00001
 
 //#define DEBUG

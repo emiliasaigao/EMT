@@ -24,6 +24,9 @@ namespace EMT {
 		inline static void ChangeStencilOption(RendererAPI::StencilOption fail, RendererAPI::StencilOption zfail, RendererAPI::StencilOption zpass) { s_RendererAPI->ChangeStencilOption(fail, zfail, zpass); }
 		inline static void ChangeStencilMask(unsigned int mask) { s_RendererAPI->ChangeStencilMask(mask); }
 	
+		inline static void BindImageTexture(unsigned int location, const Ref<Texture>& texture, int mipMapLevel, RendererAPI::ImageAccess access, unsigned int format) {
+			s_RendererAPI->BindImageTexture(location, texture, mipMapLevel, access, format);
+		}
 	private:
 		static RendererAPI* s_RendererAPI;
 	};

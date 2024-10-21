@@ -8,11 +8,10 @@
 namespace EMT {
 	class Skybox {
 	public:
-		Skybox(const std::vector<std::string>& paths);
+		Skybox(const esgstl::vector<std::string>& paths);
 		~Skybox() {}
 		
 	public:
-		Ref<Model> m_Cube;
 		Ref<Cubemap> m_Cubemap;
 		Ref<Shader> m_SkyboxShader;
 	};

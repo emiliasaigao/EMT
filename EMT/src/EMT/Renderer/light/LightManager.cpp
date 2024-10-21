@@ -39,7 +39,7 @@ namespace EMT {
 	void LightManager::OnImGuiRender() {
 		if (ImGui::TreeNode("DirLight")) {
 			for (int i = 0; i < mDirectionalLights.size(); i++) {
-				if (ImGui::TreeNode((std::string("DirLight ") + std::to_string(i)).c_str())) {
+				if (ImGui::TreeNode((std::string("DirLight ") + std::to_string(i).data()).c_str())) {
 					mDirectionalLights[i].OnImGuiRender();
 					ImGui::TreePop();
 				}
@@ -50,7 +50,7 @@ namespace EMT {
 		//more------------------------------------------
 		if (ImGui::TreeNode("PointLight")) {
 			for (int i = 0; i < mPointLights.size(); i++) {
-				if (ImGui::TreeNode((std::string("PointLight ") + std::to_string(i)).c_str())) {
+				if (ImGui::TreeNode((std::string("PointLight ") + std::to_string(i).data()).c_str())) {
 					mPointLights[i].OnImGuiRender();
 					ImGui::TreePop();
 				}
@@ -60,7 +60,7 @@ namespace EMT {
 		}
 		if (ImGui::TreeNode("SpotLight")) {
 			for (int i = 0; i < mSpotLights.size(); i++) {
-				if (ImGui::TreeNode((std::string("SpotLight ") + std::to_string(i)).c_str())) {
+				if (ImGui::TreeNode((std::string("SpotLight ") + std::to_string(i).data()).c_str())) {
 					mSpotLights[i].OnImGuiRender();
 					ImGui::TreePop();
 				}

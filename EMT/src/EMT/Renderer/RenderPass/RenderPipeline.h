@@ -12,6 +12,8 @@
 #include "SSAOGenPass.h"
 #include "SSAOBlurGenPass.h"
 #include "FXAAPass.h"
+#include "OutlineGenPass.h"
+#include "DebugPass.h"
 
 namespace EMT {
 	class RenderPipeLine {
@@ -22,13 +24,14 @@ namespace EMT {
 		void PreDraw();
 		
 		void OnWindowResize(int windowWidth, int windowHeight);
+		void OnTrySelectModel(int mouseX, int mouseY);
 		Ref<FrameBuffer> GetLastRenderRes() { return RenderPass::s_Context.postprocOutput.fbo; }
 		RenderPassContext& GetPassContext() { return RenderPass::s_Context; }
 	private:
 
 	private:
 		Ref<Scene> m_Scene;
-		std::vector<Ref<RenderPass>> m_RenderPasses;
-		std::vector<Ref<RenderPass>> m_PreRenderPasses;
+		esgstl::vector<Ref<RenderPass>> m_RenderPasses;
+		esgstl::vector<Ref<RenderPass>> m_PreRenderPasses;
 	};
 }

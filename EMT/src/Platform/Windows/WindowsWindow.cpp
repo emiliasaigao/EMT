@@ -43,6 +43,9 @@ namespace EMT {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);  // 设置主版本号为4
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);  // 设置次版本号为6
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 使用核心配置文件s
 		if (m_HideCursor)
 			glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 

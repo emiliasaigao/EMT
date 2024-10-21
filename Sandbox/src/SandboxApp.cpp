@@ -29,6 +29,7 @@ public:
 		m_Time = curTime;
 		EMT::RenderCommand::SetClearColor(glm::vec4(0.2));
 		EMT::RenderCommand::Clear();
+		m_Scene->OnUpdate();
 		m_PipeLine->Draw();
 	}
 
@@ -40,6 +41,7 @@ public:
 		EMT::EventDispatcher dispatcher(e);
 		dispatcher.DisPacth<EMT::MouseMovedEvent>(BIND_EVENT_FCN(ExampleLayer::OnMouseMove));
 		dispatcher.DisPacth<EMT::MouseScrolledEvent>(BIND_EVENT_FCN(ExampleLayer::OnMouseScroll));
+		dispatcher.DisPacth<EMT::MouseButtonPressedEvent>(BIND_EVENT_FCN(ExampleLayer::OnMouseButtonPress));
 	}
 
 private:
@@ -61,6 +63,13 @@ private:
 		return true;
 	}
 
+	bool OnMouseButtonPress(EMT::MouseButtonPressedEvent& e) {
+		if (e.GetMouseButtonCode() == 0) {
+			m_PipeLine->OnTrySelectModel(m_LastX, m_LastY);
+		}
+		return true;
+	}
+
 private:
 
 	float m_Time = 0.f;
@@ -78,10 +87,10 @@ private:
 
 class SandboxApp : public EMT::Application {
 public:
-	SandboxApp()
-	:m_Scene(new EMT::Scene()){
-		m_RenderPipeLine = std::make_shared<EMT::RenderPipeLine>(m_Scene, GetWindow()->GetWidth(), GetWindow()->GetHeight());
+	SandboxApp(){
 		EMT::TextureLoader::InitDefaultTextures();
+		m_Scene.reset(new EMT::Scene());
+		m_RenderPipeLine = std::make_shared<EMT::RenderPipeLine>(m_Scene, GetWindow()->GetWidth(), GetWindow()->GetHeight());
 		PushLayer(new ExampleLayer(m_Scene, m_RenderPipeLine));
 		PushOverLayer(new EMT::ImGuiLayer(m_Scene, m_RenderPipeLine));
 	}

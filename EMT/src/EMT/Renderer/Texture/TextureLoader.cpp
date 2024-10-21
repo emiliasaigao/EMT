@@ -3,7 +3,7 @@
 
 namespace EMT {
 	
-	std::unordered_map<std::string, Ref<Texture>> TextureLoader::mTextureCache;
+	esgstl::unordered_map<std::string, Ref<Texture>> TextureLoader::mTextureCache;
 	Ref<Texture> TextureLoader::s_DefaultAlbedo = nullptr;
 	Ref<Texture> TextureLoader::s_DefaultNormal = nullptr;
 	Ref<Texture> TextureLoader::s_WhiteTexture = nullptr;
@@ -64,14 +64,14 @@ namespace EMT {
 		texture->GetTextureSettings().ChannelNum = numComponents;
 		texture->Generate2DTexture(width, height, dataFormat, EMT_UNSIGNED_BYTE, data);
 
-		mTextureCache.insert(std::pair<std::string, Ref<Texture>>(path, texture));
+		mTextureCache[path] =  texture;
 		stbi_image_free(data);
 
 		EMT_CORE_INFO("{0} load successfully!", path);
 		return mTextureCache[path];
 	}
 
-	Ref<Cubemap> TextureLoader::LoadCubemapTexture(const std::vector<std::string>& paths, CubemapSettings* settings)
+	Ref<Cubemap> TextureLoader::LoadCubemapTexture(const esgstl::vector<std::string>& paths, CubemapSettings* settings)
 	{
 		Ref<Cubemap> cubemap;
 		if (settings != nullptr)
