@@ -64,11 +64,11 @@ namespace EMT {
 			m_Shader->Bind();
 			auto view = camera->getViewMatrix();
 			m_Shader->setMat4f("view", view);
-			glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(view)));
-			m_Shader->setMat3f("normalMatrix", normalMatrix);
+			glm::mat3 viewNormalMatrix = glm::mat3(glm::transpose(glm::inverse(view)));
+			m_Shader->setMat3f("viewNormalMatrix", viewNormalMatrix);
 			m_Shader->setMat4f("projection", camera->getProjectionMatrix());
 			m_Shader->setFloat("outlineThickness", RenderPass::s_Context.OutlineThickness);
-			Renderer::SetupModelMatrix(mModel, m_Shader, false);
+			Renderer::SetupModelMatrix(mModel, m_Shader, true);
 			mModel->Draw(m_Shader, m_Scene->GetFrustumPlanes(), false);
 			RenderCommand::DisableStencilTest();
 		}

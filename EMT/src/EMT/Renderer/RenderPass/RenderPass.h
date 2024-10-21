@@ -8,6 +8,7 @@ namespace EMT {
 		esgstl::vector<glm::mat4> lightSpaceMatrices;
 		Ref<FrameBuffer> fbo; // fbo里存放了depth贴图，以及作为colorAttachment的depth、depth_2的SAT贴图
 		esgstl::vector<std::pair<float, float>> frustum;
+		esgstl::vector<float> frustumSizes;
 	};
 
 	struct GeometryPassOutput {
@@ -82,16 +83,16 @@ namespace EMT {
 		PassThroughOutput passThroughOutput;
 		DebugPassOutput debugPassOutput;
 		int shadowType = 0;
-		float PCSSLightSize = 10;
+		float PCSSLightSize = 1.f;
 		bool useSSAO = true;
 		bool useSSR = false;
-		float ssrThickness = 1.2;
-		float ssrEffect = 1.0;
-		float SSAOEffect = 1.0;
-		float SSAORadius = 2.0;
+		float ssrThickness = 1.2f;
+		float ssrEffect = 1.0f;
+		float SSAOEffect = 1.0f;
+		float SSAORadius = 2.0f;
 		int SSAOKernelSize = 32;
 		float OutlineThickness = 0.05f;
-		float vssmBias = 0.005f;
+		float PCFFilterStride = 5.f;
 	};
 
 	class RenderPass {

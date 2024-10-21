@@ -103,9 +103,9 @@ namespace EMT {
 		ImGui::DragInt("SSAO KernelSize", &m_PipeLine->GetPassContext().SSAOKernelSize, DRAG_SPEED, 0, 64);
 		ImGui::DragFloat("SSR Thickness", &m_PipeLine->GetPassContext().ssrThickness, DRAG_SPEED, 0.0, 5.0);
 		ImGui::DragFloat("SSR Effect", &m_PipeLine->GetPassContext().ssrEffect, DRAG_SPEED, 0.0, 1.0);
-		ImGui::DragFloat("PCSS Light World Size", &m_PipeLine->GetPassContext().PCSSLightSize, DRAG_SPEED, 0.0, 100);
+		ImGui::DragFloat("PCSS Light World Size", &m_PipeLine->GetPassContext().PCSSLightSize, DRAG_SPEED * 0.1, 0.0, 1.0);
 		ImGui::DragFloat("Outline Thickness", &m_PipeLine->GetPassContext().OutlineThickness, DRAG_SPEED * 0.1, 0.01, 0.1);
-		ImGui::DragFloat("VSSM Bias", &m_PipeLine->GetPassContext().vssmBias, DRAG_SPEED * 0.01, 0.001, 0.01);
+		ImGui::DragFloat("PCF Filter Stribe", &m_PipeLine->GetPassContext().PCFFilterStride, DRAG_SPEED , 5, 100);
 
 		
 		ImGui::Text("ShadowType");

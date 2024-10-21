@@ -38,8 +38,9 @@ void EMT::DeferredLightingPass::Draw() {
 
 	Ref<Camera> camera = m_Scene->GetCamera();
 	Ref<LightManager> lightManager = m_Scene->GetLightManager();
-	esgstl::vector<glm::mat4> lightSpaceMatrices = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
-	esgstl::vector<std::pair<float, float>> frustum = RenderPass::s_Context.shadowOutput.frustum;
+	esgstl::vector<glm::mat4>& lightSpaceMatrices = RenderPass::s_Context.shadowOutput.lightSpaceMatrices;
+	esgstl::vector<std::pair<float, float>>& frustum = RenderPass::s_Context.shadowOutput.frustum;
+	esgstl::vector<float>& frustumSizes = RenderPass::s_Context.shadowOutput.frustumSizes;
 
 	// 将Gbuffer的深度模板缓冲拷贝过来（减少fragment绘制）
 	RenderCommand::CopyFBODepthStencil(RenderPass::s_Context.geometryOutput.gbuffer, mfbo);
@@ -61,12 +62,13 @@ void EMT::DeferredLightingPass::Draw() {
 	for (int i = 0; i < EMT::CSCADED_SIZE; ++i) {
 		m_Shader->setMat4f(std::string("lightSpaceMatrix[") + std::to_string(i).data() + std::string("]"), lightSpaceMatrices[i]);
 		m_Shader->setFloat(std::string("frustum[") + std::to_string(i).data() + std::string("]"), frustum[i].second);
+		m_Shader->setFloat(std::string("FRUSTUM_SIZE[") + std::to_string(i).data() + std::string("]"), frustumSizes[i]);
 	}
 	RenderPass::s_Context.shadowOutput.fbo->GetDepthStencilTexture()->Bind(0);
 	m_Shader->setInt("shadowMap", 0);
 
 	m_Shader->setInt("shadowType", RenderPass::s_Context.shadowType);
-	m_Shader->setFloat("vssmBias", RenderPass::s_Context.vssmBias);
+	m_Shader->setFloat("FILTER_STRIDE", RenderPass::s_Context.PCFFilterStride);
 	m_Shader->setFloat("LIGHT_WORLD_SIZE", RenderPass::s_Context.PCSSLightSize);
 
 	RenderPass::s_Context.irradianceMapOutput.irradianceCubemap->Bind(1);

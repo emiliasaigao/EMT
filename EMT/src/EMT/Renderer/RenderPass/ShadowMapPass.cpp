@@ -61,14 +61,15 @@ namespace EMT {
 		frustum[CSCADED_SIZE-1].second = f;
 
 		m_Shader->Bind();
-		auto LightPVmatrix = getLightPVMatrix(frustum, directionalLightDir);
+		auto lightFrustumInfo = getLightFrustumInfo(frustum, directionalLightDir);
+		auto& lightPVmatrices = lightFrustumInfo.lightPVMatrices;
 		for (int i = 0; i < 4; ++i) {
-			m_Shader->setMat4f(std::string("uLightVPMatrix[") + std::to_string(i).data() + std::string("]"), LightPVmatrix[i]);
+			m_Shader->setMat4f(std::string("uLightVPMatrix[") + std::to_string(i).data() + std::string("]"), lightPVmatrices[i]);
 		}
 		RenderCommand::EnableDepthTest();
 		RenderCommand::ChangeDepthFunc(EMT::RendererAPI::CompareFunc::Less);
-		auto MaxFrustumLightPVMatrix = getLightPVMatrix({ {n,f} }, directionalLightDir);
-		Renderer::Render(m_Scene, m_Shader, false, MaxFrustumLightPVMatrix[0]);
+		auto MaxFrustumLightPVMatrix = getLightFrustumInfo({ {n,f} }, directionalLightDir);
+		Renderer::Render(m_Scene, m_Shader, false, MaxFrustumLightPVMatrix.lightPVMatrices[0]);
 
 		// 通过ComputeShader计算深度贴图(R通道)和深度平方贴图(G通道)的SAT贴图
 		m_DepthSAT->ClearTexture();
@@ -82,13 +83,16 @@ namespace EMT {
 		RenderCommand::BindImageTexture(1, mfbo->GetColorTexture(), 0, RendererAPI::ImageAccess::WriteOnly, EMT_RG32F);
 		m_SATGenShader->ProcessCompute(1024, 2, 4);
 
-		RenderPass::s_Context.shadowOutput.lightSpaceMatrices = LightPVmatrix;
+		RenderPass::s_Context.shadowOutput.lightSpaceMatrices = lightPVmatrices;
 		RenderPass::s_Context.shadowOutput.frustum = frustum;
+		RenderPass::s_Context.shadowOutput.frustumSizes = lightFrustumInfo.frustumSizes;
 
 	}
 
-	esgstl::vector<glm::mat4> ShadowMapPass::getLightPVMatrix(const esgstl::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir) {
-		esgstl::vector<glm::mat4> LightVPMatrix;
+	LightFrustumInfo ShadowMapPass::getLightFrustumInfo(const esgstl::vector<std::pair<float, float>>& frustum, const glm::vec3& lightDir) {
+		LightFrustumInfo res;
+		auto& lightVPMatrices = res.lightPVMatrices;
+		auto& frustumSizes = res.frustumSizes;
 
 		// ndc标准设备空间的八个顶点
 		esgstl::vector<glm::vec3> ndcPos = { glm::vec3(-1.0f, -1.0f, -1.0f),glm::vec3(1.0f, -1.0f, -1.0f) ,
@@ -118,7 +122,7 @@ namespace EMT {
 
 			float x = (len / 2.0f) + ((far_len - near_len)  / (8 * len));
 
-			x = x * 1.5f;
+			x = x * 1.2f;
 
 			float radius = std::sqrt(x * x + near_len * 0.25f);
 
@@ -130,9 +134,10 @@ namespace EMT {
 			);
 
 			const glm::mat4 lightProjection = glm::ortho(-2.f * radius, 2.f * radius, -2.f * radius, 2.f * radius, -10.f * radius, 10.f * radius);
-			LightVPMatrix.push_back(lightProjection * lightView);
+			lightVPMatrices.push_back(lightProjection * lightView);
+			frustumSizes.push_back(radius * 2.f);
 		}
 
-		return LightVPMatrix;
+		return res;
 	}
 }
