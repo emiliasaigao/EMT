@@ -83,7 +83,7 @@ namespace EMT {
 		PassThroughOutput passThroughOutput;
 		DebugPassOutput debugPassOutput;
 		int shadowType = 0;
-		float PCSSLightSize = 1.f;
+		float PCSSLightSize = 0.2f;
 		bool useSSAO = true;
 		bool useSSR = false;
 		float ssrThickness = 1.2f;

@@ -58,7 +58,7 @@ namespace EMT {
 
 		mat4 getViewMatrix() const { return glm::lookAt(Position, Position + Front, Up); }
 		mat4 getProjectionMatrix() const {
-			return glm::perspective(glm::radians(Zoom), float(16.f / 9.f), 0.1f, 100.f);
+			return glm::perspective(glm::radians(Zoom), float(16.f / 9.f), 0.1f, 200.f);
 		}
 		void processKeyBoard(Camera_Movement movement, float deltaTime);
 		void processMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);

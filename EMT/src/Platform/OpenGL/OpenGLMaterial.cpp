@@ -58,37 +58,37 @@ namespace EMT {
 
 		if (m_AlbedoMap) {
 			if (ImGui::TreeNode("albedoMap")) {
-				m_AlbedoMap->DisplayTexture();
+				m_AlbedoMap->DisplayTexture(false);
 				ImGui::TreePop();
 			}
 		}
 		if (m_NormalMap) {
 			if (ImGui::TreeNode("normalMap")) {
-				m_NormalMap->DisplayTexture();
+				m_NormalMap->DisplayTexture(false);
 				ImGui::TreePop();
 			}
 		}
 		if (m_MetallicMap) {
 			if (ImGui::TreeNode("metalicMap")) {
-				m_MetallicMap->DisplayTexture();
+				m_MetallicMap->DisplayTexture(false);
 				ImGui::TreePop();
 			}
 		}
 		if (m_RoughnessMap) {
 			if (ImGui::TreeNode("roughnessMap")) {
-				m_RoughnessMap->DisplayTexture();
+				m_RoughnessMap->DisplayTexture(false);
 				ImGui::TreePop();
 			}
 		}
 		if (m_AOMap) {
 			if (ImGui::TreeNode("aoMap")) {
-				m_AOMap->DisplayTexture();
+				m_AOMap->DisplayTexture(false);
 				ImGui::TreePop();
 			}
 		}
 		if (m_MixtureMap) {
 			if (ImGui::TreeNode("mixtureMap")) {
-				m_MixtureMap->DisplayTexture();
+				m_MixtureMap->DisplayTexture(false);
 				ImGui::TreePop();
 			}
 		}

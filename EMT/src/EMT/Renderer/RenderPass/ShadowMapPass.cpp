@@ -52,7 +52,7 @@ namespace EMT {
 		float lambda = 0.8;
 		esgstl::vector<std::pair<float, float>> frustum(EMT::CSCADED_SIZE);
 		float n = 0.1f;
-		float f = 100.f;
+		float f = 200.f;
 		frustum[0].first = n;
 		for (int i = 1; i < EMT::CSCADED_SIZE; ++i) {
 			frustum[i - 1].second = frustum[i].first = lambda * n * std::pow(f / n, double(i) / double(EMT::CSCADED_SIZE))

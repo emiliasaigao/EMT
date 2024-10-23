@@ -144,7 +144,7 @@ namespace EMT {
 		ImGui::Text("size = %d x %d", m_Width, m_Height);
 		if (invert)
 			ImGui::Image((void*)(intptr_t)m_RendererID, ImVec2(m_Width, m_Height), ImVec2(0, 1), ImVec2(1, 0));
-		else ImGui::Image((void*)(intptr_t)m_RendererID, ImVec2(512, 512), ImVec2(0, 1), ImVec2(1, 0));
+		else ImGui::Image((void*)(intptr_t)m_RendererID, ImVec2(128, 128), ImVec2(0, 1), ImVec2(1, 0));
 	}
 	
 	void OpenGLTexture::ClearTexture(const glm::vec4& color) {

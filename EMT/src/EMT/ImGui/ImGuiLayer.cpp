@@ -11,37 +11,22 @@
 namespace EMT {
 	ImGuiLayer::ImGuiLayer(const Ref<Scene>& scene, const Ref<RenderPipeLine>& pipeLine)
 	: Layer("ImGuiLayer"),m_Scene(scene), m_PipeLine(pipeLine) {
+		m_SkyBoxes.push_back(m_Scene->GetSkybox());
 		esgstl::vector<std::string> skyboxFilePaths;
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/right.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/cloudy/left.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/cloudy/right.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/cloudy/top.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/cloudy/bottom.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/cloudy/front.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/cloudy/back.png");
+		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
+		skyboxFilePaths = {};
 		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/left.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/right.png");
 		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/top.png");
 		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/bottom.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/back.png");
 		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/front.png");
-		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
-		skyboxFilePaths = {};
-		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/right.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/left.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/top.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/bottom.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/back.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/sea/front.png");
-		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
-		skyboxFilePaths = {};
-		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/right.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/left.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/top.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/bottom.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/back.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/daily/front.png");
-		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
-		skyboxFilePaths = {};
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night/right.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night/left.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night/top.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night/bottom.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night/back.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night/front.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/back.png");
 		m_SkyBoxes.push_back(std::make_shared<Skybox>(skyboxFilePaths));
 	}
 
@@ -121,18 +106,16 @@ namespace EMT {
 		}
 
 		ImGui::Text("Skybox");
-		if (ImGui::RadioButton("city_night", mCurSkyBoxIdx == 0)) {
+		if (ImGui::RadioButton("sunny", mCurSkyBoxIdx == 0)) {
 			mCurSkyBoxIdx = 0;
 		}
-		if (ImGui::RadioButton("sea", mCurSkyBoxIdx == 1)) {
+		if (ImGui::RadioButton("cloudy", mCurSkyBoxIdx == 1)) {
 			mCurSkyBoxIdx = 1;
 		}
-		if (ImGui::RadioButton("daily", mCurSkyBoxIdx == 2)) {
+		if (ImGui::RadioButton("night_city", mCurSkyBoxIdx == 2)) {
 			mCurSkyBoxIdx = 2;
 		}
-		if (ImGui::RadioButton("night", mCurSkyBoxIdx == 3)) {
-			mCurSkyBoxIdx = 3;
-		}
+
 		if (mCurSkyBoxIdx != mLastSkyBoxIdx) {
 			m_Scene->GetSkybox() = m_SkyBoxes[mCurSkyBoxIdx];
 			m_PipeLine->PreDraw();

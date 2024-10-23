@@ -149,8 +149,8 @@ namespace EMT {
 		marble_bust.GetMesh()->GetMaterial()->SetMixtureMap(TextureLoader::Load2DTexture("../EMT/assets/model/marble_bust/textures/marble_bust_01_arm_2k.png"));
 		marble_bust.GetMesh()->GetMaterial()->SeperateMixture();
 		marble_bust.GetMesh()->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/model/marble_bust/textures/marble_bust_01_nor_gl_2k.png"));
-		marble_bust.SetScale(glm::vec3(5.f, 5.f, 5.f));
-		marble_bust.SetPosition(glm::vec3(3.f, 2.f, 2.f));
+		marble_bust.SetScale(glm::vec3(8.f, 8.f, 8.f));
+		marble_bust.SetPosition(glm::vec3(7.f, 2.f, 0.f));
 		marble_bust.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
 		marble_bust.SetRotation(-90.f);
 		mModels.push_back(std::move(marble_bust));
@@ -162,9 +162,9 @@ namespace EMT {
 		gun.GetMesh()->GetMaterial()->SetRoughnessMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Cerberus_R.tga"));
 		gun.GetMesh()->GetMaterial()->SetAmbientOcclusionMap(TextureLoader::Load2DTexture("../EMT/assets/model/Cerberus/Textures/Raw/Cerberus_AO.tga"));
 		gun.SetScale(glm::vec3(0.05f, 0.05f, 0.05f));
-		gun.SetPosition(glm::vec3(-0.0f, 4.f, 0.f));
-		gun.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
-		gun.SetRotation(-90.f);
+		gun.SetPosition(glm::vec3(-2.0f, 4.f, 0.f));
+		gun.SetRotateAxis(glm::vec3(-0.577, 0.577f, 0.577f));
+		gun.SetRotation(120.f);
 		mModels.push_back(std::move(gun));
 
 		Model stone_fire_pit = Model("../EMT/assets/model/stone_fire_pit/stone_fire_pit_2k.fbx");
@@ -185,7 +185,7 @@ namespace EMT {
 		Ottoman.GetMesh()->GetMaterial()->SetNormalMap(TextureLoader::Load2DTexture("../EMT/assets/model/Ottoman/textures/Ottoman_01_nor_gl_2k.png"));
 		
 		Ottoman.SetScale(glm::vec3(5.f, 5.f, 5.f));
-		Ottoman.SetPosition(glm::vec3(-5.f, 2.f, 0.f));
+		Ottoman.SetPosition(glm::vec3(-7.f, 2.f, 0.f));
 		Ottoman.SetRotateAxis(glm::vec3(1.f, 0.f, 0.f));
 		Ottoman.SetRotation(-90.f);
 		mModels.push_back(std::move(Ottoman));
@@ -201,12 +201,12 @@ namespace EMT {
 
 		//TODO: skybox
 		esgstl::vector<std::string> skyboxFilePaths;
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/right.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/left.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/top.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/bottom.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/back.png");
-		skyboxFilePaths.push_back("../EMT/assets/skybox/night_city/front.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sunny/left.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sunny/right.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sunny/top.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sunny/bottom.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sunny/front.png");
+		skyboxFilePaths.push_back("../EMT/assets/skybox/sunny/back.png");
 		mSkybox = std::make_shared<Skybox>(skyboxFilePaths);
 	}
 
