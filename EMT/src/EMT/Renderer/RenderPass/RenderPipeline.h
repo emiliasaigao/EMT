@@ -14,6 +14,7 @@
 #include "FXAAPass.h"
 #include "OutlineGenPass.h"
 #include "DebugPass.h"
+#include "NormalViewablePass.h"
 
 namespace EMT {
 	class RenderPipeLine {

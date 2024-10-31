@@ -102,10 +102,16 @@
     <ClInclude Include="src\EMT\MouseButton.h">
       <Filter>src\EMT</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\BVH.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Renderer\Buffer.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Renderer\Camera.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\ComputeShader.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Renderer\FrameBuffer.h">
@@ -132,6 +138,9 @@
     <ClInclude Include="src\EMT\Renderer\Light\SpotLight.h">
       <Filter>src\EMT\Renderer\Light</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\AABB.h">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Renderer\Model\AssimpGLMHelper.h">
       <Filter>src\EMT\Renderer\Model</Filter>
     </ClInclude>
@@ -153,10 +162,43 @@
     <ClInclude Include="src\EMT\Renderer\Model\Shapes\Sphere.h">
       <Filter>src\EMT\Renderer\Model\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Model\Triangle.h">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\Ray.h">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Renderer\RenderCommand.h">
       <Filter>src\EMT\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\DebugPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredLightingPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\EavgGenPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\FXAAPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
     <ClInclude Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\LutGenPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\OutlineGenPass.h">
       <Filter>src\EMT\Renderer\RenderPass</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Renderer\RenderPass\PassThroughPass.h">
@@ -166,6 +208,15 @@
       <Filter>src\EMT\Renderer\RenderPass</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Renderer\RenderPass\RenderPipeline.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOGenPass.h">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EMT\Renderer\RenderPass\SSRPass.h">
       <Filter>src\EMT\Renderer\RenderPass</Filter>
     </ClInclude>
     <ClInclude Include="src\EMT\Renderer\RenderPass\ShadowMapPass.h">
@@ -207,6 +258,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLComputeShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -240,24 +294,7 @@
     <ClInclude Include="src\emtpch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\LutGenPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\EavgGenPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\DeferredLightingPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\FXAAPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOGenPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\SSRPass.h" />
-    <ClInclude Include="src\EMT\Renderer\Model\AABB.h" />
-    <ClInclude Include="src\EMT\Renderer\BVH.h" />
-    <ClInclude Include="src\EMT\Renderer\Ray.h" />
-    <ClInclude Include="src\EMT\Renderer\Model\Triangle.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\OutlineGenPass.h" />
-    <ClInclude Include="src\EMT\Renderer\ComputeShader.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLComputeShader.h" />
-    <ClInclude Include="src\EMT\Renderer\RenderPass\DebugPass.h" />
+    <ClInclude Include="src\EMT\Renderer\RenderPass\NormalViewablePass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\stb_image\stb_image.cpp">
@@ -281,10 +318,16 @@
     <ClCompile Include="src\EMT\Log.cpp">
       <Filter>src\EMT</Filter>
     </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\BVH.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\EMT\Renderer\Buffer.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Renderer\Camera.cpp">
+      <Filter>src\EMT\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\ComputeShader.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Renderer\FrameBuffer.cpp">
@@ -326,10 +369,40 @@
     <ClCompile Include="src\EMT\Renderer\Model\Shapes\Sphere.cpp">
       <Filter>src\EMT\Renderer\Model\Shapes</Filter>
     </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\Model\Triangle.cpp">
+      <Filter>src\EMT\Renderer\Model</Filter>
+    </ClCompile>
     <ClCompile Include="src\EMT\Renderer\RenderCommand.cpp">
       <Filter>src\EMT\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\DebugPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredLightingPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\EavgGenPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\FXAAPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
     <ClCompile Include="src\EMT\Renderer\RenderPass\ForwardLightingPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\LutGenPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\OutlineGenPass.cpp">
       <Filter>src\EMT\Renderer\RenderPass</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Renderer\RenderPass\PassThroughPass.cpp">
@@ -339,6 +412,15 @@
       <Filter>src\EMT\Renderer\RenderPass</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Renderer\RenderPass\RenderPipeline.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOGenPass.cpp">
+      <Filter>src\EMT\Renderer\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EMT\Renderer\RenderPass\SSRPass.cpp">
       <Filter>src\EMT\Renderer\RenderPass</Filter>
     </ClCompile>
     <ClCompile Include="src\EMT\Renderer\RenderPass\ShadowMapPass.cpp">
@@ -377,6 +459,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLComputeShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -410,56 +495,11 @@
     <ClCompile Include="src\emtpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredGeometryPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\IrradianceCubeMapGenPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\LightPrefilterPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\LutGenPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\EavgGenPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\DeferredLightingPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\FXAAPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOGenPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\SSAOBlurGenPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\SSRPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\BVH.cpp" />
-    <ClCompile Include="src\EMT\Renderer\Model\Triangle.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\OutlineGenPass.cpp" />
-    <ClCompile Include="src\EMT\Renderer\ComputeShader.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLComputeShader.cpp" />
-    <ClCompile Include="src\EMT\Renderer\RenderPass\DebugPass.cpp" />
+    <ClCompile Include="src\EMT\Renderer\RenderPass\NormalViewablePass.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\simplecolor.vert" />
-    <None Include="assets\shader\deferred\GbufferGenerate.vert" />
-    <None Include="assets\shader\deferred\GbufferGenerate.frag" />
-    <None Include="assets\shader\deferred\DeferredLighting.vert" />
-    <None Include="assets\shader\deferred\DeferredLighting.frag" />
-    <None Include="assets\shader\pbr\IrradianceMapGen.vert" />
-    <None Include="assets\shader\pbr\IrradianceMapGen.frag" />
-    <None Include="assets\shader\pbr\LightPreFilter.vert" />
-    <None Include="assets\shader\pbr\LightPreFilter.frag" />
-    <None Include="assets\shader\pbr\EavgGen.frag" />
-    <None Include="assets\shader\pbr\EavgGen.vert" />
-    <None Include="assets\shader\pbr\LutGen.frag" />
-    <None Include="assets\shader\pbr\LutGen.vert" />
-    <None Include="assets\shader\shadow\CSMGen.frag" />
-    <None Include="assets\shader\shadow\CSMGen.vert" />
-    <None Include="assets\shader\shadow\CSMGen.geo" />
-    <None Include="assets\shader\debug\CSMDebug.vert" />
-    <None Include="assets\shader\debug\CSMDebug.frag" />
-    <None Include="assets\shader\postprocess\FXAA.vert" />
-    <None Include="assets\shader\postprocess\FXAA.frag" />
-    <None Include="assets\shader\postprocess\SSAO.frag" />
-    <None Include="assets\shader\postprocess\SSAO.vert" />
-    <None Include="assets\shader\postprocess\SSAOBlur.vert" />
-    <None Include="assets\shader\postprocess\SSAOBlur.frag" />
-    <None Include="assets\shader\common\DepthGen.frag" />
-    <None Include="assets\shader\common\DepthGen.vert" />
-    <None Include="assets\shader\postprocess\SSR.vert" />
-    <None Include="assets\shader\postprocess\SSR.frag" />
-    <None Include="assets\shader\common\OutlineGen.vert" />
-    <None Include="assets\shader\common\OutlineGen.frag" />
-    <None Include="assets\shader\computeShader\SATGen.comp" />
-    <None Include="assets\shader\debug\SATDebug.vert" />
-    <None Include="assets\shader\debug\SATDebug.frag" />
+    <None Include="assets\shader\debug\NormalViewable.vert" />
+    <None Include="assets\shader\debug\NormalViewable.geo" />
+    <None Include="assets\shader\debug\NormalViewable.frag" />
   </ItemGroup>
 </Project>

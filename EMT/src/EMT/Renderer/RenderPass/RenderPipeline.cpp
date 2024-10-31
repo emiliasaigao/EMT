@@ -13,6 +13,7 @@ namespace EMT {
 		
 		m_RenderPasses.push_back(std::make_shared<ShadowMapPass>(scene));
 		//m_RenderPasses.push_back(std::make_shared<DebugPass>(scene));
+		//m_RenderPasses.push_back(std::make_shared<NormalViewablePass>(scene));
 		//m_RenderPasses.push_back(std::make_shared<ForwardLightingPass>(scene));
 		m_RenderPasses.push_back(std::make_shared<DeferredGeometryPass>(scene));
 		m_RenderPasses.push_back(std::make_shared<DeferredLightingPass>(scene));

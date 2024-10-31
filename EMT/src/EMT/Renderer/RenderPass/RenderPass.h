@@ -66,10 +66,16 @@ namespace EMT {
 		Ref<FrameBuffer> fbo;
 	};
 
+	struct NormalViewablePassOutput
+	{
+		Ref<FrameBuffer> fbo;
+	};
+
 	struct RenderPassContext {
 		int windowWidth, windowHeight;
 		ShadowmapPassOutput shadowOutput;
 		GeometryPassOutput geometryOutput;
+		NormalViewablePassOutput normalViewableOutput;
 		IrradianceMapPassOutput irradianceMapOutput;
 		LightPreFilterPassOutput lPrefilterOutput;
 		LutPassOutput lutOutput;
@@ -87,7 +93,7 @@ namespace EMT {
 		bool useSSAO = true;
 		bool useSSR = false;
 		float ssrThickness = 1.2f;
-		float ssrEffect = 1.0f;
+		float ssrEffect = 0.15f;
 		float SSAOEffect = 1.0f;
 		float SSAORadius = 2.0f;
 		int SSAOKernelSize = 32;
